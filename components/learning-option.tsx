@@ -6,7 +6,6 @@ interface LearningOptionProps {
   type: 'prefix' | 'suffix' | 'root'
   title: string
   description: string
-  icon: string
   selected: boolean
   onClick: () => void
 }
@@ -15,7 +14,6 @@ export function LearningOption({
   type,
   title,
   description,
-  icon,
   selected,
   onClick,
 }: LearningOptionProps) {
@@ -25,30 +23,48 @@ export function LearningOption({
         return {
           bg: 'from-[#6b9b7b] to-[#5a8b6b]',
           border: 'border-[#4a7a5b]',
-          icon: '🌱',
         }
       case 'suffix':
         return {
           bg: 'from-[#5a8b6b] to-[#4a7a5b]',
           border: 'border-[#3a6a4b]',
-          icon: '🍃',
         }
       case 'root':
         return {
           bg: 'from-[#7a9b7b] to-[#6a8b6b]',
           border: 'border-[#5a7a5b]',
-          icon: '🌿',
         }
       default:
         return {
           bg: 'from-[#8b7355] to-[#7a6345]',
           border: 'border-[#6a5335]',
-          icon: '🔮',
         }
     }
   }
 
   const colors = getTypeColor(type)
+
+  // Moss pattern SVG - pixelated moss representation
+  const getMossPattern = (type: string) => {
+    const patterns: Record<string, string[]> = {
+      prefix: [
+        '■□■□■',
+        '□■□■□',
+        '■□■□■',
+      ],
+      suffix: [
+        '■■□■■',
+        '■□■■□',
+        '□■■□■',
+      ],
+      root: [
+        '■□■■□',
+        '□■□□■',
+        '■□■□■',
+      ],
+    }
+    return patterns[type] || patterns.prefix
+  }
 
   return (
     <button
@@ -95,7 +111,26 @@ export function LearningOption({
 
       {/* Content */}
       <div className="relative z-10 p-6 flex flex-col items-center justify-center h-full text-center">
-        <div className="text-5xl mb-4">{icon}</div>
+        {/* Moss pattern icon */}
+        <div className="mb-4 p-4 bg-[#4a5a4b]/40 rounded-lg border border-[#5a7a5b]">
+          <div className="font-mono text-sm leading-tight text-[#7ab86b] space-y-1">
+            {getMossPattern(type).map((line, i) => (
+              <div key={i} className="tracking-widest">
+                {line.split('').map((char, j) => (
+                  <span
+                    key={j}
+                    className={cn(
+                      'inline-block w-2 h-2 mx-0.5',
+                      char === '■'
+                        ? 'bg-gradient-to-br from-[#6ab86b] to-[#5a9b5b] rounded-sm'
+                        : 'bg-[#3a4a3b]'
+                    )}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
         <h3 className="text-xl font-bold text-[#f5f5f1] mb-2">{title}</h3>
         <p className="text-[#d4cfc9] text-sm leading-relaxed">{description}</p>
 

@@ -43,7 +43,6 @@ export default function LearningPathPage() {
             type="prefix"
             title="接頭辞"
             description="言葉の始まりに付く要素を学ぶ"
-            icon="🌱"
             selected={selectedOption === 'prefix'}
             onClick={() => setSelectedOption('prefix')}
           />
@@ -51,7 +50,6 @@ export default function LearningPathPage() {
             type="suffix"
             title="接尾辞"
             description="言葉の終わりに付く要素を学ぶ"
-            icon="🍃"
             selected={selectedOption === 'suffix'}
             onClick={() => setSelectedOption('suffix')}
           />
@@ -59,7 +57,6 @@ export default function LearningPathPage() {
             type="root"
             title="その他の語源"
             description="言葉の中核となる要素を学ぶ"
-            icon="🌿"
             selected={selectedOption === 'root'}
             onClick={() => setSelectedOption('root')}
           />
