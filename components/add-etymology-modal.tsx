@@ -15,6 +15,7 @@ export function AddEtymologyModal({ type, onClose, onAdd }: AddEtymologyModalPro
   const [meaning, setMeaning] = useState('')
   const [language, setLanguage] = useState('ラテン語')
   const [examples, setExamples] = useState('')
+  const [course, setCourse] = useState<'seeker' | 'sage' | 'both'>('both')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,6 +24,7 @@ export function AddEtymologyModal({ type, onClose, onAdd }: AddEtymologyModalPro
         name,
         meaning,
         language,
+        course,
         examples: examples
           .split(',')
           .map((ex) => ex.trim())
@@ -32,6 +34,7 @@ export function AddEtymologyModal({ type, onClose, onAdd }: AddEtymologyModalPro
       setMeaning('')
       setLanguage('ラテン語')
       setExamples('')
+      setCourse('both')
     }
   }
 
@@ -129,6 +132,48 @@ export function AddEtymologyModal({ type, onClose, onAdd }: AddEtymologyModalPro
                 'focus:outline-none focus:border-[#6b9b7b] focus:ring-2 focus:ring-[#6b9b7b]/30'
               )}
             />
+          </div>
+
+          {/* Course Selection */}
+          <div>
+            <label className="block text-[#d4cfc9] font-semibold mb-3 text-sm">
+              どの道に属しますか？
+            </label>
+            <div className="space-y-2">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="course"
+                  value="seeker"
+                  checked={course === 'seeker'}
+                  onChange={(e) => setCourse(e.target.value as 'seeker' | 'sage' | 'both')}
+                  className="w-4 h-4"
+                />
+                <span className="text-[#d4cfc9] text-sm">探索者の道のみ</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="course"
+                  value="sage"
+                  checked={course === 'sage'}
+                  onChange={(e) => setCourse(e.target.value as 'seeker' | 'sage' | 'both')}
+                  className="w-4 h-4"
+                />
+                <span className="text-[#d4cfc9] text-sm">賢者の道のみ</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="course"
+                  value="both"
+                  checked={course === 'both'}
+                  onChange={(e) => setCourse(e.target.value as 'seeker' | 'sage' | 'both')}
+                  className="w-4 h-4"
+                />
+                <span className="text-[#d4cfc9] text-sm">両方の道</span>
+              </label>
+            </div>
           </div>
 
           {/* Buttons */}

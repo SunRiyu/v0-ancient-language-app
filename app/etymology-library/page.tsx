@@ -35,6 +35,7 @@ export default function EtymologyLibraryPage() {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState<'prefix' | 'suffix' | 'root'>('prefix')
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [courseFilter, setCourseFilter] = useState<'all' | 'seeker' | 'sage'>('all')
   const [customEtymologies, setCustomEtymologies] = useState<Record<string, any[]>>({
     prefix: [],
     suffix: [],
@@ -118,6 +119,40 @@ export default function EtymologyLibraryPage() {
               {getTabTitle(tab)}
             </button>
           ))}
+        </div>
+
+        {/* Course Filter */}
+        <div className="flex flex-wrap gap-3 mb-8 justify-center">
+          <button
+            onClick={() => setCourseFilter('all')}
+            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 text-sm ${
+              courseFilter === 'all'
+                ? 'bg-[#6b9b7b] text-[#f5f5f1]'
+                : 'bg-[#4a4440] text-[#d4cfc9] hover:bg-[#5a5450]'
+            }`}
+          >
+            全て表示
+          </button>
+          <button
+            onClick={() => setCourseFilter('seeker')}
+            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 text-sm ${
+              courseFilter === 'seeker'
+                ? 'bg-[#6b9b7b] text-[#f5f5f1]'
+                : 'bg-[#4a4440] text-[#d4cfc9] hover:bg-[#5a5450]'
+            }`}
+          >
+            探索者の道
+          </button>
+          <button
+            onClick={() => setCourseFilter('sage')}
+            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 text-sm ${
+              courseFilter === 'sage'
+                ? 'bg-[#6b9b7b] text-[#f5f5f1]'
+                : 'bg-[#4a4440] text-[#d4cfc9] hover:bg-[#5a5450]'
+            }`}
+          >
+            賢者の道
+          </button>
         </div>
 
         {/* Content Area */}

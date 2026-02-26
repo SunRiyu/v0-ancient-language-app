@@ -79,9 +79,16 @@ export default function HomePage() {
           <h2 className="text-2xl sm:text-3xl font-bold text-amber-50 mb-3 text-center">語源の樹</h2>
           <p className="text-amber-100/70 text-center mb-10">解放した語根たちの系図</p>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <DexCard key={index} index={index} locked={true} />
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+            {[
+              { index: 1, label: '接頭辞' },
+              { index: 2, label: '接頭辞' },
+              { index: 3, label: '接尾辞' },
+              { index: 4, label: '接尾辞' },
+              { index: 5, label: '語根' },
+              { index: 6, label: '語根' },
+            ].map((item) => (
+              <DexCard key={item.index} index={item.index} locked={true} label={item.label} />
             ))}
           </div>
         </section>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 interface EtymologyItem {
@@ -15,6 +16,7 @@ interface EtymologyListProps {
 }
 
 export function EtymologyList({ items }: EtymologyListProps) {
+  const router = useRouter()
   return (
     <div className="space-y-4">
       {items.length === 0 ? (
@@ -25,6 +27,7 @@ export function EtymologyList({ items }: EtymologyListProps) {
         items.map((item) => (
           <div
             key={item.id}
+            onClick={() => router.push(`/etymology-mindmap?name=${encodeURIComponent(item.name)}`)}
             className={cn(
               'bg-gradient-to-r from-[#3d3733] to-[#4a4440]',
               'border-l-4 border-[#6b9b7b]',
