@@ -1,6 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 interface LearningOptionProps {
   type: 'prefix' | 'suffix' | 'root'
@@ -8,6 +9,7 @@ interface LearningOptionProps {
   description: string
   selected: boolean
   onClick: () => void
+  gender: 'male' | 'female'
 }
 
 export function LearningOption({
@@ -16,6 +18,7 @@ export function LearningOption({
   description,
   selected,
   onClick,
+  gender,
 }: LearningOptionProps) {
   const getTypeColor = (type: string) => {
     switch (type) {
@@ -44,26 +47,16 @@ export function LearningOption({
 
   const colors = getTypeColor(type)
 
-  // Moss pattern SVG - pixelated moss representation
-  const getMossPattern = (type: string) => {
-    const patterns: Record<string, string[]> = {
-      prefix: [
-        '■□■□■',
-        '□■□■□',
-        '■□■□■',
-      ],
-      suffix: [
-        '■■□■■',
-        '■□■■□',
-        '□■■□■',
-      ],
-      root: [
-        '■□■■□',
-        '□■□□■',
-        '■□■□■',
-      ],
-    }
-    return patterns[type] || patterns.prefix
+  // 画像の入れ替え対応
+  const getImagePath = (type: string, gender: 'male' | 'female') => {
+    const folder = gender === 'male' ? 'boy' : 'girl'
+    const fileName = {
+      prefix: 'alligater.jpg',      // 接頭辞にワニ（元は接尾辞）を表示
+      suffix: 'rock_push.jpg',      // 接尾辞に岩（元は接頭辞）を表示
+      root: 'pushed_by_rock.jpg',   // その他の語源はそのまま
+    }[type as 'prefix' | 'suffix' | 'root'] || 'rock_push.jpg'
+    
+    return `/image/${folder}/${fileName}`
   }
 
   return (
@@ -71,66 +64,24 @@ export function LearningOption({
       onClick={onClick}
       className={cn(
         'relative group rounded-lg overflow-hidden transition-all duration-300 transform',
-        'hover:scale-105 cursor-pointer h-full',
+        'hover:scale-105 cursor-pointer h-full w-full', // w-fullで親のグリッド幅に合わせる
         selected ? 'scale-105 ring-2 ring-offset-2 ring-offset-stone-900' : '',
         'border-2',
         colors.border
       )}
     >
-      {/* Background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-b ${colors.bg} opacity-80`} />
 
-      {/* Stone texture */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <svg className="w-full h-full" preserveAspectRatio="none">
-          <filter id={`noise-${type}`}>
-            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
-          </filter>
-          <rect width="100%" height="100%" fill="currentColor" opacity="0.15" filter={`url(#noise-${type})`} />
-        </svg>
-      </div>
-
-      {/* Moss overlay */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-multiply">
-        <div className="absolute top-0 right-0 w-24 h-16 rounded-bl-full bg-gradient-radial from-green-400/30 to-transparent blur-2xl" />
-        <div className="absolute bottom-0 left-0 w-20 h-12 rounded-tr-full bg-gradient-radial from-green-500/25 to-transparent blur-xl" />
-      </div>
-
-      {/* Hover shine effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/20 to-transparent" />
-      </div>
-
-      {/* Selected ring effect */}
-      {selected && (
-        <div className="absolute inset-0 animate-pulse">
-          <div className="absolute inset-0 bg-gradient-to-b from-green-400/10 via-transparent to-transparent" />
-        </div>
-      )}
-
-      {/* Content */}
       <div className="relative z-10 p-6 flex flex-col items-center justify-center h-full text-center">
-        {/* Moss pattern icon */}
-        <div className="mb-4 p-4 bg-[#4a5a4b]/40 rounded-lg border border-[#5a7a5b]">
-          <div className="font-mono text-sm leading-tight text-[#7ab86b] space-y-1">
-            {getMossPattern(type).map((line, i) => (
-              <div key={i} className="tracking-widest">
-                {line.split('').map((char, j) => (
-                  <span
-                    key={j}
-                    className={cn(
-                      'inline-block w-2 h-2 mx-0.5',
-                      char === '■'
-                        ? 'bg-gradient-to-br from-[#6ab86b] to-[#5a9b5b] rounded-sm'
-                        : 'bg-[#3a4a3b]'
-                    )}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
+        <div className="mb-4 relative w-full aspect-video rounded-lg border border-[#5a7a5b] overflow-hidden bg-stone-800">
+          <Image
+            src={getImagePath(type, gender)}
+            alt={title}
+            fill
+            className="object-cover"
+          />
         </div>
+        
         <h3 className="text-xl font-bold text-[#f5f5f1] mb-2">{title}</h3>
         <p className="text-[#d4cfc9] text-sm leading-relaxed">{description}</p>
 
