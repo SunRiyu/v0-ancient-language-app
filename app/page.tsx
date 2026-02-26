@@ -34,7 +34,7 @@ function CharacterSelection({ onSelect }: { onSelect: (gender: 'male' | 'female'
         >
           <div className="relative w-64 h-80 mb-6 overflow-hidden rounded-2xl border-2 border-amber-900/50 bg-stone-900/50 group-hover:border-amber-400 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all duration-500">
             <Image
-              src="/../image/boy_image.png"
+              src="/image/boy_image.png"
               alt="Male Explorer"
               fill
               className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
@@ -52,7 +52,7 @@ function CharacterSelection({ onSelect }: { onSelect: (gender: 'male' | 'female'
         >
           <div className="relative w-64 h-80 mb-6 overflow-hidden rounded-2xl border-2 border-amber-900/50 bg-stone-900/50 group-hover:border-amber-400 group-hover:shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all duration-500">
             <Image
-              src="/../image/girl_image.png"
+              src="/image/girl_image.png"
               alt="Female Explorer"
               fill
               className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
@@ -160,7 +160,7 @@ export default function HomePage() {
             <div className="w-16 h-16 relative mb-4">
               {/* 性別によってメイン画面に出るミニアイコンを切り替え */}
               <Image
-                src={userGender === 'male' ? "/boy_image.png" : "/girl_image.png"}
+                src={userGender === 'male' ? "/image/boy_image.png" : "/image/girl_image.png"}
                 alt="Avatar"
                 fill
                 className="rounded-full border-2 border-amber-500/50 object-cover"
