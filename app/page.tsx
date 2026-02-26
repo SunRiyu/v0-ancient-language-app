@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Info, RefreshCcw } from 'lucide-react'
+import { Info, RefreshCcw, TreeDeciduous, Clock, BookOpen } from 'lucide-react'
 
 // --- キャラクター選択コンポーネント ---
 function CharacterSelection({ onSelect }: { onSelect: (gender: 'male' | 'female') => void }) {
@@ -74,6 +74,9 @@ export default function HomePage() {
   const [userGender, setUserGender] = useState<'male' | 'female' | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
+  // 「語源の樹」カードを表示するかどうかのステート
+  const [showEtymologyTree, setShowEtymologyTree] = useState(false)
+
   useEffect(() => {
     const savedGender = localStorage.getItem('userGender') as 'male' | 'female' | null
     if (savedGender) {
@@ -91,6 +94,14 @@ export default function HomePage() {
     if (selectedCourse) {
       router.push(`/learning-path?path=${selectedCourse}`)
     }
+  }
+
+  // 接頭辞などのカードをクリックした時の遷移処理
+  const handleDexCardClick = (label: string) => {
+    if (label === '接頭辞') {
+      router.push(`/etymology-intro?type=${encodeURIComponent(label)}`)
+    }
+    // 接尾辞や語根の場合も必要に応じてここに追加
   }
 
   if (!isLoaded) return <div className="min-h-screen bg-stone-950" />
@@ -130,10 +141,9 @@ export default function HomePage() {
             <div className="py-4 space-y-4">
               <div className="flex justify-center">
                 <div className="relative w-24 h-24 rounded-full border-2 border-amber-500/50 overflow-hidden">
-                  {/* 画像を tree.jpg に変更 */}
                   <Image
-                    src="/image/tree.jpg"
-                    alt="Etymology Tree"
+                    src={userGender === 'male' ? "/image/boy_image.png" : "/image/girl_image.png"}
+                    alt="Current Character"
                     fill
                     className="object-cover"
                   />
@@ -158,13 +168,13 @@ export default function HomePage() {
 
         <section className="mb-20">
           <div className="flex flex-col items-center mb-8">
-            <div className="w-16 h-16 relative mb-4">
-              {/* 性別によってメイン画面に出るミニアイコンを切り替え */}
+            {/* 主人公アイコン: w-16 h-16 から w-32 h-32 (2倍) に拡大 */}
+            <div className="w-32 h-32 relative mb-6">
               <Image
                 src={userGender === 'male' ? "/image/boy_image.png" : "/image/girl_image.png"}
                 alt="Avatar"
                 fill
-                className="rounded-full border-2 border-amber-500/50 object-cover"
+                className="rounded-full border-4 border-amber-500/50 shadow-[0_0_20px_rgba(251,191,36,0.3)] object-cover"
               />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-amber-50 text-center">
@@ -200,14 +210,58 @@ export default function HomePage() {
           )}
         </section>
 
-        {/* 語源の樹 */}
-        <section>
-          <h2 className="text-2xl font-bold text-amber-50 mb-8 text-center">語源の樹</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <DexCard key={i} index={i} locked={true} label={i <= 2 ? '接頭辞' : i <= 4 ? '接尾辞' : '語根'} />
-            ))}
+        {/* 成果セクション */}
+        <section className="bg-stone-900/40 rounded-3xl p-8 border border-amber-900/20 backdrop-blur-sm">
+          <h2 className="text-3xl font-bold text-amber-200 mb-8 text-center tracking-widest">成果</h2>
+
+          {/* 3つの成果切替ボタン */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+            <button
+              onClick={() => setShowEtymologyTree(!showEtymologyTree)}
+              className={`flex items-center justify-center gap-3 py-4 px-6 rounded-xl border transition-all group ${showEtymologyTree ? 'bg-amber-900/60 border-amber-400 text-amber-50' : 'bg-stone-800/60 border-amber-500/20 text-amber-100 hover:bg-amber-900/40'}`}
+            >
+              <TreeDeciduous className={`size-5 transition-transform group-hover:scale-110 ${showEtymologyTree ? 'text-amber-200' : 'text-amber-400'}`} />
+              <span className="font-bold">語源の樹</span>
+            </button>
+
+            <button className="flex items-center justify-center gap-3 py-4 px-6 bg-stone-800/60 hover:bg-amber-900/40 text-amber-100 rounded-xl border border-amber-500/20 transition-all group">
+              <Clock className="size-5 text-amber-400 group-hover:scale-110 transition-transform" />
+              <span className="font-bold">時間</span>
+            </button>
+
+            <button className="flex items-center justify-center gap-3 py-4 px-6 bg-stone-800/60 hover:bg-amber-900/40 text-amber-100 rounded-xl border border-amber-500/20 transition-all group">
+              <BookOpen className="size-5 text-amber-400 group-hover:scale-110 transition-transform" />
+              <span className="font-bold">学習単語数</span>
+            </button>
           </div>
+
+          {/* 語源の樹ボタンが押された時のみ鍵穴のカードを表示 */}
+          {showEtymologyTree && (
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 animate-in fade-in slide-in-from-top-4 duration-500">
+              {[1, 2, 3, 4, 5, 6].map((i) => {
+                const label = i <= 2 ? '接頭辞' : i <= 4 ? '接尾辞' : '語根';
+                return (
+                  <div
+                    key={i}
+                    onClick={() => {
+                      console.log("Clicked:", label); // デバッグ用：クリックされたか確認
+                      handleDexCardClick(label);
+                    }}
+                    className="cursor-pointer active:scale-95 transition-transform" // クリックしやすくするための追加
+                  >
+                    {/* ポインターイベントを無効化して親のdivでクリックを拾うようにする */}
+                    <div className="pointer-events-none">
+                      <DexCard
+                        index={i}
+                        locked={true}
+                        label={label}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </section>
       </div>
     </main>
