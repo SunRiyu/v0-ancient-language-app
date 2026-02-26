@@ -7,27 +7,46 @@ import { BackButton } from '@/components/back-button'
 import { EtymologyList } from '@/components/etymology-list'
 import { AddEtymologyModal } from '@/components/add-etymology-modal'
 
+// app/etymology-library/page.tsx 内の etymologyData 部分を以下に差し替えてください
+
 const etymologyData = {
   prefix: [
-    { id: 1, name: 'pre-', meaning: '前に、前の', language: 'ラテン語', examples: ['prefix', 'preview'] },
-    { id: 2, name: 'un-', meaning: '〜でない、逆の', language: 'ゲルマン語', examples: ['unhappy', 'undo'] },
-    { id: 3, name: 're-', meaning: '再び、戻す', language: 'ラテン語', examples: ['review', 'replay'] },
-    { id: 4, name: 'mis-', meaning: '間違った、悪い', language: 'ゲルマン語', examples: ['mistake', 'mislead'] },
-    { id: 5, name: 'over-', meaning: '超える、上に', language: 'ゲルマン語', examples: ['overcome', 'overlap'] },
+    { id: 1, name: 'pre-', meaning: '前に、前の', language: 'ラテン語', examples: ['prefix', 'preview', 'prepare'] },
+    { id: 2, name: 'un-', meaning: '〜でない、逆の', language: 'ゲルマン語', examples: ['unhappy', 'undo', 'unknown'] },
+    { id: 3, name: 're-', meaning: '再び、戻す', language: 'ラテン語', examples: ['review', 'replay', 'reaction'] },
+    { id: 4, name: 'mis-', meaning: '間違った、悪い', language: 'ゲルマン語', examples: ['mistake', 'mislead', 'misunderstand'] },
+    { id: 5, name: 'over-', meaning: '超える、上に', language: 'ゲルマン語', examples: ['overcome', 'overlap', 'overwork'] },
+    { id: 6, name: 'pro-', meaning: '前へ、賛成して', language: 'ラテン語', examples: ['progress', 'produce', 'promote'] },
+    { id: 7, name: 'con- / com-', meaning: '共に、完全に', language: 'ラテン語', examples: ['connect', 'combine', 'company'] },
+    { id: 8, name: 'de-', meaning: '離れて、下に、否定', language: 'ラテン語', examples: ['depart', 'decrease', 'decline'] },
+    { id: 9, name: 'dis-', meaning: '離れて、否定', language: 'ラテン語', examples: ['dislike', 'discover', 'distance'] },
+    { id: 10, name: 'in- / im-', meaning: '中に、否定', language: 'ラテン語', examples: ['include', 'impossible', 'input'] },
   ],
   suffix: [
-    { id: 1, name: '-tion', meaning: '行為、状態', language: 'ラテン語', examples: ['action', 'nation'] },
-    { id: 2, name: '-able', meaning: '可能な', language: 'ラテン語', examples: ['readable', 'comfortable'] },
-    { id: 3, name: '-ment', meaning: '状態、結果', language: 'ラテン語', examples: ['movement', 'agreement'] },
-    { id: 4, name: '-ness', meaning: '性質、状態', language: 'ゲルマン語', examples: ['happiness', 'darkness'] },
-    { id: 5, name: '-ly', meaning: '〜のように、副詞形', language: 'ゲルマン語', examples: ['quickly', 'slowly'] },
+    { id: 1, name: '-tion', meaning: '行為、状態', language: 'ラテン語', examples: ['action', 'nation', 'education'] },
+    { id: 2, name: '-able', meaning: '可能な', language: 'ラテン語', examples: ['readable', 'comfortable', 'valuable'] },
+    { id: 3, name: '-ment', meaning: '状態、結果', language: 'ラテン語', examples: ['movement', 'agreement', 'environment'] },
+    { id: 4, name: '-ness', meaning: '性質、状態', language: 'ゲルマン語', examples: ['happiness', 'darkness', 'kindness'] },
+    { id: 5, name: '-ly', meaning: '〜のように、副詞形', language: 'ゲルマン語', examples: ['quickly', 'slowly', 'finally'] },
+    { id: 6, name: '-ful', meaning: '〜に満ちた', language: 'ゲルマン語', examples: ['beautiful', 'useful', 'hopeful'] },
+    { id: 7, name: '-less', meaning: '〜を欠いている', language: 'ゲルマン語', examples: ['careless', 'homeless', 'fearless'] },
+    { id: 8, name: '-ist', meaning: '〜する人、主義者', language: 'ギリシャ語', examples: ['artist', 'scientist', 'pianist'] },
+    { id: 9, name: '-ize', meaning: '〜化する', language: 'ギリシャ語', examples: ['realize', 'organize', 'specialize'] },
+    { id: 10, name: '-ology', meaning: '学問、科学', language: 'ギリシャ語', examples: ['biology', 'psychology', 'ecology'] },
   ],
   root: [
     { id: 1, name: 'dict', meaning: '言う', language: 'ラテン語', examples: ['dictate', 'dictionary', 'predict'] },
     { id: 2, name: 'port', meaning: '運ぶ', language: 'ラテン語', examples: ['import', 'export', 'transport'] },
-    { id: 3, name: 'scribe', meaning: '書く', language: 'ラテン語', examples: ['describe', 'prescribe'] },
-    { id: 4, name: 'graph', meaning: '書く', language: 'ギリシャ語', examples: ['photograph', 'biography'] },
-    { id: 5, name: 'phon', meaning: '音', language: 'ギリシャ語', examples: ['telephone', 'microphone'] },
+    { id: 3, name: 'scribe', meaning: '書く', language: 'ラテン語', examples: ['describe', 'prescribe', 'manuscript'] },
+    { id: 4, name: 'graph', meaning: '書く', language: 'ギリシャ語', examples: ['photograph', 'biography', 'autograph'] },
+    { id: 5, name: 'phon', meaning: '音', language: 'ギリシャ語', examples: ['telephone', 'microphone', 'symphony'] },
+    { id: 6, name: 'spect', meaning: '見る', language: 'ラテン語', examples: ['respect', 'inspect', 'spectator'] },
+    { id: 7, name: 'vis / vid', meaning: '見る', language: 'ラテン語', examples: ['visit', 'visible', 'video'] },
+    { id: 8, name: 'struct', meaning: '建てる', language: 'ラテン語', examples: ['structure', 'construct', 'destruct'] },
+    { id: 9, name: 'tract', meaning: '引く', language: 'ラテン語', examples: ['attract', 'contract', 'abstract'] },
+    { id: 10, name: 'bio', meaning: '生、生命', language: 'ギリシャ語', examples: ['biology', 'biography', 'antibiotic'] },
+    { id: 11, name: 'geo', meaning: '地球、土地', language: 'ギリシャ語', examples: ['geography', 'geology', 'geometry'] },
+    { id: 12, name: 'ped', meaning: '足', language: 'ラテン語', examples: ['pedal', 'pedestrian', 'expedition'] },
   ],
 }
 
