@@ -27,8 +27,8 @@ export function GameButton({
   }
 
   const variantClasses = {
-    primary: 'bg-gradient-to-b from-green-700 to-green-900 hover:from-green-600 hover:to-green-800 text-amber-50 border-2 border-green-800 shadow-lg hover:shadow-xl',
-    secondary: 'bg-gradient-to-b from-amber-700 to-amber-900 hover:from-amber-600 hover:to-amber-800 text-amber-50 border-2 border-amber-800 shadow-lg hover:shadow-xl',
+    primary: 'bg-gradient-to-b from-[#5a8b6b] via-[#4a7a5b] to-[#3a6a4b] hover:from-[#6b9b7b] hover:via-[#5a8b6b] hover:to-[#4a7a5b] text-[#f5f5f1] border-2 border-[#3a6a4b] shadow-2xl hover:shadow-2xl',
+    secondary: 'bg-gradient-to-b from-[#8b7355] via-[#7a6345] to-[#6a5335] hover:from-[#9b8365] hover:via-[#8b7355] hover:to-[#7a6345] text-[#f5f5f1] border-2 border-[#6a5335] shadow-2xl hover:shadow-2xl',
   }
 
   return (
@@ -36,18 +36,38 @@ export function GameButton({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'relative font-bold rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-98',
-        'before:absolute before:inset-0 before:rounded-lg before:opacity-40 before:pointer-events-none',
-        'before:bg-gradient-to-b before:from-green-400/20 before:to-transparent',
-        'after:absolute after:inset-0 after:rounded-lg after:opacity-20 after:pointer-events-none',
-        'after:bg-[linear-gradient(45deg,transparent_30%,rgba(139,121,85,0.3)_50%,transparent_70%)]',
-        'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
+        'relative font-bold rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-98 overflow-hidden',
         sizeClasses[size],
         variantClasses[variant],
+        'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
         className
       )}
     >
-      <span className="relative z-10 drop-shadow-md">{children}</span>
+      {/* Stone texture background */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <svg className="w-full h-full" preserveAspectRatio="none">
+          <filter id="stoneNoise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="5" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+          <rect width="100%" height="100%" fill="currentColor" opacity="0.1" filter="url(#stoneNoise)" />
+        </svg>
+      </div>
+
+      {/* Moss/algae overlay with organic patterns */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply">
+        <div className="absolute top-2 left-2 w-16 h-12 rounded-full bg-gradient-radial from-green-400/30 to-transparent blur-xl" />
+        <div className="absolute bottom-3 right-3 w-20 h-14 rounded-full bg-gradient-radial from-green-500/25 to-transparent blur-2xl" />
+        <div className="absolute top-1/2 left-1/4 w-12 h-10 rounded-full bg-gradient-radial from-green-300/20 to-transparent blur-lg" />
+      </div>
+
+      {/* Shine effect */}
+      <div className="absolute inset-0 opacity-0 hover:opacity-20 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/10 to-transparent rounded-t-lg" />
+      </div>
+
+      {/* Text with shadow */}
+      <span className="relative z-10 drop-shadow-lg">{children}</span>
     </button>
   )
 }

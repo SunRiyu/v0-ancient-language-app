@@ -1,16 +1,24 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { GameButton } from '@/components/game-button'
 import { PageHeader } from '@/components/page-header'
 import { CourseCard } from '@/components/course-card'
 import { DexCard } from '@/components/dex-card'
 
 export default function HomePage() {
+  const router = useRouter()
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null)
 
+  const handleCourseStart = () => {
+    if (selectedCourse) {
+      router.push(`/learning-path?path=${selectedCourse}`)
+    }
+  }
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden animate-zoom-in">
       {/* Ancient stone texture background */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-green-900/20" />
@@ -47,7 +55,7 @@ export default function HomePage() {
 
           {selectedCourse && (
             <div className="flex justify-center">
-              <GameButton variant="primary" size="lg">
+              <GameButton variant="primary" size="lg" onClick={handleCourseStart}>
                 {selectedCourse === 'seeker' ? '探索者の道へ' : '賢者の道へ'}進む
               </GameButton>
             </div>
