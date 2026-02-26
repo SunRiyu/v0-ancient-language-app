@@ -130,9 +130,10 @@ export default function HomePage() {
             <div className="py-4 space-y-4">
               <div className="flex justify-center">
                 <div className="relative w-24 h-24 rounded-full border-2 border-amber-500/50 overflow-hidden">
+                  {/* 画像を tree.jpg に変更 */}
                   <Image
-                    src={userGender === 'male' ? "/boy_image.png" : "/girl_image.png"}
-                    alt="Current Character"
+                    src="/image/tree.jpg"
+                    alt="Etymology Tree"
                     fill
                     className="object-cover"
                   />
