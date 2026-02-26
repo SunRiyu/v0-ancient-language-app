@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { GameButton } from '@/components/game-button'
+import { BackButton } from '@/components/back-button'
 import { PageHeader } from '@/components/page-header'
 import { LearningOption } from '@/components/learning-option'
 
@@ -29,6 +30,9 @@ export default function LearningPathPage() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-12 sm:py-16 lg:py-24">
+        {/* Back Button */}
+        <BackButton />
+
         {/* Header */}
         <div className="mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#f5f5f1] text-center mb-2">

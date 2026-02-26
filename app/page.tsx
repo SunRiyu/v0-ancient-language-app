@@ -62,6 +62,18 @@ export default function HomePage() {
           )}
         </section>
 
+        {/* Etymology Library Link */}
+        <section className="mb-20">
+          <div className="flex justify-center">
+            <button
+              onClick={() => router.push('/etymology-library')}
+              className="px-8 py-4 bg-gradient-to-b from-[#8b7355] to-[#7a6345] hover:from-[#9b8365] hover:to-[#8b7355] text-[#f5f5f1] font-bold rounded-lg border-2 border-[#6a5335] shadow-lg transition-all hover:scale-105 active:scale-98"
+            >
+              語源の参考書を見る
+            </button>
+          </div>
+        </section>
+
         {/* Dex Section */}
         <section>
           <h2 className="text-2xl sm:text-3xl font-bold text-amber-50 mb-3 text-center">語源の樹</h2>
