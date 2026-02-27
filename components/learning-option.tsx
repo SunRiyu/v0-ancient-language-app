@@ -79,6 +79,8 @@ export function LearningOption({
             alt={title}
             fill
             className="object-cover"
+            loading="eager"
+            priority
           />
         </div>
         
