@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { GameButton } from '@/components/game-button'
 import { BackButton } from '@/components/back-button'
 import { LearningOption } from '@/components/learning-option'
 
-export default function LearningPathPage() {
+function LearningPathContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const coursePath = searchParams.get('path') || 'seeker'
@@ -98,5 +98,13 @@ export default function LearningPathPage() {
         )}
       </div>
     </main>
+  )
+}
+
+export default function LearningPathPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-stone-900 flex items-center justify-center text-amber-50">読み込み中...</div>}>
+      <LearningPathContent />
+    </Suspense>
   )
 }
