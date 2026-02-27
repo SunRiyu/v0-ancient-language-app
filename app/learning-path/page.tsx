@@ -25,13 +25,8 @@ function LearningPathContent() {
 
   const handleStart = () => {
     if (selectedOption) {
-      // 接頭辞（prefix）が選択された場合、etymology-intro へ遷移させる
-      if (selectedOption === 'prefix') {
-        router.push(`/etymology-intro?type=${encodeURIComponent('接頭辞')}`)
-      } else {
-        // それ以外（接尾辞や語根）は、既存のゲーム画面または適切な画面へ
-        router.push(`/game?path=${coursePath}&type=${selectedOption}`)
-      }
+      // すべての選択肢がクイズにつながる
+      router.push(`/quiz?course=${coursePath}&type=${selectedOption}`)
     }
   }
 

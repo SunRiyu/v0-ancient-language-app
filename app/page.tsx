@@ -76,11 +76,27 @@ export default function HomePage() {
 
   // 「語源の樹」カードを表示するかどうかのステート
   const [showEtymologyTree, setShowEtymologyTree] = useState(false)
+  
+  // アンロック状態を管理するステート
+  const [unlockedEtymologies, setUnlockedEtymologies] = useState<Record<string, Record<string, number[]>>>({
+    seeker: { prefix: [], suffix: [], root: [] },
+    sage: { prefix: [], suffix: [], root: [] },
+  })
 
   useEffect(() => {
     const savedGender = localStorage.getItem('userGender') as 'male' | 'female' | null
     if (savedGender) {
       setUserGender(savedGender)
+    }
+    
+    // localStorageからアンロック状態を読み込む
+    const savedUnlocks = localStorage.getItem('unlockedEtymologies')
+    if (savedUnlocks) {
+      try {
+        setUnlockedEtymologies(JSON.parse(savedUnlocks))
+      } catch (e) {
+        console.error('Failed to parse unlocked etymologies:', e)
+      }
     }
     setIsLoaded(true)
   }, [])
@@ -238,23 +254,31 @@ export default function HomePage() {
           {/* 語源の樹ボタンが押された時のみ鍵穴のカードを表示 */}
           {showEtymologyTree && (
             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 animate-in fade-in slide-in-from-top-4 duration-500">
-              {[1, 2, 3, 4, 5, 6].map((i) => {
-                const label = i <= 2 ? '接頭辞' : i <= 4 ? '接尾辞' : '語根';
+              {[
+                { label: '接頭辞', type: 'prefix', indices: [0, 1] },
+                { label: '接尾辞', type: 'suffix', indices: [2, 3] },
+                { label: '語根', type: 'root', indices: [4, 5] },
+              ].map((category) => {
+                const seekerUnlocked = unlockedEtymologies.seeker[category.type as 'prefix' | 'suffix' | 'root'].length;
+                const sageUnlocked = unlockedEtymologies.sage[category.type as 'prefix' | 'suffix' | 'root'].length;
+                const isLocked = seekerUnlocked === 0 && sageUnlocked === 0;
+                
                 return (
                   <div
-                    key={i}
+                    key={category.type}
                     onClick={() => {
-                      console.log("Clicked:", label); // デバッグ用：クリックされたか確認
-                      handleDexCardClick(label);
+                      console.log("Clicked:", category.label);
+                      handleDexCardClick(category.label);
                     }}
-                    className="cursor-pointer active:scale-95 transition-transform" // クリックしやすくするための追加
+                    className="cursor-pointer active:scale-95 transition-transform"
                   >
-                    {/* ポインターイベントを無効化して親のdivでクリックを拾うようにする */}
                     <div className="pointer-events-none">
                       <DexCard
-                        index={i}
-                        locked={true}
-                        label={label}
+                        index={category.indices[0]}
+                        locked={isLocked}
+                        label={category.label}
+                        name={category.label}
+                        count={seekerUnlocked + sageUnlocked}
                       />
                     </div>
                   </div>
