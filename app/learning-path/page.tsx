@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { GameButton } from '@/components/game-button'
 import { BackButton } from '@/components/back-button'
 import { LearningOption } from '@/components/learning-option'
 
-export default function LearningPathPage() {
+function LearningPathContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const coursePath = searchParams.get('path') || 'seeker'
@@ -25,13 +25,8 @@ export default function LearningPathPage() {
 
   const handleStart = () => {
     if (selectedOption) {
-      // 接頭辞（prefix）が選択された場合、etymology-intro へ遷移させる
-      if (selectedOption === 'prefix') {
-        router.push(`/etymology-intro?type=${encodeURIComponent('接頭辞')}`)
-      } else {
-        // それ以外（接尾辞や語根）は、既存のゲーム画面または適切な画面へ
-        router.push(`/game?path=${coursePath}&type=${selectedOption}`)
-      }
+      // すべての選択肢がクイズにつながる
+      router.push(`/quiz?course=${coursePath}&type=${selectedOption}`)
     }
   }
 
@@ -98,5 +93,13 @@ export default function LearningPathPage() {
         )}
       </div>
     </main>
+  )
+}
+
+export default function LearningPathPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-stone-900 flex items-center justify-center text-amber-50">読み込み中...</div>}>
+      <LearningPathContent />
+    </Suspense>
   )
 }
