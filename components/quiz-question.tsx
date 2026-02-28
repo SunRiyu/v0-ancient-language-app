@@ -49,11 +49,13 @@ export function QuizQuestion({
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-amber-300/60 text-xs uppercase tracking-wide">語源要素</p>
-              <p className="text-amber-100 font-bold text-lg">{etymology.root}</p>
+              {/* name ではなく root を使う */}
+              <p className="text-amber-100 font-bold text-lg">{question.etymology.root}</p>
             </div>
             <div>
               <p className="text-amber-300/60 text-xs uppercase tracking-wide">原始言語</p>
-              <p className="text-amber-100 font-semibold">{etymology.origin}</p>
+              {/* language ではなく origin を使う */}
+              <p className="text-amber-100 font-semibold">{question.etymology.origin}</p>
             </div>
           </div>
         </div>
@@ -62,9 +64,11 @@ export function QuizQuestion({
       {/* Answer Options */}
       <div className="space-y-3 mb-8">
         {question.options.map((option, index) => {
-          const isCorrect = index === question.correctIndex
-          const isSelected = selectedAnswer === index
-          const showResult = isAnswered && (isCorrect || isSelected)
+          // 「今の選択肢のテキスト」が「正解のテキスト」と一致するかで判定
+          const isCorrect = option === question.correctAnswer;
+          // ユーザーが選んだものがこの選択肢かどうか（ここは引数で渡された index を使用）
+          const isSelected = selectedAnswer === index;
+          const showResult = isAnswered && (isCorrect || isSelected);
 
           return (
             <button
@@ -73,17 +77,16 @@ export function QuizQuestion({
               onMouseEnter={() => !isAnswered && setHovered(index)}
               onMouseLeave={() => setHovered(null)}
               disabled={isAnswered}
-              className={`w-full p-4 rounded-lg text-left transition-all duration-200 font-semibold ${
-                isAnswered
+              className={`w-full p-4 rounded-lg text-left transition-all duration-200 font-semibold ${isAnswered
                   ? isCorrect
                     ? 'bg-green-900/40 border-2 border-green-500 text-green-100'
                     : isSelected
-                    ? 'bg-red-900/40 border-2 border-red-500 text-red-100'
-                    : 'bg-stone-800/50 border-2 border-stone-700 text-stone-400'
+                      ? 'bg-red-900/40 border-2 border-red-500 text-red-100'
+                      : 'bg-stone-800/50 border-2 border-stone-700 text-stone-400'
                   : hovered === index
-                  ? 'bg-amber-900/40 border-2 border-amber-400 text-amber-50'
-                  : 'bg-stone-800/50 border-2 border-amber-900/20 text-amber-100 hover:bg-stone-800'
-              } ${!isAnswered && 'cursor-pointer'}`}
+                    ? 'bg-amber-900/40 border-2 border-amber-400 text-amber-50'
+                    : 'bg-stone-800/50 border-2 border-amber-900/20 text-amber-100 hover:bg-stone-800'
+                } ${!isAnswered && 'cursor-pointer'}`}
             >
               <div className="flex items-center justify-between">
                 <span>{option}</span>

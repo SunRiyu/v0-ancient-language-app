@@ -12,6 +12,7 @@ export interface CompoundWordEntry {
   example: string
 }
 
+
 export interface DerivedWord {
   word: string;      // 例: "construct"
   meaning: string;   // 例: "組み立てる"
@@ -44,6 +45,9 @@ export interface Question {
   options: string[];
   correctAnswer: string;
   explanation: string;
+  etymology: Etymology;
+  allParts?: string[];  
+  targetWord?: string;
 }
 
 export interface CombinationQuestion extends Question {
