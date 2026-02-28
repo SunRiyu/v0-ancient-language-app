@@ -22,27 +22,28 @@ export interface DerivedWord {
 
 // 2. 既存の Etymology インターフェースを更新（words などを追加）
 export interface Etymology {
-  id: number
-  name: string
+  id: string
+  root: string
   meaning: string
-  language: string
-  // examples: string[] // 既存のこれは words に統合されるため削除してもOK
-  description: string; // 語源の詳しい由来を追加
-  words: DerivedWord[]; // 派生単語のリストを追加
+  origin: string
+  description?: string // 語源の詳しい由来を追加
+  examples?: { word: string; meaning: string; components: string }[] // 例と構成要素の説明
+  derivedWords?: DerivedWord[] // この語源から派生した単語のリスト
 }
 
-export type QuestionType = 'combination'
+// 1. 許可する種類を定義（Roots, Compound, Prefix）
+export type QuestionType = "Roots" | "Compound" | "Prefix";
 
+// 2. 語源の選択肢（必要に応じて増やしてください）
+
+// 3. メインの設計図
 export interface Question {
-  id: string
-  type: QuestionType
-  etymology: Etymology
-  question: string
-  options: string[]
-  correctIndex: number
-  explanation: string
-  targetWord?: string
-  allParts?: string[]
+  id: string | number;     // stringでもnumberでもOKにする
+  category:QuestionType;     // 例: "Roots", "Compound", "Prefix" など
+  question: string;        // 以前の 'text' ではなくここを使う
+  options: string[];
+  correctAnswer: string;
+  explanation: string;
 }
 
 export interface CombinationQuestion extends Question {

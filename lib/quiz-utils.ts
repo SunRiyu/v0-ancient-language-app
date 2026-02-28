@@ -1,227 +1,251 @@
-import {
-  Etymology,
-  EtymologyType,
-  Question,
-  QuestionType,
-  ANCIENT_WORLD_FLAVORS,
-  DerivedWord,
-  CombinationQuestion,
-  CompoundWordEntry,
-} from './quiz-types'
+import { Question, Etymology } from "./quiz-types";
 
-// === 1. 合成単語データベース ===
-// 2つの単語（辞）を組み合わせて新しい単語を作る
-
-export const compoundWords: CompoundWordEntry[] = [
-  // 基本的な合成単語
-  { id: 1, part1: 'sun', part2: 'flower', resultWord: 'sunflower', meaning: '向日葵', example: 'Sunflowers are yellow.' },
-  { id: 2, part1: 'rain', part2: 'bow', resultWord: 'rainbow', meaning: '虹', example: 'A beautiful rainbow appeared.' },
-  { id: 3, part1: 'blue', part2: 'bell', resultWord: 'bluebell', meaning: 'ヤマアジサイ', example: 'Bluebells grow in forests.' },
-  { id: 4, part1: 'honey', part2: 'bee', resultWord: 'honeybee', meaning: '蜜蜂', example: 'Honeybees make honey.' },
-  { id: 5, part1: 'water', part2: 'melon', resultWord: 'watermelon', meaning: 'スイカ', example: 'Watermelon is sweet and refreshing.' },
-  { id: 6, part1: 'butter', part2: 'fly', resultWord: 'butterfly', meaning: '蝶々', example: 'A beautiful butterfly landed on the flower.' },
-  { id: 7, part1: 'straw', part2: 'berry', resultWord: 'strawberry', meaning: 'イチゴ', example: 'Strawberries are delicious.' },
-  { id: 8, part1: 'lady', part2: 'bug', resultWord: 'ladybug', meaning: 'テントウムシ', example: 'The ladybug is red and spotted.' },
-  { id: 9, part1: 'tooth', part2: 'brush', resultWord: 'toothbrush', meaning: '歯ブラシ', example: 'Brush your teeth with a toothbrush.' },
-  { id: 10, part1: 'tooth', part2: 'paste', resultWord: 'toothpaste', meaning: '歯磨き粉', example: 'Use toothpaste to clean your teeth.' },
-  
-  // 複合動詞・名詞
-  { id: 11, part1: 'sun', part2: 'set', resultWord: 'sunset', meaning: '日没', example: 'The sunset was beautiful.' },
-  { id: 12, part1: 'sun', part2: 'rise', resultWord: 'sunrise', meaning: '日の出', example: 'I woke up for the sunrise.' },
-  { id: 13, part1: 'moon', part2: 'light', resultWord: 'moonlight', meaning: '月光', example: 'The moonlight illuminated the path.' },
-  { id: 14, part1: 'star', part2: 'fish', resultWord: 'starfish', meaning: 'ヒトデ', example: 'Starfish live in the ocean.' },
-  { id: 15, part1: 'fire', part2: 'fly', resultWord: 'firefly', meaning: 'ホタル', example: 'Fireflies glow in the dark.' },
-  { id: 16, part1: 'snow', part2: 'man', resultWord: 'snowman', meaning: '雪だるま', example: 'We built a snowman in winter.' },
-  { id: 17, part1: 'rain', part2: 'coat', resultWord: 'raincoat', meaning: 'レインコート', example: 'Wear a raincoat when it rains.' },
-  { id: 18, part1: 'wind', part2: 'mill', resultWord: 'windmill', meaning: '風車', example: 'The windmill rotates in the wind.' },
-  { id: 19, part1: 'sand', part2: 'box', resultWord: 'sandbox', meaning: '砂場', example: 'Children play in the sandbox.' },
-  { id: 20, part1: 'foot', part2: 'ball', resultWord: 'football', meaning: 'サッカー/アメリカンフットボール', example: 'Football is a popular sport.' },
-  
-  // 複合名詞（建築物・場所）
-  { id: 21, part1: 'light', part2: 'house', resultWord: 'lighthouse', meaning: '灯台', example: 'The lighthouse guides ships.' },
-  { id: 22, part1: 'green', part2: 'house', resultWord: 'greenhouse', meaning: 'ビニールハウス', example: 'Plants grow in a greenhouse.' },
-  { id: 23, part1: 'bird', part2: 'house', resultWord: 'birdhouse', meaning: '鳥小屋', example: 'We put up a birdhouse for the birds.' },
-  { id: 24, part1: 'home', part2: 'work', resultWord: 'homework', meaning: '宿題', example: 'I finished my homework.' },
-  { id: 25, part1: 'class', part2: 'room', resultWord: 'classroom', meaning: '教室', example: 'The classroom is full of students.' },
-  { id: 26, part1: 'bed', part2: 'room', resultWord: 'bedroom', meaning: '寝室', example: 'My bedroom is very quiet.' },
-  { id: 27, part1: 'bath', part2: 'room', resultWord: 'bathroom', meaning: 'トイレ/浴室', example: 'The bathroom is upstairs.' },
-  { id: 28, part1: 'living', part2: 'room', resultWord: 'livingroom', meaning: 'リビング', example: 'We watch TV in the living room.' },
-  { id: 29, part1: 'dining', part2: 'room', resultWord: 'diningroom', meaning: 'ダイニング', example: 'We eat in the dining room.' },
-  { id: 30, part1: 'play', part2: 'ground', resultWord: 'playground', meaning: '遊び場', example: 'Children play in the playground.' },
-  
-  // 複合動詞・時間関連
-  { id: 31, part1: 'day', part2: 'time', resultWord: 'daytime', meaning: '昼間', example: 'We work during daytime.' },
-  { id: 32, part1: 'night', part2: 'time', resultWord: 'nighttime', meaning: '夜間', example: 'Owls hunt at nighttime.' },
-  { id: 33, part1: 'week', part2: 'end', resultWord: 'weekend', meaning: '週末', example: 'I rest on the weekend.' },
-  { id: 34, part1: 'birth', part2: 'day', resultWord: 'birthday', meaning: '誕生日', example: 'My birthday is in May.' },
-  { id: 35, part1: 'every', part2: 'day', resultWord: 'everyday', meaning: '毎日', example: 'I exercise every day.' },
-  { id: 36, part1: 'mid', part2: 'night', resultWord: 'midnight', meaning: '真夜中', example: 'The event ended at midnight.' },
-  { id: 37, part1: 'after', part2: 'noon', resultWord: 'afternoon', meaning: '午後', example: 'We meet in the afternoon.' },
-  { id: 38, part1: 'out', part2: 'side', resultWord: 'outside', meaning: '外側', example: 'Let\'s play outside.' },
-  { id: 39, part1: 'up', part2: 'stairs', resultWord: 'upstairs', meaning: '階上', example: 'The bedroom is upstairs.' },
-  { id: 40, part1: 'down', part2: 'stairs', resultWord: 'downstairs', meaning: '階下', example: 'The kitchen is downstairs.' },
-  
-  // 複合形容詞・その他
-  { id: 41, part1: 'black', part2: 'board', resultWord: 'blackboard', meaning: '黒板', example: 'The teacher writes on the blackboard.' },
-  { id: 42, part1: 'white', part2: 'board', resultWord: 'whiteboard', meaning: 'ホワイトボード', example: 'We use a whiteboard for presentations.' },
-  { id: 43, part1: 'bed', part2: 'time', resultWord: 'bedtime', meaning: '就寝時刻', example: 'Bedtime is at 9 PM.' },
-  { id: 44, part1: 'meal', part2: 'time', resultWord: 'mealtime', meaning: '食事時間', example: 'Mealtime is important for family.' },
-  { id: 45, part1: 'free', part2: 'way', resultWord: 'freeway', meaning: 'フリーウェイ/高速道路', example: 'We drive on the freeway.' },
-  { id: 46, part1: 'high', part2: 'way', resultWord: 'highway', meaning: '幹線道路', example: 'The highway is busy at rush hour.' },
-  { id: 47, part1: 'air', part2: 'port', resultWord: 'airport', meaning: '空港', example: 'We arrived at the airport.' },
-  { id: 48, part1: 'sea', part2: 'port', resultWord: 'seaport', meaning: '海港', example: 'Ships dock at the seaport.' },
-  { id: 49, part1: 'rail', part2: 'way', resultWord: 'railway', meaning: '鉄道', example: 'The railway connects cities.' },
-  { id: 50, part1: 'hand', part2: 'bag', resultWord: 'handbag', meaning: 'ハンドバッグ', example: 'She carries a designer handbag.' },
-]
-
-// === 2. 語源ライブラリデータ (簡略版：合成単語用) ===
-export const etymologyLibrary: Record<string, Record<EtymologyType, Etymology[]>> = {
-  seeker: {
-    prefix: [],
-    suffix: [],
-    root: [],
+/**
+ * 語源参考書に基づいた本格的な語源データ
+ * 英語の語彙の約6〜7割を占めると言われるラテン語・ギリシャ語の語根を網羅しています。
+ */
+export const ETIMOLOGY_DATA: Etymology[] = [
+  {
+    id: "spect",
+    root: "spect / spic",
+    meaning: "見る (to look)",
+    origin: "Latin 'spectare'",
+    examples: [
+      { word: "inspect", meaning: "検査する (中を見る)", components: "in (中) + spect (見る)" },
+      { word: "respect", meaning: "尊敬する (繰り返し見る)", components: "re (再び) + spect (見る)" },
+      { word: "prospect", meaning: "見込み (前を見る)", components: "pro (前) + spect (見る)" },
+      { word: "suspect", meaning: "疑う (下からこっそり見る)", components: "sub (下) + spect (見る)" },
+      { word: "spectacle", meaning: "壮観・光景 (見られるもの)", components: "spect (見る) + acle (もの)" }
+    ]
   },
-  sage: {
-    prefix: [],
-    suffix: [],
-    root: [],
+  {
+    id: "dict",
+    root: "dict",
+    meaning: "言う (to say / to speak)",
+    origin: "Latin 'dicere'",
+    examples: [
+      { word: "predict", meaning: "予言する (前に言う)", components: "pre (前) + dict (言う)" },
+      { word: "contradict", meaning: "矛盾する (反対を言う)", components: "contra (反対) + dict (言う)" },
+      { word: "dictate", meaning: "命令する / 書き取らせる (言ったことをさせる)", components: "dict (言う) + ate (動詞化)" },
+      { word: "verdict", meaning: "判決 (真実を言う)", components: "ver (真実) + dict (言う)" },
+      { word: "indicate", meaning: "指し示す (中に向かって言う)", components: "in (中) + dic (言う)" }
+    ]
   },
-}
-
-// === 3. クイズ生成メインロジック ===
-
-export function getRandomEtymology(course: 'seeker' | 'sage', type: EtymologyType): Etymology {
-  // 互換性のため空のオブジェクトを返す（使用されない）
-  return { id: 0, name: '', meaning: '', language: '', description: '', words: [] }
-}
-
-export function generateQuestions(etymology: Etymology, type: EtymologyType): Question[] {
-  // ランダムに5つの合成単語クイズを生成
-  const selectedWords = getRandomCompoundWords(5)
-  const questions: Question[] = selectedWords.map((compound, index) => 
-    generateCompoundQuestionFromEntry(compound, `q_${index}`)
-  )
-  return questions
-}
-
-/**
- * ランダムに複数の合成単語を選択
- */
-function getRandomCompoundWords(count: number): CompoundWordEntry[] {
-  const shuffled = compoundWords.sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, Math.min(count, compoundWords.length))
-}
-
-/**
- * 合成単語エントリから問題を生成
- */
-function generateCompoundQuestionFromEntry(
-  compound: CompoundWordEntry,
-  questionId: string
-): CombinationQuestion {
-  // 正解パーツ
-  const correctParts = [compound.part1, compound.part2]
-  
-  // 干渉パーツを他の合成単語から取得
-  const distractorParts = getDistractorWords(compound, 4)
-  
-  // すべてのパーツをシャッフル
-  const allParts = shuffleArray([...correctParts, ...distractorParts])
-
-  return {
-    id: questionId,
-    type: 'combination',
-    etymology: { id: compound.id, name: compound.resultWord, meaning: compound.meaning, language: 'English', description: '', words: [] },
-    question: `次の2つの単語を組み合わせて、新しい単語を作りなさい。`,
-    options: allParts,
-    correctIndex: 0,
-    explanation: `「${compound.part1}」と「${compound.part2}」を組み合わせると「${compound.resultWord}」になります。意味：${compound.meaning}`,
-    targetWord: compound.resultWord,
-    allParts,
-  } as CombinationQuestion
-}
-
-/**
- * 干渉パーツを取得（他の合成単語から無関係なパーツを取得）
- */
-function getDistractorWords(currentCompound: CompoundWordEntry, count: number): string[] {
-  const distractors: string[] = []
-  const usedWords = new Set([currentCompound.part1, currentCompound.part2])
-  
-  // ランダムに他の単語を取得
-  for (let i = 0; i < compoundWords.length && distractors.length < count; i++) {
-    const randomCompound = compoundWords[Math.floor(Math.random() * compoundWords.length)]
-    if (!usedWords.has(randomCompound.part1)) {
-      distractors.push(randomCompound.part1)
-      usedWords.add(randomCompound.part1)
-    }
-    if (distractors.length < count && !usedWords.has(randomCompound.part2)) {
-      distractors.push(randomCompound.part2)
-      usedWords.add(randomCompound.part2)
-    }
+  {
+    id: "port",
+    root: "port",
+    meaning: "運ぶ (to carry)",
+    origin: "Latin 'portare'",
+    examples: [
+      { word: "import", meaning: "輸入する (中に運ぶ)", components: "in (中) + port (運ぶ)" },
+      { word: "export", meaning: "輸出する (外に運ぶ)", components: "ex (外) + port (運ぶ)" },
+      { word: "transport", meaning: "輸送する (越えて運ぶ)", components: "trans (越えて) + port (運ぶ)" },
+      { word: "portable", meaning: "持ち運び可能な", components: "port (運ぶ) + able (できる)" },
+      { word: "support", meaning: "支える (下から運ぶ)", components: "sub (下) + port (運ぶ)" }
+    ]
+  },
+  {
+    id: "ced-cess",
+    root: "ced / cess / ceed",
+    meaning: "行く / 譲る (to go / yield)",
+    origin: "Latin 'cedere'",
+    examples: [
+      { word: "proceed", meaning: "前進する (前に進む)", components: "pro (前) + ceed (行く)" },
+      { word: "exceed", meaning: "超える (外へ/限度を超えて行く)", components: "ex (外) + ceed (行く)" },
+      { word: "access", meaning: "接近 / 利用権 (〜へ行くこと)", components: "ad (〜へ) + cess (行く)" },
+      { word: "recess", meaning: "休憩 (後ろへ退くこと)", components: "re (後ろ) + cess (行く)" },
+      { word: "succeed", meaning: "成功する / 継承する (後に続く)", components: "sub (下/後に) + ceed (行く)" }
+    ]
+  },
+  {
+    id: "cap-cept",
+    root: "cap / cept / cip",
+    meaning: "取る / つかむ (to take / catch)",
+    origin: "Latin 'capere'",
+    examples: [
+      { word: "accept", meaning: "受け入れる (〜へ取る)", components: "ad (〜へ) + cept (取る)" },
+      { word: "except", meaning: "〜を除いて (外に取る)", components: "ex (外) + cept (取る)" },
+      { word: "capture", meaning: "捕らえる (つかむこと)", components: "cap (取る) + ture (名詞化)" },
+      { word: "anticipate", meaning: "予期する (前に取る)", components: "anti (前) + cip (取る) + ate (動詞化)" },
+      { word: "capacity", meaning: "収容能力 (取れる量)", components: "cap (取る) + acity (名詞化)" }
+    ]
+  },
+  {
+    id: "fer",
+    root: "fer",
+    meaning: "運ぶ / もたらす (to carry / bring)",
+    origin: "Latin 'ferre'",
+    examples: [
+      { word: "transfer", meaning: "移動させる (越えて運ぶ)", components: "trans (越えて) + fer (運ぶ)" },
+      { word: "offer", meaning: "提供する (〜へ運ぶ)", components: "ob (〜へ) + fer (運ぶ)" },
+      { word: "prefer", meaning: "〜を好む (前に運ぶ/置く)", components: "pre (前) + fer (運ぶ)" },
+      { word: "refer", meaning: "言及する / 参照する (戻って運ぶ)", components: "re (戻る) + fer (運ぶ)" },
+      { word: "suffer", meaning: "苦しむ (下で運ぶ/耐える)", components: "sub (下) + fer (運ぶ)" }
+    ]
+  },
+  {
+    id: "mit-miss",
+    root: "mit / miss",
+    meaning: "送る (to send)",
+    origin: "Latin 'mittere'",
+    examples: [
+      { word: "admit", meaning: "認める (〜へ送る/入れる)", components: "ad (〜へ) + mit (送る)" },
+      { word: "dismiss", meaning: "解散させる (バラバラに送る)", components: "dis (離れて) + miss (送る)" },
+      { word: "transmit", meaning: "送信する (越えて送る)", components: "trans (越えて) + mit (送る)" },
+      { word: "emit", meaning: "放出する (外に送る)", components: "e/ex (外) + mit (送る)" },
+      { word: "mission", meaning: "使命 (送られたこと)", components: "miss (送る) + ion (名詞化)" }
+    ]
+  },
+  {
+    id: "sta-stit",
+    root: "sta / stit / sist",
+    meaning: "立つ (to stand)",
+    origin: "Latin 'stare'",
+    examples: [
+      { word: "stable", meaning: "安定した (立っていられる)", components: "sta (立つ) + able (できる)" },
+      { word: "distant", meaning: "遠い (離れて立っている)", components: "dis (離れて) + sta (立つ) + nt (形容詞化)" },
+      { word: "assist", meaning: "援助する (側に立つ)", components: "ad (〜の側に) + sist (立つ)" },
+      { word: "exist", meaning: "存在する (外に立ち現れる)", components: "ex (外) + sist (立つ)" },
+      { word: "substitute", meaning: "代用する (下に立たせる)", components: "sub (下) + stit (立つ)" }
+    ]
+  },
+  {
+    id: "ten-tain",
+    root: "ten / tain / tin",
+    meaning: "保つ / 持つ (to hold)",
+    origin: "Latin 'tenere'",
+    examples: [
+      { word: "maintain", meaning: "維持する (手で保つ)", components: "main (手) + tain (保つ)" },
+      { word: "contain", meaning: "含む (共に持つ)", components: "con (共に) + tain (持つ)" },
+      { word: "retain", meaning: "保持する (後ろに取っておく)", components: "re (後ろに) + tain (持つ)" },
+      { word: "obtain", meaning: "手に入れる (〜に向かって持つ)", components: "ob (〜に対して) + tain (持つ)" },
+      { word: "continue", meaning: "続ける (共に保ち続ける)", components: "con (共に) + tin (保つ) + ue (動詞化)" }
+    ]
+  },
+  {
+    id: "scrib-script",
+    root: "scrib / script",
+    meaning: "書く (to write)",
+    origin: "Latin 'scribere'",
+    examples: [
+      { word: "describe", meaning: "描写する (書き留める)", components: "de (下に) + scribe (書く)" },
+      { word: "subscribe", meaning: "署名する / 購読する (下に書く)", components: "sub (下に) + scribe (書く)" },
+      { word: "prescribe", meaning: "処方する (前に書いておく)", components: "pre (前に) + scribe (書く)" },
+      { word: "manuscript", meaning: "原稿 (手で書いたもの)", components: "manu (手) + script (書く)" },
+      { word: "postscript", meaning: "追伸 (後に書いたもの)", components: "post (後に) + script (書く)" }
+    ]
   }
-  
-  return distractors.slice(0, count)
-}
+];
 
-// === 4. ユーティリティ関数 ===
-
-function shuffleArray<T>(array: T[]): T[] {
-  const arr = [...array]
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]]
+/**
+ * 語源データに基づいた自動生成クイズセット
+ */
+export const QUIZ_QUESTIONS: Question[] = [
+  {
+    id: "1",
+    question: "語根 'spect' の本来の意味は何ですか？",
+    options: ["聞く", "言う", "見る", "運ぶ"],
+    correctAnswer: "見る",
+    explanation: "ラテン語の 'spectare' に由来し、『見る』という意味を持ちます。inspect（中を見る＝検査する）などに使われます。",
+    category: "Roots"
+  },
+  {
+    id: "2",
+    question: "'predict' という単語の成り立ちは？",
+    options: ["pre (前) + dict (言う)", "pre (前) + dict (見る)", "pro (前) + dict (運ぶ)", "re (再び) + dict (言う)"],
+    correctAnswer: "pre (前) + dict (言う)",
+    explanation: "起こる『前』に『言う』ことから『予言する』という意味になります。",
+    category: "Compound"
+  },
+  {
+    id: "3",
+    question: "『外に(ex)』『運ぶ(port)』から成り立つ単語は何ですか？",
+    options: ["import", "export", "transport", "support"],
+    correctAnswer: "export",
+    explanation: "ex（外へ）+ port（運ぶ）で、国外へ荷物を出す『輸出』を意味します。",
+    category: "Compound"
+  },
+  {
+    id: "4",
+    question: "語根 'ced / cess' が持つ主な意味は何ですか？",
+    options: ["取る", "行く", "書く", "投げる"],
+    correctAnswer: "行く",
+    explanation: "Latin 'cedere' に由来し、『行く』または『譲る』という意味を持ちます。proceed（前に行く＝前進する）などが代表例です。",
+    category: "Roots"
+  },
+  {
+    id: "5",
+    question: "'accept' (受け入れる) の成り立ちは？",
+    options: ["ad (〜へ) + cept (取る)", "ex (外へ) + cept (取る)", "con (共に) + cept (取る)", "re (再び) + cept (取る)"],
+    correctAnswer: "ad (〜へ) + cept (取る)",
+    explanation: "ad（〜の方へ）+ cept（取る）で、自分の方へ取り込むことから『受け入れる』となります。",
+    category: "Compound"
+  },
+  {
+    id: "6",
+    question: "『越えて(trans)』『運ぶ(fer)』から成り立つ、移動を意味する単語は？",
+    options: ["refer", "transfer", "offer", "prefer"],
+    correctAnswer: "transfer",
+    explanation: "trans（向こう側へ）+ fer（運ぶ）で、場所や物を移動させることを意味します。",
+    category: "Compound"
+  },
+  {
+    id: "7",
+    question: "'dismiss' (解散させる) の 'dis-' の意味は？",
+    options: ["一つに", "反対に", "離れて", "強めて"],
+    correctAnswer: "離れて",
+    explanation: "dis（離れて）+ miss（送る）で、人々をバラバラの方向に送り出す＝解散させる、となります。",
+    category: "Prefix"
+  },
+  {
+    id: "8",
+    question: "'stable' (安定した) の語源的な意味は？",
+    options: ["動き回れる", "立っていられる", "座っている", "見えている"],
+    correctAnswer: "立っていられる",
+    explanation: "sta（立つ）+ able（できる）で、しっかりと立っていられる状態を指します。",
+    category: "Compound"
+  },
+  {
+    id: "9",
+    question: "『外に(ex)』『立ち現れる(sist)』から成り、この世に有ることを意味する単語は？",
+    options: ["assist", "resist", "exist", "insist"],
+    correctAnswer: "exist",
+    explanation: "ex（外に）+ sist（立つ）で、外の世界に立ち現れて存在することを意味します。",
+    category: "Roots"
+  },
+  {
+    id: "10",
+    question: "'anticipate' (予期する) の語源的なイメージは？",
+    options: ["後から取る", "前に取る", "一緒に取る", "外に取る"],
+    correctAnswer: "前に取る",
+    explanation: "anti（前）+ cip（取る）で、事態が起こる前にあらかじめ心に取っておくことが『予期する』の由来です。",
+    category: "Compound"
+  },
+  {
+    id: "11",
+    question: "『手(main)』で『保つ(tain)』ことから、『維持する』という意味になる単語は？",
+    options: ["contain", "retain", "maintain", "obtain"],
+    correctAnswer: "maintain",
+    explanation: "main(手) + tain(保つ) が組み合わさり、手入れをして状態を保つことを意味します。",
+    category: "Compound"
+  },
+  {
+    id: "12",
+    question: "語根 'scrib / script' の意味は何ですか？",
+    options: ["引く", "書く", "走る", "呼ぶ"],
+    correctAnswer: "書く",
+    explanation: "Latin 'scribere' に由来し、describe(書き写す＝描写する)などの単語を作ります。",
+    category: "Roots"
   }
-  return arr
-}
-
-export function calculateScore(answers: Array<{ isCorrect: boolean }>) {
-  const total = answers.length
-  const score = answers.filter(a => a.isCorrect).length
-  return { score, total, percentage: Math.round((score / total) * 100) }
-}
-
-export function checkPassCriteria(answers: Array<{ isCorrect: boolean }>): boolean {
-  if (answers.length < 5) return false
-  const lastFive = answers.slice(-5)
-  return lastFive.filter(a => a.isCorrect).length >= 4
-}
+];
 
 /**
- * 復習の魔物：エビングハウスの忘却曲線に基づいて復習推奨時刻を計算
+ * ユーティリティ関数（必要に応じて他のページから呼び出されます）
  */
-export function calculateNextReviewTime(lastReviewTime: number = Date.now()): number {
-  // エビングハウスの忘却曲線に基づくスケジュール
-  // 1日、3日、7日、14日、30日のサイクル
-  const intervals = [1, 3, 7, 14, 30] // 日数
-  const millisecondsPerDay = 24 * 60 * 60 * 1000
-  
-  // ランダムに間隔を選択（実装簡易版）
-  const randomInterval = intervals[Math.floor(Math.random() * intervals.length)]
-  return lastReviewTime + (randomInterval * millisecondsPerDay)
-}
+export const getEtymologyById = (id: string) => {
+  return ETIMOLOGY_DATA.find((e) => e.id === id);
+};
 
-/**
- * 復習が必要な単語を取得（復習の魔物）
- */
-export function getWordsNeedingReview(masteredWords: Array<{ lastUsedAt: number; nextReviewAt: number }>) {
-  const now = Date.now()
-  return masteredWords.filter(word => word.nextReviewAt <= now)
-}
-
-/**
- * ボス戦のダメージ計算：蓄積したエネルギーを攻撃力に変換
- */
-export function calculateBossBattleDamage(energyPoints: number): number {
-  // エネルギーポイントから攻撃力を計算
-  // 1エネルギー = 10ダメージ（要調整）
-  return energyPoints * 10
-}
-
-/**
- * 単語をマスターしたときのエネルギー獲得
- */
-export function getEnergyReward(wordMastery: { usageCount: number }): number {
-  // 5回の使用でマスター時に50ポイント
-  return wordMastery.usageCount >= 5 ? 50 : 0
-}
+export const getQuestionsByCategory = (category: string) => {
+  return QUIZ_QUESTIONS.filter((q) => q.category === category);
+};
