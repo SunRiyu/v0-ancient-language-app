@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, Suspense, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { BackButton } from '@/components/back-button'
 import { CompoundQuiz } from '@/components/compound-quiz'
@@ -8,6 +8,8 @@ import { QuizProgress } from '@/components/quiz-progress'
 import { PreviousAnswersReview } from '@/components/previous-answers-review'
 import { UnlockAnimation } from '@/components/unlock-animation'
 import { GameButton } from '@/components/game-button'
+import { ResultEffect } from '@/components/result-effect'
+import { QuizTimer } from '@/components/quiz-timer'
 import {
   generateQuestions,
   calculateScore,
@@ -30,6 +32,9 @@ function QuizContent() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [showUnlock, setShowUnlock] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [showResultEffect, setShowResultEffect] = useState(false)
+  const [lastIsCorrect, setLastIsCorrect] = useState(false)
+  const [timerKey, setTimerKey] = useState(0)
 
   // Initialize quiz on mount
   useEffect(() => {
@@ -57,6 +62,9 @@ function QuizContent() {
     
     setSelectedAnswer(selectedIndex)
     setIsAnswered(true)
+    setLastIsCorrect(isCorrect)
+    setShowResultEffect(true)
+    
     setAnswers([
       ...answers,
       {
@@ -66,18 +74,50 @@ function QuizContent() {
         timestamp: Date.now(),
       },
     ])
+
+    // Auto-advance after 1 second
+    setTimeout(() => {
+      handleNext()
+    }, 1000)
   }
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
       setIsAnswered(false)
       setSelectedAnswer(null)
+      setShowResultEffect(false)
+      setTimerKey(prev => prev + 1)
     } else {
       // Quiz finished
       handleQuizComplete()
     }
-  }
+  }, [currentQuestionIndex, questions.length])
+
+  const handleTimeUp = useCallback(() => {
+    // Force answer as incorrect if time runs out
+    if (!isAnswered) {
+      const currentQuestion = questions[currentQuestionIndex]
+      setSelectedAnswer(-1)
+      setIsAnswered(true)
+      setLastIsCorrect(false)
+      setShowResultEffect(true)
+      
+      setAnswers(prev => [
+        ...prev,
+        {
+          questionId: currentQuestion.id,
+          selectedIndex: -1,
+          isCorrect: false,
+          timestamp: Date.now(),
+        },
+      ])
+
+      setTimeout(() => {
+        handleNext()
+      }, 1000)
+    }
+  }, [currentQuestionIndex, questions, isAnswered, handleNext])
 
   const resetKey = `${currentQuestionIndex}-${isAnswered}`
 
@@ -132,6 +172,14 @@ function QuizContent() {
           />
         )}
 
+        {/* Timer */}
+        <QuizTimer
+          totalSeconds={10}
+          isActive={!isAnswered}
+          onTimeUp={handleTimeUp}
+          resetKey={timerKey}
+        />
+
         {/* Current question - Always compound quiz */}
         <div className="mb-12">
           <CompoundQuiz
@@ -144,8 +192,8 @@ function QuizContent() {
           />
         </div>
 
-        {/* Next button */}
-        {isAnswered && (
+        {/* Next button - Hidden, auto-advances after effect */}
+        {isAnswered && !showResultEffect && (
           <div className="flex justify-center">
             <GameButton
               variant="primary"
@@ -160,6 +208,9 @@ function QuizContent() {
           </div>
         )}
       </div>
+
+      {/* Result Effect */}
+      <ResultEffect isCorrect={lastIsCorrect} isVisible={showResultEffect} />
 
       {/* Unlock Animation */}
       <UnlockAnimation
