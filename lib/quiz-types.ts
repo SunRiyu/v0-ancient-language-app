@@ -32,12 +32,22 @@ export interface Question {
   options: string[]
   correctIndex: number
   explanation: string
+  // --- 以下の2つを追加することで、CombinationQuestion を Question として扱ってもエラーにならなくなります ---
+  targetWord?: string;  // 合成クイズ用の正解単語（オプション）
+  allParts?: string[];   // 合成クイズ用のパーツリスト（オプション）
+}
+
+// CombinationQuestion の定義はそのままでも、上記プロパティを継承するので整合性が取れます
+export interface CombinationQuestion extends Question {
+  targetWord: string;  
+  allParts: string[];   
 }
 
 export interface CombinationQuestion extends Question {
   targetWord: string;  // 正解となる完成した単語（例: "construction"）
   allParts: string[];   // 選択肢として画面に並べるバラバラのパーツ
 }
+
 export interface QuizRound {
   id: string
   course: CoursePath

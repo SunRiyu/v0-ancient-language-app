@@ -104,10 +104,10 @@ export function generateQuestions(etymology: Etymology, type: EtymologyType): Qu
       case 'identification':
         question = generateIdentificationQuestion(etymology, questionId)
         break
-      case 'combination':
-        // 新しい合成クイズロジックを使用
-        question = generateCombinationQuestion(etymology, questionId)
-        break
+        case 'combination':
+      // 第3引数の type を追加して呼び出す
+      question = generateCombinationQuestion(etymology, questionId, type) 
+      break
     }
     questions.push(question)
   }
@@ -124,10 +124,9 @@ export function generateCombinationQuestion(
   questionId: string,
   type: EtymologyType
 ): Question {
-  // 例: etymology.nameが"struct"なら、正解の単語を"construct"などにする
-  const targetWord = etymology.examples[0]; // 最初の例単語を使用
+  // etymology.examples[0] は存在しないので words[0].word に変更
+  const targetWord = etymology.words[0].word; 
   
-  // パーツをバラバラにする（簡易的な実装例）
   const allParts = ["con-", "struct", "-ion", "pre-", "re-"]; 
 
   return {
@@ -135,10 +134,9 @@ export function generateCombinationQuestion(
     type: 'combination',
     etymology,
     question: `語源「${etymology.name}」を使って、正しい単語を錬成せよ。`,
-    options: [], // 合成クイズでは使用しない
+    options: [], 
     correctIndex: 0,
     explanation: `「${targetWord}」は、${etymology.name}（${etymology.meaning}）を組み合わせて作られます。`,
-    // 以下、手順1で追加したプロパティ
     targetWord,
     allParts
   } as CombinationQuestion;
