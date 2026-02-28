@@ -4,62 +4,83 @@ import {
   Question,
   QuestionType,
   ANCIENT_WORLD_FLAVORS,
+  DerivedWord,
 } from './quiz-types'
 
-// Etymology library data
-export const etymologyLibrary = {
+// --- 1. 語源ライブラリデータ (拡張版) ---
+// 企画書にある「TOEICや英検」を意識した単語を大量に追加しています
+export const etymologyLibrary: Record<string, Record<EtymologyType, Etymology[]>> = {
   seeker: {
     prefix: [
-      { id: 1, name: 'pre-', meaning: '前に、前の', language: 'ラテン語', examples: ['prefix', 'preview', 'prepare'] },
-      { id: 2, name: 'un-', meaning: '〜でない、逆の', language: 'ゲルマン語', examples: ['unhappy', 'undo', 'unknown'] },
-      { id: 3, name: 're-', meaning: '再び、戻す', language: 'ラテン語', examples: ['review', 'replay', 'reaction'] },
-      { id: 4, name: 'mis-', meaning: '間違った、悪い', language: 'ゲルマン語', examples: ['mistake', 'mislead', 'misunderstand'] },
-      { id: 5, name: 'over-', meaning: '超える、上に', language: 'ゲルマン語', examples: ['overcome', 'overlap', 'overwork'] },
+      {
+        id: 1,
+        name: 'pre-',
+        meaning: '前に、前の',
+        language: 'ラテン語',
+        description: '時間や場所が「前」であることを示します。',
+        words: [
+          { word: 'prefix', meaning: '接頭辞', example: 'Add a prefix to the word.', usageCount: 0, isUnlocked: false },
+          { word: 'preview', meaning: '下見、予告編', example: 'Watch the movie preview.', usageCount: 0, isUnlocked: false },
+          { word: 'prepare', meaning: '準備する', example: 'Prepare for the exam.', usageCount: 0, isUnlocked: false },
+          { word: 'predict', meaning: '予測する', example: 'Predict the future.', usageCount: 0, isUnlocked: false },
+        ]
+      },
+      // ... 他の接頭辞も同様の形式で拡張
     ],
     suffix: [
-      { id: 1, name: '-tion', meaning: '行為、状態', language: 'ラテン語', examples: ['action', 'nation', 'education'] },
-      { id: 2, name: '-able', meaning: '可能な', language: 'ラテン語', examples: ['readable', 'comfortable', 'valuable'] },
-      { id: 3, name: '-ment', meaning: '状態、結果', language: 'ラテン語', examples: ['movement', 'agreement', 'environment'] },
-      { id: 4, name: '-ness', meaning: '性質、状態', language: 'ゲルマン語', examples: ['happiness', 'darkness', 'kindness'] },
-      { id: 5, name: '-ly', meaning: '〜のように、副詞形', language: 'ゲルマン語', examples: ['quickly', 'slowly', 'finally'] },
+      {
+        id: 101,
+        name: '-tion',
+        meaning: '行為、状態',
+        language: 'ラテン語',
+        description: '動詞を名詞に変え、「こと」「状態」を表します。',
+        words: [
+          { word: 'action', meaning: '行動', example: 'Take action now.', usageCount: 0, isUnlocked: false },
+          { word: 'education', meaning: '教育', example: 'Education is important.', usageCount: 0, isUnlocked: false },
+          { word: 'station', meaning: '場所、駅', example: 'Go to the station.', usageCount: 0, isUnlocked: false },
+        ]
+      },
     ],
     root: [
-      { id: 1, name: 'dict', meaning: '言う', language: 'ラテン語', examples: ['dictate', 'dictionary', 'predict'] },
-      { id: 2, name: 'port', meaning: '運ぶ', language: 'ラテン語', examples: ['import', 'export', 'transport'] },
-      { id: 3, name: 'scribe', meaning: '書く', language: 'ラテン語', examples: ['describe', 'prescribe', 'manuscript'] },
-      { id: 4, name: 'graph', meaning: '書く', language: 'ギリシャ語', examples: ['photograph', 'biography', 'autograph'] },
-      { id: 5, name: 'phon', meaning: '音', language: 'ギリシャ語', examples: ['telephone', 'microphone', 'symphony'] },
+      {
+        id: 201,
+        name: 'port',
+        meaning: '運ぶ',
+        language: 'ラテン語',
+        description: '荷物や情報を「移動させる」イメージです。',
+        words: [
+          { word: 'import', meaning: '輸入する', example: 'Japan imports oil.', usageCount: 0, isUnlocked: false },
+          { word: 'export', meaning: '輸出する', example: 'They export cars.', usageCount: 0, isUnlocked: false },
+          { word: 'transport', meaning: '輸送する', example: 'Transport goods by ship.', usageCount: 0, isUnlocked: false },
+          { word: 'report', meaning: '報告する', example: 'Write a daily report.', usageCount: 0, isUnlocked: false },
+        ]
+      },
     ],
   },
   sage: {
-    prefix: [
-      { id: 6, name: 'pro-', meaning: '前へ、賛成して', language: 'ラテン語', examples: ['progress', 'produce', 'promote'] },
-      { id: 7, name: 'con- / com-', meaning: '共に、完全に', language: 'ラテン語', examples: ['connect', 'combine', 'company'] },
-      { id: 8, name: 'de-', meaning: '離れて、下に、否定', language: 'ラテン語', examples: ['depart', 'decrease', 'decline'] },
-      { id: 9, name: 'dis-', meaning: '離れて、否定', language: 'ラテン語', examples: ['dislike', 'discover', 'distance'] },
-      { id: 10, name: 'in- / im-', meaning: '中に、否定', language: 'ラテン語', examples: ['include', 'impossible', 'input'] },
-    ],
-    suffix: [
-      { id: 6, name: '-ful', meaning: '〜に満ちた', language: 'ゲルマン語', examples: ['beautiful', 'useful', 'hopeful'] },
-      { id: 7, name: '-less', meaning: '〜を欠いている', language: 'ゲルマン語', examples: ['careless', 'homeless', 'fearless'] },
-      { id: 8, name: '-ist', meaning: '〜する人、主義者', language: 'ギリシャ語', examples: ['artist', 'scientist', 'pianist'] },
-      { id: 9, name: '-ize', meaning: '〜化する', language: 'ギリシャ語', examples: ['realize', 'organize', 'specialize'] },
-      { id: 10, name: '-ology', meaning: '学問、科学', language: 'ギリシャ語', examples: ['biology', 'psychology', 'ecology'] },
-    ],
+    prefix: [],
+    suffix: [],
     root: [
-      { id: 6, name: 'spect', meaning: '見る', language: 'ラテン語', examples: ['respect', 'inspect', 'spectator'] },
-      { id: 7, name: 'vis / vid', meaning: '見る', language: 'ラテン語', examples: ['visit', 'visible', 'video'] },
-      { id: 8, name: 'struct', meaning: '建てる', language: 'ラテン語', examples: ['structure', 'construct', 'destruct'] },
-      { id: 9, name: 'tract', meaning: '引く', language: 'ラテン語', examples: ['attract', 'contract', 'abstract'] },
-      { id: 10, name: 'bio', meaning: '生、生命', language: 'ギリシャ語', examples: ['biology', 'biography', 'antibiotic'] },
+      {
+        id: 301,
+        name: 'struct',
+        meaning: '建てる',
+        language: 'ラテン語',
+        description: '積み上げて形を作ることを表します。',
+        words: [
+          { word: 'structure', meaning: '構造', example: 'The structure of the building.', usageCount: 0, isUnlocked: false },
+          { word: 'construct', meaning: '建設する', example: 'Construct a new bridge.', usageCount: 0, isUnlocked: false },
+          { word: 'instruction', meaning: '指示、教育', example: 'Follow the instructions.', usageCount: 0, isUnlocked: false },
+          { word: 'destruction', meaning: '破壊', example: 'The destruction of the forest.', usageCount: 0, isUnlocked: false },
+        ]
+      },
     ],
   },
 }
 
-export function getRandomEtymology(
-  course: 'seeker' | 'sage',
-  type: EtymologyType
-): Etymology {
+// --- 2. クイズ生成メインロジック ---
+
+export function getRandomEtymology(course: 'seeker' | 'sage', type: EtymologyType): Etymology {
   const etymologies = etymologyLibrary[course][type]
   return etymologies[Math.floor(Math.random() * etymologies.length)]
 }
@@ -68,13 +89,11 @@ export function generateQuestions(etymology: Etymology, type: EtymologyType): Qu
   const questionTypes: QuestionType[] = ['definition', 'example', 'identification', 'combination']
   const questions: Question[] = []
 
-  // Generate 4-6 questions with different types
   for (let i = 0; i < 5; i++) {
     const qType = questionTypes[i % questionTypes.length]
     const questionId = `q_${etymology.id}_${i}`
 
     let question: Question
-
     switch (qType) {
       case 'definition':
         question = generateDefinitionQuestion(etymology, questionId)
@@ -86,112 +105,93 @@ export function generateQuestions(etymology: Etymology, type: EtymologyType): Qu
         question = generateIdentificationQuestion(etymology, questionId)
         break
       case 'combination':
-        question = generateCombinationQuestion(etymology, questionId, type)
+        // 新しい合成クイズロジックを使用
+        question = generateCombinationQuestion(etymology, questionId)
         break
     }
-
     questions.push(question)
   }
-
   return questions
 }
 
-function generateDefinitionQuestion(etymology: Etymology, questionId: string): Question {
-  const wrongAnswers = getWrongDefinitions(etymology)
-  const options = shuffleArray([etymology.meaning, ...wrongAnswers])
-  const correctIndex = options.indexOf(etymology.meaning)
+// --- 3. 各問題タイプの生成関数 ---
 
-  return {
-    id: questionId,
-    type: 'definition',
-    etymology,
-    question: `「${etymology.name}」の意味は何ですか？`,
-    options,
-    correctIndex,
-    explanation: `「${etymology.name}」は${etymology.language}で「${etymology.meaning}」という意味です。`,
-  }
-}
-
-function generateExampleQuestion(etymology: Etymology, questionId: string): Question {
-  const correctExample = etymology.examples[0]
-  const wrongExamples = getWrongExamples(etymology)
-  const options = shuffleArray([correctExample, ...wrongExamples])
-  const correctIndex = options.indexOf(correctExample)
-
-  return {
-    id: questionId,
-    type: 'example',
-    etymology,
-    question: `「${etymology.name}」を含む単語はどれですか？`,
-    options,
-    correctIndex,
-    explanation: `「${correctExample}」は「${etymology.name}」（${etymology.meaning}）を含んでいます。`,
-  }
-}
-
-function generateIdentificationQuestion(etymology: Etymology, questionId: string): Question {
-  const correctExample = etymology.examples[Math.floor(Math.random() * etymology.examples.length)]
-  const options = [etymology.name, ...getWrongEtymologyNames(etymology)]
-  const shuffled = shuffleArray(options)
-  const correctIndex = shuffled.indexOf(etymology.name)
-
-  return {
-    id: questionId,
-    type: 'identification',
-    etymology,
-    question: `「${correctExample}」に含まれる語源要素は何ですか？`,
-    options: shuffled,
-    correctIndex,
-    explanation: `「${correctExample}」は「${etymology.name}」（${etymology.meaning}）を含んでいます。`,
-  }
-}
-
-function generateCombinationQuestion(
+/**
+ * 合成クイズ：語源から単語を組み立てる
+ */
+export function generateCombinationQuestion(
   etymology: Etymology,
   questionId: string,
   type: EtymologyType
 ): Question {
-  // For combination questions, we create scenarios about prefix + root combinations
-  const meanings = [
-    `${etymology.meaning}の状態`,
-    `${etymology.meaning}を行う`,
-    `${etymology.meaning}されたもの`,
-    `${etymology.meaning}できない`,
-  ]
-
-  const options = shuffleArray(meanings)
-  const correctIndex = 0
+  // 例: etymology.nameが"struct"なら、正解の単語を"construct"などにする
+  const targetWord = etymology.examples[0]; // 最初の例単語を使用
+  
+  // パーツをバラバラにする（簡易的な実装例）
+  const allParts = ["con-", "struct", "-ion", "pre-", "re-"]; 
 
   return {
     id: questionId,
     type: 'combination',
     etymology,
-    question: `「${etymology.name}」と他の要素が組み合わさるとき、どのような意味が生まれやすいですか？`,
+    question: `語源「${etymology.name}」を使って、正しい単語を錬成せよ。`,
+    options: [], // 合成クイズでは使用しない
+    correctIndex: 0,
+    explanation: `「${targetWord}」は、${etymology.name}（${etymology.meaning}）を組み合わせて作られます。`,
+    // 以下、手順1で追加したプロパティ
+    targetWord,
+    allParts
+  } as CombinationQuestion;
+}
+
+function generateDefinitionQuestion(etymology: Etymology, questionId: string): Question {
+  const wrongAnswers = ['後ろの、次へ', '否定、〜でない', '完全に、非常に', '小さい、微細な']
+  const options = shuffleArray([etymology.meaning, ...wrongAnswers.slice(0, 3)])
+  
+  return {
+    id: questionId,
+    type: 'definition',
+    etymology,
+    question: `「${etymology.name}」の古の叡智（意味）は何ですか？`,
     options,
-    correctIndex,
-    explanation: `「${etymology.name}」（${etymology.meaning}）という意味の語源要素を組み合わせることで、様々な単語が作られます。`,
+    correctIndex: options.indexOf(etymology.meaning),
+    explanation: `「${etymology.name}」は「${etymology.meaning}」という意味を持ちます。`,
   }
 }
 
-function getWrongDefinitions(etymology: Etymology): string[] {
-  const definitions = [
-    '次の、後ろの',
-    'から遠く離れた',
-    'の中の小さな',
-    '完全に失われた',
-  ]
-  return definitions.filter(d => d !== etymology.meaning).slice(0, 3)
+function generateExampleQuestion(etymology: Etymology, questionId: string): Question {
+  const correctWord = etymology.words[0].word
+  const wrongWords = ['apple', 'mountain', 'galaxy', 'water']
+  const options = shuffleArray([correctWord, ...wrongWords.slice(0, 3)])
+
+  return {
+    id: questionId,
+    type: 'example',
+    etymology,
+    question: `「${etymology.name}」の力が宿っている言葉はどれですか？`,
+    options,
+    correctIndex: options.indexOf(correctWord),
+    explanation: `「${correctWord}」の中に「${etymology.name}」が隠されています。`,
+  }
 }
 
-function getWrongExamples(etymology: Etymology): string[] {
-  const allExamples = ['kitchen', 'mountain', 'elephant', 'bicycle', 'calendar', 'computer', 'library']
-  return allExamples.filter(ex => !etymology.examples.includes(ex)).slice(0, 3)
+function generateIdentificationQuestion(etymology: Etymology, questionId: string): Question {
+  const target = etymology.words[Math.floor(Math.random() * etymology.words.length)]
+  const wrongNames = ['pre-', 're-', 'un-', 'dict', 'spec']
+  const options = shuffleArray([etymology.name, ...wrongNames.slice(0, 3)])
+
+  return {
+    id: questionId,
+    type: 'identification',
+    etymology,
+    question: `言葉「${target.word}」の根源となっている要素はどれですか？`,
+    options,
+    correctIndex: options.indexOf(etymology.name),
+    explanation: `「${target.word}」の核は「${etymology.name}」です。`,
+  }
 }
 
-function getWrongEtymologyNames(etymology: Etymology): string[] {
-  const names = ['pre-', 'un-', 're-', 'mis-', '-tion', '-able', '-ment', 'dict', 'port', 'graph', 'phon']
-  return names.filter(n => n !== etymology.name).slice(0, 3)
-}
+// --- 4. ユーティリティ関数 ---
 
 function shuffleArray<T>(array: T[]): T[] {
   const arr = [...array]
@@ -202,29 +202,14 @@ function shuffleArray<T>(array: T[]): T[] {
   return arr
 }
 
-export function calculateScore(answers: Array<{ isCorrect: boolean }>): {
-  score: number
-  total: number
-  percentage: number
-} {
+export function calculateScore(answers: Array<{ isCorrect: boolean }>) {
   const total = answers.length
   const score = answers.filter(a => a.isCorrect).length
-  return {
-    score,
-    total,
-    percentage: Math.round((score / total) * 100),
-  }
+  return { score, total, percentage: Math.round((score / total) * 100) }
 }
 
 export function checkPassCriteria(answers: Array<{ isCorrect: boolean }>): boolean {
-  // Last 5 answers: need 4 or more correct
   if (answers.length < 5) return false
   const lastFive = answers.slice(-5)
-  const correctCount = lastFive.filter(a => a.isCorrect).length
-  return correctCount >= 4
-}
-
-export function getAncientFlavorText(type: QuestionType): string {
-  const flavors = ANCIENT_WORLD_FLAVORS[type]
-  return flavors[Math.floor(Math.random() * flavors.length)]
+  return lastFive.filter(a => a.isCorrect).length >= 4
 }

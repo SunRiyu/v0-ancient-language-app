@@ -76,7 +76,7 @@ export default function HomePage() {
 
   // 「語源の樹」カードを表示するかどうかのステート
   const [showEtymologyTree, setShowEtymologyTree] = useState(false)
-  
+
   // アンロック状態を管理するステート
   const [unlockedEtymologies, setUnlockedEtymologies] = useState<Record<string, Record<string, number[]>>>({
     seeker: { prefix: [], suffix: [], root: [] },
@@ -88,7 +88,7 @@ export default function HomePage() {
     if (savedGender) {
       setUserGender(savedGender)
     }
-    
+
     // localStorageからアンロック状態を読み込む
     const savedUnlocks = localStorage.getItem('unlockedEtymologies')
     if (savedUnlocks) {
@@ -224,6 +224,14 @@ export default function HomePage() {
               </GameButton>
             </div>
           )}
+          <GameButton
+            variant="secondary"
+            size="lg"
+            onClick={() => router.push('/etymology-library')}
+            className="w-full sm:w-auto"
+          >
+            📖 語源の参考書（ライブラリ）を見る
+          </GameButton>
         </section>
 
         {/* 成果セクション */}
@@ -262,7 +270,7 @@ export default function HomePage() {
                 const seekerUnlocked = unlockedEtymologies.seeker[category.type as 'prefix' | 'suffix' | 'root'].length;
                 const sageUnlocked = unlockedEtymologies.sage[category.type as 'prefix' | 'suffix' | 'root'].length;
                 const isLocked = seekerUnlocked === 0 && sageUnlocked === 0;
-                
+
                 return (
                   <div
                     key={category.type}

@@ -34,6 +34,10 @@ export interface Question {
   explanation: string
 }
 
+export interface CombinationQuestion extends Question {
+  targetWord: string;  // 正解となる完成した単語（例: "construction"）
+  allParts: string[];   // 選択肢として画面に並べるバラバラのパーツ
+}
 export interface QuizRound {
   id: string
   course: CoursePath
