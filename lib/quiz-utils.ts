@@ -5,6 +5,7 @@ import {
   QuestionType,
   ANCIENT_WORLD_FLAVORS,
   DerivedWord,
+  CombinationQuestion,
 } from './quiz-types'
 
 // --- 1. 語源ライブラリデータ (拡張版) ---
@@ -118,28 +119,53 @@ export function generateQuestions(etymology: Etymology, type: EtymologyType): Qu
 
 /**
  * 合成クイズ：語源から単語を組み立てる
+ * 複数のパーツを組み合わせて正しい単語を作る
  */
 export function generateCombinationQuestion(
   etymology: Etymology,
   questionId: string,
   type: EtymologyType
 ): Question {
-  // etymology.examples[0] は存在しないので words[0].word に変更
-  const targetWord = etymology.words[0].word; 
+  const targetWord = etymology.words[0].word
   
-  const allParts = ["con-", "struct", "-ion", "pre-", "re-"]; 
+  // 正解単語のパーツと、他の語源から干渉パーツを取得
+  const correctParts = getEtymologyParts(etymology, targetWord)
+  const distractorParts = getDistractorParts(type)
+  
+  // 正解パーツと干渉パーツをシャッフルして表示
+  const allParts = shuffleArray([...correctParts, ...distractorParts.slice(0, 2)])
 
   return {
     id: questionId,
     type: 'combination',
     etymology,
-    question: `語源「${etymology.name}」を使って、正しい単語を錬成せよ。`,
-    options: [], 
+    question: `「${etymology.name}」の力を使って、正しい単語を錬成せよ。パーツを正しい順序で選べ。`,
+    options: allParts,
     correctIndex: 0,
-    explanation: `「${targetWord}」は、${etymology.name}（${etymology.meaning}）を組み合わせて作られます。`,
+    explanation: `「${targetWord}」は${correctParts.join(" + ")}の組み合わせで作られます。${etymology.name}（${etymology.meaning}）の力が込められています。`,
     targetWord,
     allParts
-  } as CombinationQuestion;
+  } as CombinationQuestion
+}
+
+/**
+ * 単語を構成するパーツを取得する
+ */
+function getEtymologyParts(etymology: Etymology, word: string): string[] {
+  // シンプルな実装：語源名とサフィックスを返す
+  return [etymology.name, '-word']
+}
+
+/**
+ * 干渉パーツを取得する（合成クイズ用）
+ */
+function getDistractorParts(type: EtymologyType): string[] {
+  const distractors: Record<EtymologyType, string[]> = {
+    prefix: ['un-', 'dis-', 'mis-', 're-'],
+    suffix: ['-ness', '-ment', '-able', '-ful'],
+    root: ['dict', 'scribe', 'graph', 'phone']
+  }
+  return distractors[type]
 }
 
 function generateDefinitionQuestion(etymology: Etymology, questionId: string): Question {
@@ -210,4 +236,43 @@ export function checkPassCriteria(answers: Array<{ isCorrect: boolean }>): boole
   if (answers.length < 5) return false
   const lastFive = answers.slice(-5)
   return lastFive.filter(a => a.isCorrect).length >= 4
+}
+
+/**
+ * 復習の魔物：エビングハウスの忘却曲線に基づいて復習推奨時刻を計算
+ */
+export function calculateNextReviewTime(lastReviewTime: number = Date.now()): number {
+  // エビングハウスの忘却曲線に基づくスケジュール
+  // 1日、3日、7日、14日、30日のサイクル
+  const intervals = [1, 3, 7, 14, 30] // 日数
+  const millisecondsPerDay = 24 * 60 * 60 * 1000
+  
+  // ランダムに間隔を選択（実装簡易版）
+  const randomInterval = intervals[Math.floor(Math.random() * intervals.length)]
+  return lastReviewTime + (randomInterval * millisecondsPerDay)
+}
+
+/**
+ * 復習が必要な単語を取得（復習の魔物）
+ */
+export function getWordsNeedingReview(masteredWords: Array<{ lastUsedAt: number; nextReviewAt: number }>) {
+  const now = Date.now()
+  return masteredWords.filter(word => word.nextReviewAt <= now)
+}
+
+/**
+ * ボス戦のダメージ計算：蓄積したエネルギーを攻撃力に変換
+ */
+export function calculateBossBattleDamage(energyPoints: number): number {
+  // エネルギーポイントから攻撃力を計算
+  // 1エネルギー = 10ダメージ（要調整）
+  return energyPoints * 10
+}
+
+/**
+ * 単語をマスターしたときのエネルギー獲得
+ */
+export function getEnergyReward(wordMastery: { usageCount: number }): number {
+  // 5回の使用でマスター時に50ポイント
+  return wordMastery.usageCount >= 5 ? 50 : 0
 }

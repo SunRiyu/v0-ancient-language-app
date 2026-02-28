@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { BackButton } from '@/components/back-button'
 import { QuizQuestion } from '@/components/quiz-question'
+import { CompoundQuiz } from '@/components/compound-quiz'
 import { QuizProgress } from '@/components/quiz-progress'
 import { PreviousAnswersReview } from '@/components/previous-answers-review'
 import { UnlockAnimation } from '@/components/unlock-animation'
@@ -13,8 +14,9 @@ import {
   getRandomEtymology,
   calculateScore,
   checkPassCriteria,
+  getEnergyReward,
 } from '@/lib/quiz-utils'
-import { CoursePath, EtymologyType, Question } from '@/lib/quiz-types'
+import { CoursePath, EtymologyType, Question, CombinationQuestion } from '@/lib/quiz-types'
 
 function QuizContent() {
   const router = useRouter()
@@ -45,9 +47,21 @@ function QuizContent() {
     setIsLoaded(true)
   }, [course, type])
 
-  const handleAnswer = (selectedIndex: number) => {
+  const handleAnswer = (selectedIndexOrParts: number | string[]) => {
     const currentQuestion = questions[currentQuestionIndex]
-    const isCorrect = selectedIndex === currentQuestion.correctIndex
+    let isCorrect = false
+    let selectedIndex = 0
+
+    // 合成クイズの場合は配列、通常クイズの場合は数値
+    if (Array.isArray(selectedIndexOrParts)) {
+      const selectedWord = selectedIndexOrParts.join('')
+      const targetWord = (currentQuestion as CombinationQuestion).targetWord
+      isCorrect = selectedWord === targetWord
+      selectedIndex = isCorrect ? 0 : 1 // ダミーインデックス
+    } else {
+      isCorrect = selectedIndexOrParts === currentQuestion.correctIndex
+      selectedIndex = selectedIndexOrParts
+    }
     
     setSelectedAnswer(selectedIndex)
     setIsAnswered(true)
@@ -139,14 +153,24 @@ function QuizContent() {
 
         {/* Current question */}
         <div className="mb-12">
-          <QuizQuestion
-            question={currentQuestion}
-            questionNumber={currentQuestionIndex + 1}
-            totalQuestions={questions.length}
-            onAnswer={handleAnswer}
-            isAnswered={isAnswered}
-            selectedAnswer={selectedAnswer ?? undefined}
-          />
+          {currentQuestion.type === 'combination' ? (
+            <CompoundQuiz
+              question={currentQuestion as CombinationQuestion}
+              questionNumber={currentQuestionIndex + 1}
+              totalQuestions={questions.length}
+              onAnswer={(parts) => handleAnswer(parts)}
+              isAnswered={isAnswered}
+            />
+          ) : (
+            <QuizQuestion
+              question={currentQuestion}
+              questionNumber={currentQuestionIndex + 1}
+              totalQuestions={questions.length}
+              onAnswer={handleAnswer}
+              isAnswered={isAnswered}
+              selectedAnswer={selectedAnswer ?? undefined}
+            />
+          )}
         </div>
 
         {/* Next button */}
