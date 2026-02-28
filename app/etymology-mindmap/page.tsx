@@ -1,14 +1,8 @@
-"use client";
-
-import { useRouter, useSearchParams } from 'next/navigation'
 import { BackButton } from '@/components/back-button'
-import { Suspense } from 'react' // Suspenseをインポート
+import { Suspense } from 'react'
 
 // コンテンツ部分を切り分ける
-function MindmapContent() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const etymologyName = searchParams.get('name') || '未知の語源'
+function MindmapContent({ etymologyName }: { etymologyName: string }) {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#2a2520] via-[#3d3733] to-[#2a2520] relative overflow-hidden animate-zoom-in">
@@ -92,10 +86,17 @@ function MindmapContent() {
 }
 
 // ページ全体をSuspenseでラップして書き出し
-export default function EtymologyMindmapPage() {
+export default async function EtymologyMindmapPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const params = await searchParams
+  const etymologyName = typeof params.name === 'string' ? params.name : '未知の語源'
+
   return (
     <Suspense fallback={<div className="min-h-screen bg-[#2a2520] flex items-center justify-center text-[#f5f5f1]">読み込み中...</div>}>
-      <MindmapContent />
+      <MindmapContent etymologyName={etymologyName} />
     </Suspense>
   )
 }

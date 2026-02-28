@@ -3,6 +3,15 @@
 export type EtymologyType = 'prefix' | 'suffix' | 'root'
 export type CoursePath = 'seeker' | 'sage'
 
+export interface CompoundWordEntry {
+  id: number
+  part1: string
+  part2: string
+  resultWord: string
+  meaning: string
+  example: string
+}
+
 export interface DerivedWord {
   word: string;      // 例: "construct"
   meaning: string;   // 例: "組み立てる"
@@ -22,7 +31,7 @@ export interface Etymology {
   words: DerivedWord[]; // 派生単語のリストを追加
 }
 
-export type QuestionType = 'definition' | 'example' | 'identification' | 'combination'
+export type QuestionType = 'combination'
 
 export interface Question {
   id: string
@@ -32,20 +41,34 @@ export interface Question {
   options: string[]
   correctIndex: number
   explanation: string
-  // --- 以下の2つを追加することで、CombinationQuestion を Question として扱ってもエラーにならなくなります ---
-  targetWord?: string;  // 合成クイズ用の正解単語（オプション）
-  allParts?: string[];   // 合成クイズ用のパーツリスト（オプション）
-}
-
-// CombinationQuestion の定義はそのままでも、上記プロパティを継承するので整合性が取れます
-export interface CombinationQuestion extends Question {
-  targetWord: string;  
-  allParts: string[];   
+  targetWord?: string
+  allParts?: string[]
 }
 
 export interface CombinationQuestion extends Question {
   targetWord: string;  // 正解となる完成した単語（例: "construction"）
   allParts: string[];   // 選択肢として画面に並べるバラバラのパーツ
+}
+
+// ゲーム進行のステージ定義
+export type GameStage = 'stage-select' | 'quiz' | 'library' | 'conversation' | 'boss-battle'
+
+// 単語のマスタリング状態
+export interface WordMastery {
+  word: string
+  unlockedAt: number
+  usageCount: number // 会話で使用した回数（5回でマスター）
+  isMastered: boolean
+  lastUsedAt: number
+  nextReviewAt: number // 復習の魔物用：次の復習推奨日時
+}
+
+// ゲーム進行状態
+export interface GameProgress {
+  currentStage: GameStage
+  completedStages: GameStage[]
+  masteredWords: WordMastery[]
+  energyPoints: number // ボス戦用のエネルギー
 }
 
 export interface QuizRound {
