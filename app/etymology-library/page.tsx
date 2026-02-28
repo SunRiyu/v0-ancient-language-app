@@ -2,137 +2,105 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { GameButton } from '@/components/game-button'
 import { BackButton } from '@/components/back-button'
 import { EtymologyList } from '@/components/etymology-list'
 import { AddEtymologyModal } from '@/components/add-etymology-modal'
 
-// app/etymology-library/page.tsx 内の etymologyData 部分を以下に差し替えてください
 
+// --- 拡張されたデータ構造 ---
 const etymologyData = {
   prefix: [
-    { id: 1, name: 'pre-', meaning: '前に、前の', language: 'ラテン語', examples: ['prefix', 'preview', 'prepare'] },
-    { id: 2, name: 'un-', meaning: '〜でない、逆の', language: 'ゲルマン語', examples: ['unhappy', 'undo', 'unknown'] },
-    { id: 3, name: 're-', meaning: '再び、戻す', language: 'ラテン語', examples: ['review', 'replay', 'reaction'] },
-    { id: 4, name: 'mis-', meaning: '間違った、悪い', language: 'ゲルマン語', examples: ['mistake', 'mislead', 'misunderstand'] },
-    { id: 5, name: 'over-', meaning: '超える、上に', language: 'ゲルマン語', examples: ['overcome', 'overlap', 'overwork'] },
-    { id: 6, name: 'pro-', meaning: '前へ、賛成して', language: 'ラテン語', examples: ['progress', 'produce', 'promote'] },
-    { id: 7, name: 'con- / com-', meaning: '共に、完全に', language: 'ラテン語', examples: ['connect', 'combine', 'company'] },
-    { id: 8, name: 'de-', meaning: '離れて、下に、否定', language: 'ラテン語', examples: ['depart', 'decrease', 'decline'] },
-    { id: 9, name: 'dis-', meaning: '離れて、否定', language: 'ラテン語', examples: ['dislike', 'discover', 'distance'] },
-    { id: 10, name: 'in- / im-', meaning: '中に、否定', language: 'ラテン語', examples: ['include', 'impossible', 'input'] },
+    { 
+      id: 1, name: 'pre-', meaning: '前に、前の', language: 'ラテン語', 
+      description: '時間や場所が「前」であることを示します。',
+      words: [
+        { word: 'prefix', meaning: '接頭辞', usageCount: 0, isUnlocked: true },
+        { word: 'preview', meaning: '下見、予告編', usageCount: 0, isUnlocked: true },
+        { word: 'prepare', meaning: '準備する', usageCount: 0, isUnlocked: true }
+      ]
+    },
+    { 
+      id: 7, name: 'con- / com-', meaning: '共に、完全に', language: 'ラテン語',
+      description: '複数のものが集まる、あるいは動作を強調します。',
+      words: [
+        { word: 'connect', meaning: 'つなぐ', usageCount: 0, isUnlocked: true },
+        { word: 'combine', meaning: '結合させる', usageCount: 0, isUnlocked: true },
+        { word: 'company', meaning: '仲間、会社', usageCount: 0, isUnlocked: true }
+      ]
+    },
+    // ... 他の接頭辞も同様に words 形式に書き換え
   ],
   suffix: [
-    { id: 1, name: '-tion', meaning: '行為、状態', language: 'ラテン語', examples: ['action', 'nation', 'education'] },
-    { id: 2, name: '-able', meaning: '可能な', language: 'ラテン語', examples: ['readable', 'comfortable', 'valuable'] },
-    { id: 3, name: '-ment', meaning: '状態、結果', language: 'ラテン語', examples: ['movement', 'agreement', 'environment'] },
-    { id: 4, name: '-ness', meaning: '性質、状態', language: 'ゲルマン語', examples: ['happiness', 'darkness', 'kindness'] },
-    { id: 5, name: '-ly', meaning: '〜のように、副詞形', language: 'ゲルマン語', examples: ['quickly', 'slowly', 'finally'] },
-    { id: 6, name: '-ful', meaning: '〜に満ちた', language: 'ゲルマン語', examples: ['beautiful', 'useful', 'hopeful'] },
-    { id: 7, name: '-less', meaning: '〜を欠いている', language: 'ゲルマン語', examples: ['careless', 'homeless', 'fearless'] },
-    { id: 8, name: '-ist', meaning: '〜する人、主義者', language: 'ギリシャ語', examples: ['artist', 'scientist', 'pianist'] },
-    { id: 9, name: '-ize', meaning: '〜化する', language: 'ギリシャ語', examples: ['realize', 'organize', 'specialize'] },
-    { id: 10, name: '-ology', meaning: '学問、科学', language: 'ギリシャ語', examples: ['biology', 'psychology', 'ecology'] },
+    { 
+      id: 101, name: '-tion', meaning: '行為、状態', language: 'ラテン語',
+      description: '動詞を名詞化し、動作やその結果を表します。',
+      words: [
+        { word: 'action', meaning: '行動', usageCount: 0, isUnlocked: true },
+        { word: 'education', meaning: '教育', usageCount: 0, isUnlocked: true }
+      ]
+    },
   ],
   root: [
-    { id: 1, name: 'dict', meaning: '言う', language: 'ラテン語', examples: ['dictate', 'dictionary', 'predict'] },
-    { id: 2, name: 'port', meaning: '運ぶ', language: 'ラテン語', examples: ['import', 'export', 'transport'] },
-    { id: 3, name: 'scribe', meaning: '書く', language: 'ラテン語', examples: ['describe', 'prescribe', 'manuscript'] },
-    { id: 4, name: 'graph', meaning: '書く', language: 'ギリシャ語', examples: ['photograph', 'biography', 'autograph'] },
-    { id: 5, name: 'phon', meaning: '音', language: 'ギリシャ語', examples: ['telephone', 'microphone', 'symphony'] },
-    { id: 6, name: 'spect', meaning: '見る', language: 'ラテン語', examples: ['respect', 'inspect', 'spectator'] },
-    { id: 7, name: 'vis / vid', meaning: '見る', language: 'ラテン語', examples: ['visit', 'visible', 'video'] },
-    { id: 8, name: 'struct', meaning: '建てる', language: 'ラテン語', examples: ['structure', 'construct', 'destruct'] },
-    { id: 9, name: 'tract', meaning: '引く', language: 'ラテン語', examples: ['attract', 'contract', 'abstract'] },
-    { id: 10, name: 'bio', meaning: '生、生命', language: 'ギリシャ語', examples: ['biology', 'biography', 'antibiotic'] },
-    { id: 11, name: 'geo', meaning: '地球、土地', language: 'ギリシャ語', examples: ['geography', 'geology', 'geometry'] },
-    { id: 12, name: 'ped', meaning: '足', language: 'ラテン語', examples: ['pedal', 'pedestrian', 'expedition'] },
+    { 
+      id: 201, name: 'struct', meaning: '建てる', language: 'ラテン語',
+      description: '積み上げて形を作ることを表します。',
+      words: [
+        { word: 'structure', meaning: '構造', usageCount: 0, isUnlocked: true },
+        { word: 'construct', meaning: '建設する', usageCount: 0, isUnlocked: true },
+        { word: 'instruction', meaning: '指示、教育', usageCount: 0, isUnlocked: true }
+      ]
+    },
+    { 
+      id: 202, name: 'port', meaning: '運ぶ', language: 'ラテン語',
+      description: '港(port)から荷物を移動させるイメージです。',
+      words: [
+        { word: 'import', meaning: '輸入する', usageCount: 0, isUnlocked: true },
+        { word: 'export', meaning: '輸出する', usageCount: 0, isUnlocked: true }
+      ]
+    },
   ],
 }
 
 export default function EtymologyLibraryPage() {
-  const router = useRouter()
   const [activeTab, setActiveTab] = useState<'prefix' | 'suffix' | 'root'>('prefix')
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [courseFilter, setCourseFilter] = useState<'all' | 'seeker' | 'sage'>('all')
-  const [customEtymologies, setCustomEtymologies] = useState<Record<string, any[]>>({
-    prefix: [],
-    suffix: [],
-    root: [],
-  })
 
-  const handleAddEtymology = (data: any) => {
-    const newEtymology = {
-      id: Date.now(),
-      ...data,
-    }
-    setCustomEtymologies((prev) => ({
-      ...prev,
-      [activeTab]: [...(prev[activeTab] || []), newEtymology],
-    }))
-    setIsModalOpen(false)
-  }
-
-  const allEtymologies = {
-    prefix: [...etymologyData.prefix, ...(customEtymologies.prefix || [])],
-    suffix: [...etymologyData.suffix, ...(customEtymologies.suffix || [])],
-    root: [...etymologyData.root, ...(customEtymologies.root || [])],
-  }
-
+  // 1. カテゴリごとの表示名
   const getTabTitle = (tab: string) => {
     switch (tab) {
-      case 'prefix':
-        return '接頭辞'
-      case 'suffix':
-        return '接尾辞'
-      case 'root':
-        return 'その他の語源'
-      default:
-        return ''
+      case 'prefix': return '接頭辞'
+      case 'suffix': return '接尾辞'
+      case 'root': return '語根'
+      default: return ''
     }
   }
 
-  const getTabDescription = (tab: string) => {
-    switch (tab) {
-      case 'prefix':
-        return '言葉の始まりに付く要素'
-      case 'suffix':
-        return '言葉の終わりに付く要素'
-      case 'root':
-        return '言葉の中核となる要素'
-      default:
-        return ''
-    }
-  }
+  // 2. 現在のタブのデータを取得
+  const currentItems = etymologyData[activeTab]
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#2a2520] via-[#3d3733] to-[#2a2520] relative overflow-hidden animate-zoom-in">
-      {/* Ancient stone texture background */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-green-900/20" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22noise%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22/></filter><rect width=%22200%22 height=%22200%22 fill=%22%23000%22 filter=%22url(%23noise)%22/></svg>')]" />
-      </div>
+    <main className="min-h-screen bg-gradient-to-b from-[#2a2520] via-[#3d3733] to-[#2a2520] text-[#f5f5f1] relative overflow-hidden p-4 sm:p-8">
+      {/* 背景装飾 */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-12">
-        {/* Back Button */}
+      <div className="relative z-10 max-w-6xl mx-auto">
         <BackButton />
 
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#f5f5f1] mb-2 text-center">語源の樹</h1>
-          <p className="text-[#d4cfc9] text-center text-sm sm:text-base">古代の知識から学ぶ言語の秘密</p>
-        </div>
+        <header className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-2 tracking-widest text-amber-200">語源の参考書</h1>
+          <p className="text-[#d4cfc9]">解放された古の知識を閲覧する</p>
+        </header>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap gap-3 mb-8 justify-center">
+        {/* タブ切り替え */}
+        <div className="flex justify-center gap-4 mb-10">
           {(['prefix', 'suffix', 'root'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 rounded-lg font-bold transition-all duration-200 ${
+              className={`px-8 py-3 rounded-xl font-bold transition-all border-2 ${
                 activeTab === tab
-                  ? 'bg-gradient-to-b from-[#6b9b7b] to-[#5a8b6b] text-[#f5f5f1] shadow-lg'
-                  : 'bg-[#4a4440] text-[#d4cfc9] hover:bg-[#5a5450]'
+                  ? 'bg-amber-900/40 border-amber-400 text-amber-100 shadow-[0_0_15px_rgba(251,191,36,0.2)]'
+                  : 'bg-stone-800/50 border-transparent text-stone-400 hover:border-stone-600'
               }`}
             >
               {getTabTitle(tab)}
@@ -140,76 +108,41 @@ export default function EtymologyLibraryPage() {
           ))}
         </div>
 
-        {/* Course Filter */}
-        <div className="flex flex-wrap gap-3 mb-8 justify-center">
-          <button
-            onClick={() => setCourseFilter('all')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 text-sm ${
-              courseFilter === 'all'
-                ? 'bg-[#6b9b7b] text-[#f5f5f1]'
-                : 'bg-[#4a4440] text-[#d4cfc9] hover:bg-[#5a5450]'
-            }`}
-          >
-            全て表示
-          </button>
-          <button
-            onClick={() => setCourseFilter('seeker')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 text-sm ${
-              courseFilter === 'seeker'
-                ? 'bg-[#6b9b7b] text-[#f5f5f1]'
-                : 'bg-[#4a4440] text-[#d4cfc9] hover:bg-[#5a5450]'
-            }`}
-          >
-            探索者の道
-          </button>
-          <button
-            onClick={() => setCourseFilter('sage')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 text-sm ${
-              courseFilter === 'sage'
-                ? 'bg-[#6b9b7b] text-[#f5f5f1]'
-                : 'bg-[#4a4440] text-[#d4cfc9] hover:bg-[#5a5450]'
-            }`}
-          >
-            賢者の道
-          </button>
-        </div>
+        {/* コンテンツエリア */}
+        <div className="grid gap-8">
+          {currentItems.map((item) => (
+            <section key={item.id} className="bg-stone-900/60 border border-amber-900/30 rounded-2xl p-6 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="flex items-end gap-4 mb-4 border-b border-amber-900/20 pb-4">
+                <h2 className="text-3xl font-bold text-amber-300">{item.name}</h2>
+                <span className="text-amber-100/60 mb-1">意味：{item.meaning}</span>
+                <span className="text-xs bg-stone-800 px-2 py-1 rounded mb-1 ml-auto">{item.language}</span>
+              </div>
+              
+              <p className="text-sm text-[#d4cfc9] mb-6 italic">“ {item.description} ”</p>
 
-        {/* Content Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Left Sidebar - Add Button */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-12 space-y-4">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="w-full px-4 py-6 bg-gradient-to-b from-[#8b7355] to-[#7a6345] hover:from-[#9b8365] hover:to-[#8b7355] text-[#f5f5f1] font-bold rounded-lg border-2 border-[#6a5335] shadow-lg transition-all hover:scale-105 active:scale-98"
-              >
-                <div className="text-2xl mb-2">＋</div>
-                <div className="text-sm">オリジナル</div>
-                <div className="text-xs mt-1">{getTabTitle(activeTab)}</div>
-                <div className="text-xs mt-1">を追加</div>
-              </button>
-            </div>
-          </div>
-
-          {/* Main Content - Etymology List */}
-          <div className="lg:col-span-3">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-[#f5f5f1] mb-2">{getTabTitle(activeTab)}</h2>
-              <p className="text-[#d4cfc9] text-sm">{getTabDescription(activeTab)}</p>
-            </div>
-            <EtymologyList items={allEtymologies[activeTab]} />
-          </div>
+              {/* 単語リストを表示（企画書にあるライブラリ機能） */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {item.words.map((w) => (
+                  <div key={w.word} className="bg-stone-800/40 border border-stone-700 p-4 rounded-xl group hover:border-amber-500/50 transition-colors">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-xl font-bold text-amber-50 group-hover:text-amber-200">{w.word}</span>
+                      <div className="flex flex-col items-end">
+                        <span className="text-[10px] text-stone-500 uppercase">Energy</span>
+                        <div className="flex gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <div key={i} className={`w-2 h-2 rounded-full ${i < w.usageCount ? 'bg-amber-400 shadow-[0_0_5px_rgba(251,191,36,0.8)]' : 'bg-stone-700'}`} />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-[#d4cfc9]">{w.meaning}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       </div>
-
-      {/* Add Etymology Modal */}
-      {isModalOpen && (
-        <AddEtymologyModal
-          type={activeTab}
-          onClose={() => setIsModalOpen(false)}
-          onAdd={handleAddEtymology}
-        />
-      )}
     </main>
   )
 }

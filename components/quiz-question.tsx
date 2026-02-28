@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Question } from '@/lib/quiz-types'
 import { GameButton } from '@/components/game-button'
+import EtymologyIntroPage from '@/app/etymology-intro/page'
 
 interface QuizQuestionProps {
   question: Question
@@ -48,11 +49,11 @@ export function QuizQuestion({
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-amber-300/60 text-xs uppercase tracking-wide">語源要素</p>
-              <p className="text-amber-100 font-bold text-lg">{question.etymology.name}</p>
+              <p className="text-amber-100 font-bold text-lg">{etymology.root}</p>
             </div>
             <div>
               <p className="text-amber-300/60 text-xs uppercase tracking-wide">原始言語</p>
-              <p className="text-amber-100 font-semibold">{question.etymology.language}</p>
+              <p className="text-amber-100 font-semibold">{etymology.origin}</p>
             </div>
           </div>
         </div>
