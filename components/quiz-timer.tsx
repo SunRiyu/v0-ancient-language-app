@@ -29,7 +29,10 @@ export function QuizTimer({
       setSecondsLeft((prev) => {
         const next = prev - 1
         if (next <= 0) {
-          onTimeUp()
+          // Defer the callback to avoid setState during render
+          setTimeout(() => {
+            onTimeUp()
+          }, 0)
           return 0
         }
         return next

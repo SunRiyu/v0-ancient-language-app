@@ -13,6 +13,11 @@ export function ResultEffect({ isCorrect, isVisible }: ResultEffectProps) {
   useEffect(() => {
     if (isVisible) {
       setShow(true)
+      // Hide after 1 second
+      const timer = setTimeout(() => {
+        setShow(false)
+      }, 1000)
+      return () => clearTimeout(timer)
     }
   }, [isVisible])
 
