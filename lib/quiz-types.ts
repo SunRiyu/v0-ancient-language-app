@@ -3,12 +3,23 @@
 export type EtymologyType = 'prefix' | 'suffix' | 'root'
 export type CoursePath = 'seeker' | 'sage'
 
+export interface DerivedWord {
+  word: string;      // 例: "construct"
+  meaning: string;   // 例: "組み立てる"
+  example: string;   // 例: "They construct a bridge."
+  usageCount: number; // 会話で使用した回数（5回で完全解放）
+  isUnlocked: boolean; // クイズや会話で解放されたか
+}
+
+// 2. 既存の Etymology インターフェースを更新（words などを追加）
 export interface Etymology {
   id: number
   name: string
   meaning: string
   language: string
-  examples: string[]
+  // examples: string[] // 既存のこれは words に統合されるため削除してもOK
+  description: string; // 語源の詳しい由来を追加
+  words: DerivedWord[]; // 派生単語のリストを追加
 }
 
 export type QuestionType = 'definition' | 'example' | 'identification' | 'combination'
