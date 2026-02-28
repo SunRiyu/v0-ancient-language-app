@@ -3,7 +3,6 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { BackButton } from '@/components/back-button'
-import { QuizQuestion } from '@/components/quiz-question'
 import { CompoundQuiz } from '@/components/compound-quiz'
 import { QuizProgress } from '@/components/quiz-progress'
 import { PreviousAnswersReview } from '@/components/previous-answers-review'
@@ -11,20 +10,14 @@ import { UnlockAnimation } from '@/components/unlock-animation'
 import { GameButton } from '@/components/game-button'
 import {
   generateQuestions,
-  getRandomEtymology,
   calculateScore,
   checkPassCriteria,
-  getEnergyReward,
 } from '@/lib/quiz-utils'
-import { CoursePath, EtymologyType, Question, CombinationQuestion } from '@/lib/quiz-types'
+import { Question, CombinationQuestion } from '@/lib/quiz-types'
 
 function QuizContent() {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const course = (searchParams.get('course') as CoursePath) || 'seeker'
-  const type = (searchParams.get('type') as EtymologyType) || 'prefix'
-
-  const [etymology, setEtymology] = useState<any>(null)
+  
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [answers, setAnswers] = useState<Array<{
@@ -40,12 +33,11 @@ function QuizContent() {
 
   // Initialize quiz on mount
   useEffect(() => {
-    const selectedEtymology = getRandomEtymology(course, type)
-    const generatedQuestions = generateQuestions(selectedEtymology, type)
-    setEtymology(selectedEtymology)
+    // 常に合成クイズを生成（ダミーのparams使用）
+    const generatedQuestions = generateQuestions({} as any, 'prefix')
     setQuestions(generatedQuestions)
     setIsLoaded(true)
-  }, [course, type])
+  }, [])
 
   const handleAnswer = (selectedIndexOrParts: number | string[]) => {
     const currentQuestion = questions[currentQuestionIndex]
@@ -91,28 +83,15 @@ function QuizContent() {
     const passed = checkPassCriteria(answers)
     if (passed) {
       setShowUnlock(true)
-      // Save unlock to localStorage
-      const unlockedKey = `unlockedEtymologies`
-      const current = localStorage.getItem(unlockedKey)
-      let unlocked = current ? JSON.parse(current) : {
-        seeker: { prefix: [], suffix: [], root: [] },
-        sage: { prefix: [], suffix: [], root: [] },
-      }
-      
-      if (!unlocked[course][type].includes(etymology.id)) {
-        unlocked[course][type].push(etymology.id)
-        localStorage.setItem(unlockedKey, JSON.stringify(unlocked))
-      }
-
       setTimeout(() => {
-        router.push(`/quiz-result?course=${course}&type=${type}&passed=true&etymology=${etymology.id}`)
+        router.push(`/quiz-result?passed=true`)
       }, 3500)
     } else {
-      router.push(`/quiz-result?course=${course}&type=${type}&passed=false`)
+      router.push(`/quiz-result?passed=false`)
     }
   }
 
-  if (!isLoaded || !etymology || questions.length === 0) {
+  if (!isLoaded || questions.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 flex items-center justify-center">
         <div className="text-center">
@@ -136,8 +115,8 @@ function QuizContent() {
         current={currentQuestionIndex + 1}
         total={questions.length}
         correct={score}
-        title={`${etymology.name} - クイズ`}
-        subtitle={`${etymology.language} · ${etymology.meaning}`}
+        title="単語合成クイズ"
+        subtitle="2つの単語を組み合わせて、新しい単語を作ろう！"
       />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-12">
@@ -151,26 +130,15 @@ function QuizContent() {
           />
         )}
 
-        {/* Current question */}
+        {/* Current question - Always compound quiz */}
         <div className="mb-12">
-          {currentQuestion.type === 'combination' ? (
-            <CompoundQuiz
-              question={currentQuestion as CombinationQuestion}
-              questionNumber={currentQuestionIndex + 1}
-              totalQuestions={questions.length}
-              onAnswer={(parts) => handleAnswer(parts)}
-              isAnswered={isAnswered}
-            />
-          ) : (
-            <QuizQuestion
-              question={currentQuestion}
-              questionNumber={currentQuestionIndex + 1}
-              totalQuestions={questions.length}
-              onAnswer={handleAnswer}
-              isAnswered={isAnswered}
-              selectedAnswer={selectedAnswer ?? undefined}
-            />
-          )}
+          <CompoundQuiz
+            question={currentQuestion as CombinationQuestion}
+            questionNumber={currentQuestionIndex + 1}
+            totalQuestions={questions.length}
+            onAnswer={(parts) => handleAnswer(parts)}
+            isAnswered={isAnswered}
+          />
         </div>
 
         {/* Next button */}
@@ -193,8 +161,8 @@ function QuizContent() {
       {/* Unlock Animation */}
       <UnlockAnimation
         isVisible={showUnlock}
-        course={course}
-        etymologyName={etymology.name}
+        course="seeker"
+        etymologyName="単語"
       />
     </main>
   )

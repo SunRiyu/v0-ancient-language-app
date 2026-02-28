@@ -3,6 +3,15 @@
 export type EtymologyType = 'prefix' | 'suffix' | 'root'
 export type CoursePath = 'seeker' | 'sage'
 
+export interface CompoundWordEntry {
+  id: number
+  part1: string
+  part2: string
+  resultWord: string
+  meaning: string
+  example: string
+}
+
 export interface DerivedWord {
   word: string;      // 例: "construct"
   meaning: string;   // 例: "組み立てる"
@@ -22,7 +31,7 @@ export interface Etymology {
   words: DerivedWord[]; // 派生単語のリストを追加
 }
 
-export type QuestionType = 'definition' | 'example' | 'identification' | 'combination'
+export type QuestionType = 'combination'
 
 export interface Question {
   id: string
@@ -32,9 +41,8 @@ export interface Question {
   options: string[]
   correctIndex: number
   explanation: string
-  // --- 合成クイズ用のオプショナルプロパティ ---
-  targetWord?: string;  // 合成クイズ用の正解単語（オプション）
-  allParts?: string[];   // 合成クイズ用のパーツリスト（オプション）
+  targetWord?: string
+  allParts?: string[]
 }
 
 export interface CombinationQuestion extends Question {
