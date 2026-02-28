@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { CombinationQuestion } from '@/lib/quiz-types'
 import { GameButton } from '@/components/game-button'
 
@@ -10,6 +10,7 @@ interface CompoundQuizProps {
   totalQuestions: number
   onAnswer: (selectedParts: string[]) => void
   isAnswered?: boolean
+  resetKey?: number | string
 }
 
 export function CompoundQuiz({
@@ -18,10 +19,18 @@ export function CompoundQuiz({
   totalQuestions,
   onAnswer,
   isAnswered = false,
+  resetKey,
 }: CompoundQuizProps) {
   const [selectedParts, setSelectedParts] = useState<string[]>([])
   const [availableParts, setAvailableParts] = useState(question.allParts)
   const [submitted, setSubmitted] = useState(false)
+
+  // Reset state when resetKey changes or question changes
+  useEffect(() => {
+    setSelectedParts([])
+    setAvailableParts(question.allParts)
+    setSubmitted(false)
+  }, [resetKey, question.id, question.allParts])
 
   const handleSelectPart = (part: string) => {
     if (!isAnswered && !submitted) {

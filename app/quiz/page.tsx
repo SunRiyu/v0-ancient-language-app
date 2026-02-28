@@ -79,6 +79,8 @@ function QuizContent() {
     }
   }
 
+  const resetKey = `${currentQuestionIndex}-${isAnswered}`
+
   const handleQuizComplete = () => {
     const passed = checkPassCriteria(answers)
     if (passed) {
@@ -138,6 +140,7 @@ function QuizContent() {
             totalQuestions={questions.length}
             onAnswer={(parts) => handleAnswer(parts)}
             isAnswered={isAnswered}
+            resetKey={resetKey}
           />
         </div>
 
