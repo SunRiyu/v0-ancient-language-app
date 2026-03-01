@@ -7,31 +7,26 @@ import { BackButton } from '@/components/back-button'
 import { Card } from '@/components/ui/card'
 import { BookOpen, ArrowRight, CheckCircle } from 'lucide-react'
 import { Suspense } from 'react'
-import { PREFIX_SETS } from '@/lib/quiz-utils'
+import { PREFIX_LIBRARY } from '@/lib/quiz-utils'
 
 function IntroContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const type = searchParams.get('type') || '接頭辞'
-  const [selectedSet, setSelectedSet] = useState<string | null>(null)
+  const [selectedPrefix, setSelectedPrefix] = useState<string | null>(null)
 
   const handleStartGame = () => {
-    if (selectedSet) {
-      // 実際の学習画面（learning-pathなど）へ遷移
-      router.push(`/learning-path?mode=study&type=${type}&set=${selectedSet}`)
+    if (selectedPrefix) {
+      // 選択した接頭辞でクイズを開始
+      router.push(`/quiz?prefix=${selectedPrefix}`)
     }
   }
 
-  const prefixSets = Object.entries(PREFIX_SETS).map(([key, value]) => ({
-    id: key,
-    ...value,
-  }))
-
   return (
-    <div className="w-full max-w-4xl">
+    <div className="w-full max-w-6xl">
       <BackButton />
       
-      <div className="mt-12 text-center space-y-6">
+      <div className="mt-12 text-center space-y-8">
         <div className="inline-block p-4 rounded-full bg-amber-900/20 border border-amber-500/30 mb-4">
           <BookOpen className="size-12 text-amber-400" />
         </div>
@@ -55,39 +50,41 @@ function IntroContent() {
           </div>
         </Card>
 
-        {/* セット選択 */}
+        {/* 接頭辞選択 */}
         <div className="pt-8">
-          <h2 className="text-2xl font-bold text-amber-200 mb-6">どの{type}を学びますか？</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {prefixSets.map((set) => (
+          <h2 className="text-2xl font-bold text-amber-200 mb-8">どの{type}を学びますか？</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
+            {PREFIX_LIBRARY.map((prefixItem) => (
               <button
-                key={set.id}
-                onClick={() => setSelectedSet(set.id)}
-                className={`relative p-6 rounded-2xl border-2 transition-all group ${
-                  selectedSet === set.id
-                    ? 'bg-amber-900/40 border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)]'
-                    : 'bg-stone-900/50 border-amber-900/30 hover:border-amber-500/50'
+                key={prefixItem.id}
+                onClick={() => setSelectedPrefix(prefixItem.id)}
+                className={`relative p-6 rounded-xl border-2 transition-all group ${
+                  selectedPrefix === prefixItem.id
+                    ? 'bg-amber-900/40 border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)] scale-105'
+                    : 'bg-stone-900/50 border-amber-900/30 hover:border-amber-500/50 hover:scale-102'
                 }`}
               >
-                <div className="absolute top-4 right-4">
-                  {selectedSet === set.id && (
-                    <CheckCircle className="size-6 text-amber-400 animate-in zoom-in" />
+                <div className="absolute top-2 right-2">
+                  {selectedPrefix === prefixItem.id && (
+                    <CheckCircle className="size-5 text-amber-400 animate-in zoom-in" />
                   )}
                 </div>
-                <h3 className="text-lg font-bold text-amber-200 mb-2 text-left">
-                  {set.name}
-                </h3>
-                <p className="text-amber-100/70 text-sm text-left mb-3">
-                  {set.description}
-                </p>
-                <div className="text-xs text-amber-300/60 text-left">
-                  学習語根数: {set.roots.length}
+                <div className="text-center space-y-2">
+                  <h3 className="text-lg font-bold text-amber-100">
+                    {prefixItem.prefix}
+                  </h3>
+                  <p className="text-xs text-amber-200/70 leading-tight">
+                    {prefixItem.meaning}
+                  </p>
+                  <div className="text-xs text-amber-300/50 pt-1">
+                    例: {prefixItem.examples.slice(0, 2).join(', ')}
+                  </div>
                 </div>
               </button>
             ))}
           </div>
 
-          {selectedSet && (
+          {selectedPrefix && (
             <GameButton 
               variant="primary" 
               size="lg" 
@@ -98,9 +95,9 @@ function IntroContent() {
               <ArrowRight className="ml-2 size-6" />
             </GameButton>
           )}
-          {!selectedSet && (
+          {!selectedPrefix && (
             <div className="text-amber-300/60 text-sm">
-              学びたいセットを選択してください
+              学びたい{type}を選択してください
             </div>
           )}
         </div>

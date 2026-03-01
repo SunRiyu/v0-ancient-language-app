@@ -1,7 +1,97 @@
 import { Question, Etymology } from "./quiz-types";
 
 /**
- * 接頭辞の定義
+ * 英語の接頭辞ライブラリ
+ */
+export const PREFIX_LIBRARY = [
+  {
+    id: 'ad',
+    prefix: 'AD',
+    meaning: '〜へ・〜に向かって',
+    examples: ['accept', 'admit', 'address', 'adjust'],
+    color: 'from-red-500 to-red-600',
+  },
+  {
+    id: 'con',
+    prefix: 'CON',
+    meaning: '共に・一緒に',
+    examples: ['contain', 'continue', 'combine', 'confirm'],
+    color: 'from-orange-500 to-orange-600',
+  },
+  {
+    id: 'de',
+    prefix: 'DE',
+    meaning: '下へ・除く・反対',
+    examples: ['describe', 'decrease', 'defeat', 'defend'],
+    color: 'from-yellow-500 to-yellow-600',
+  },
+  {
+    id: 'dis',
+    prefix: 'DIS',
+    meaning: '離れて・反対・否定',
+    examples: ['dismiss', 'disagree', 'disappear', 'discover'],
+    color: 'from-green-500 to-green-600',
+  },
+  {
+    id: 'ex',
+    prefix: 'EX',
+    meaning: '外へ・出て・前',
+    examples: ['export', 'except', 'explain', 'explore'],
+    color: 'from-cyan-500 to-cyan-600',
+  },
+  {
+    id: 're',
+    prefix: 'RE',
+    meaning: '再び・戻る・反対',
+    examples: ['respect', 'remember', 'return', 'repeat'],
+    color: 'from-blue-500 to-blue-600',
+  },
+  {
+    id: 'pre',
+    prefix: 'PRE',
+    meaning: '前に・事前に',
+    examples: ['predict', 'prefer', 'prepare', 'prescribe'],
+    color: 'from-indigo-500 to-indigo-600',
+  },
+  {
+    id: 'pro',
+    prefix: 'PRO',
+    meaning: '前へ・前に・代理',
+    examples: ['prospect', 'produce', 'proceed', 'protect'],
+    color: 'from-purple-500 to-purple-600',
+  },
+  {
+    id: 'sub',
+    prefix: 'SUB',
+    meaning: '下へ・下の・代理',
+    examples: ['support', 'subscribe', 'submit', 'substance'],
+    color: 'from-pink-500 to-pink-600',
+  },
+  {
+    id: 'trans',
+    prefix: 'TRANS',
+    meaning: '越えて・向こう側へ',
+    examples: ['transfer', 'translate', 'transport', 'transmit'],
+    color: 'from-rose-500 to-rose-600',
+  },
+  {
+    id: 'un',
+    prefix: 'UN',
+    meaning: '〜でない・反対',
+    examples: ['understand', 'unlock', 'under', 'unfold'],
+    color: 'from-amber-500 to-amber-600',
+  },
+  {
+    id: 'inter',
+    prefix: 'INTER',
+    meaning: '〜の間・相互',
+    examples: ['interact', 'interesting', 'international', 'intermediate'],
+    color: 'from-lime-500 to-lime-600',
+  },
+]
+
+/**
+ * 接頭辞の定義（セット単位）
  */
 export const PREFIX_SETS = {
   common: {
@@ -177,7 +267,25 @@ export const checkPassCriteria = (answers: { isCorrect: boolean }[]) => {
  */
 export const generateQuestions = (params: any, type: string): Question[] => {
   // 語源データから合成クイズ形式の問題を生成
-  const questions: CombinationQuestion[] = ETIMOLOGY_DATA.map((etymology, index) => ({
+  let dataToUse = ETIMOLOGY_DATA;
+  
+  // 接頭辞が指定されている場合はフィルタリング
+  if (params.prefix) {
+    const prefixItem = PREFIX_LIBRARY.find(p => p.id === params.prefix);
+    if (prefixItem && prefixItem.examples) {
+      // 接頭辞に関連する語源のみを抽出
+      dataToUse = ETIMOLOGY_DATA.filter(etymology => 
+        prefixItem.examples.some(ex => etymology.examples.some(e => e.word === ex))
+      );
+    }
+  }
+  
+  // データがない場合は全データを使用
+  if (dataToUse.length === 0) {
+    dataToUse = ETIMOLOGY_DATA;
+  }
+  
+  const questions: CombinationQuestion[] = dataToUse.map((etymology, index) => ({
     id: String(index + 1),
     type: 'combination',
     question: `『${etymology.root}』の意味から、正しい単語を作ってください。`,

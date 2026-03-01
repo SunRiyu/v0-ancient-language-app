@@ -13,11 +13,14 @@ import {
   generateQuestions,
   calculateScore,
   checkPassCriteria,
+  PREFIX_LIBRARY,
 } from '@/lib/quiz-utils'
 import { Question, CombinationQuestion } from '@/lib/quiz-types'
 
 function QuizContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const selectedPrefixId = searchParams.get('prefix')
   
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -34,14 +37,25 @@ function QuizContent() {
   const [showResultEffect, setShowResultEffect] = useState(false)
   const [lastIsCorrect, setLastIsCorrect] = useState(false)
   const [timerKey, setTimerKey] = useState(0)
+  const [currentPrefixInfo, setCurrentPrefixInfo] = useState<any>(null)
 
   // Initialize quiz on mount
   useEffect(() => {
-    // 常に合成クイズを生成（ダミーのparams使用）
-    const generatedQuestions = generateQuestions({} as any, 'prefix')
-    setQuestions(generatedQuestions)
+    if (selectedPrefixId) {
+      // 選択された接頭辞の情報を取得
+      const prefixInfo = PREFIX_LIBRARY.find(p => p.id === selectedPrefixId)
+      setCurrentPrefixInfo(prefixInfo)
+      
+      // 接頭辞に関連する問題を生成
+      const generatedQuestions = generateQuestions({ prefix: selectedPrefixId }, 'prefix')
+      setQuestions(generatedQuestions)
+    } else {
+      // フォールバック: 常に合成クイズを生成
+      const generatedQuestions = generateQuestions({} as any, 'prefix')
+      setQuestions(generatedQuestions)
+    }
     setIsLoaded(true)
-  }, [])
+  }, [selectedPrefixId])
 
   const handleAnswer = (selectedIndexOrParts: number | string[]) => {
     const currentQuestion = questions[currentQuestionIndex]
