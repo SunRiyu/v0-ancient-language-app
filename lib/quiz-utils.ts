@@ -588,7 +588,7 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     question: "「de (離れて)」＋「[ ? ] (導く)」で、「（本流から）導き出す ＝ 推論する」という意味の 'deduce' の、[ ? ] は？",
     options: ["duce", "duct", "dict", "dure"],
     correctAnswer: "duce",
-    explanation: "de（離れて/下に）+ duce（導く）で、前提から結論を「導き出す」という意味になります。",
+    explanation: "de（離れて/下に）+ duce（導く）で、前提から結論を「導き出す」という意味になりま���。",
     category: "Compound",
     etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "duce", "tion", "ible"],
@@ -911,7 +911,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     question: "「in (中に)」＋「[ ? ] (見る)」で、「中を見る ＝ 検査する・調査する」を意味する 'inspect' の、[ ? ] は？",
     options: ["spect", "spire", "scribe", "sist"],
     correctAnswer: "spect",
-    explanation: "in（中に）+ spect（見る）で、細部まで中をじっくり見ることから「検査する」となります。",
+    explanation: "in（中に）+ spect（見る）で、細部まで���をじっくり見ることから「検査する」となります。",
     category: "Roots",
     etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "spect", "ion", "or"],
@@ -1218,7 +1218,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "per-11",
-    question: "「per (通って)」＋「[ ? ] (送る)」で、「（中を）通り抜けさせる ＝ 許可する」という意味の 'permit' の、[ ? ] は？",
+    question: "「per (通って)」＋「[ ? ] (送る)」で、「（中を）通り抜けさせる ＝ 許可する」という意味�� 'permit' の、[ ? ] は？",
     options: ["mit", "miss", "mote", "move"],
     correctAnswer: "mit",
     explanation: "per（通して）+ mit（送る）で、通行を許可する、あるいは何かをさせる「許可」を意味します。",
@@ -1520,7 +1520,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     question: "「pre (前に)」＋「[ ? ] (熟した)」で、「前もって熟した ＝ 時期尚早の」という意味の 'premature' の、[ ? ] は？",
     options: ["mature", "match", "meter", "mount"],
     correctAnswer: "mature",
-    explanation: "pre（前に）+ mature（熟した）で、適切な時期より前に出来上がってしまう「早すぎる」状態を指します。",
+    explanation: "pre（前に）+ mature（熟した）で、適切な時��より前に出来上がってしまう「早すぎる」状態を指します。",
     category: "Compound",
     etymology: ETIMOLOGY_DATA[11],
     allParts: ["pre", "matur", "e", "ity"],
@@ -1761,7 +1761,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "pro-20",
-    question: "「pro (前に)」＋「[ ? ] (流れる)」で、「（言葉が）前に流れ出る ＝ 豊富な」という意味の 'profuse' の、[ ? ] は？",
+    question: "���pro (前に)」＋「[ ? ] (流れる)」で、「（言葉が）前に流れ出る ＝ 豊富な」という意味の 'profuse' の、[ ? ] は？",
     options: ["fuse", "flu", "flex", "flect"],
     correctAnswer: "fuse",
     explanation: "pro（前に）+ fuse（注ぐ：confuseのfuseと同根）で、溢れんばかりに注ぎ出される「豊富な」という意味です。",
@@ -1909,7 +1909,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     question: "「re (後ろに)」＋「[ ? ] (閉じる)」で、「（秘密の扉を）後ろに開く ＝ 明らかにする」という意味の 'reveal' の、[ ? ] は？",
     options: ["veal", "veal", "vail", "vail"],
     correctAnswer: "veal",
-    explanation: "re（反対に）+ veal（ベール/覆い）で、覆いを取り除く「明らかにする」という意味になります。",
+    explanation: "re（反対に）+ veal（ベール/覆い）で、覆いを取り除く「明らかにす���」という意味になります。",
     category: "Compound",
     etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "veal", "ing", "ation"],
@@ -1964,7 +1964,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     question: "「re (後ろに)」＋「[ ? ] (保つ)」で、「（手元に）後ろに持ち続ける ＝ 保持する」を意味する 'retain' の、[ ? ] は？",
     options: ["tain", "tain", "tent", "tend"],
     correctAnswer: "tain",
-    explanation: "re（後ろに）+ tain（保つ：containと同根）で、手放さずに「保持する」という意味です。",
+    explanation: "re（後ろに）+ tain（保つ：containと同根）で、手放さずに「保持する」��いう意味です。",
     category: "Compound",
     etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "tain", "er", "ention"],
@@ -2208,7 +2208,7 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     question: "「sub (下に)」＋「[ ? ] (吸い込む)」で、「下へ吸い込む ＝ 吸収する」という意味の 'subsume' の、[ ? ] は？",
     options: ["sume", "serve", "solve", "scribe"],
     correctAnswer: "sume",
-    explanation: "sub（下に）+ sume（取る：assume/consumeと同根）で、大きなカテゴリーの下に取り込む「含める・包含する」となります。",
+    explanation: "sub（下に）+ sume（取る：assume/consumeと同根）で、大きなカテゴリーの下に取り込む「含める��包含する」となります。",
     category: "Compound",
     etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "sum", "e", "ption"],
@@ -2241,5 +2241,78 @@ export const checkPassCriteria = (answers: { isCorrect: boolean }[]) => {
 
 export const generateQuestions = (params: any, type: string): Question[] => {
   // QUIZ_QUESTIONS からランダムに取得したり、カテゴリで絞り込んだりする処理
-  return QUIZ_QUESTIONS; 
+  return QUIZ_QUESTIONS;
+};
+
+/**
+ * 接頭辞と対応する語根・語源のマッピング
+ */
+export const PREFIX_ETYMOLOGY_MAP: Record<string, { roots: string[]; questions: Question[] }> = {
+  AD: {
+    roots: ['just', 'apt', 'dict', 'rect'],
+    questions: AD_QUIZ_QUESTIONS
+  },
+  CON: {
+    roots: ['pose', 'struct', 'dur', 'test'],
+    questions: CON_QUIZ_QUESTIONS
+  },
+  DE: {
+    roots: ['scribe', 'script', 'struct', 'cide'],
+    questions: DE_QUIZ_QUESTIONS
+  },
+  EX: {
+    roots: ['port', 'tract', 'pose', 'claim'],
+    questions: EX_QUIZ_QUESTIONS
+  },
+  'IN/IM': {
+    roots: ['port', 'press', 'struct', 'fect'],
+    questions: IN_IM_QUIZ_QUESTIONS
+  },
+  PER: {
+    roots: ['sist', 'form', 'mit', 'ject'],
+    questions: PER_QUIZ_QUESTIONS
+  },
+  PRE: {
+    roots: ['dict', 'fer', 'fix', 'view'],
+    questions: PRE_QUIZ_QUESTIONS
+  },
+  PRO: {
+    roots: ['ceed', 'claim', 'duce', 'pose'],
+    questions: PRO_QUIZ_QUESTIONS
+  },
+  RE: {
+    roots: ['place', 'late', 'fer', 'view'],
+    questions: RE_QUIZ_QUESTIONS
+  },
+  SUB: {
+    roots: ['way', 'merge', 'ject', 'scribe'],
+    questions: SUB_QUIZ_QUESTIONS
+  }
+};
+
+/**
+ * 接頭辞から対応するクイズ問題を取得
+ */
+export const getQuestionsByPrefix = (prefix: string): Question[] => {
+  return PREFIX_ETYMOLOGY_MAP[prefix]?.questions || [];
+};
+
+/**
+ * 接頭辞から対応する語根リストを取得
+ */
+export const getRootsByPrefix = (prefix: string): string[] => {
+  return PREFIX_ETYMOLOGY_MAP[prefix]?.roots || [];
+};
+
+/**
+ * 接頭辞と語根から対応する問題をフィルタリング
+ */
+export const getQuestionsByPrefixAndRoot = (prefix: string, root: string): Question[] => {
+  const questions = getQuestionsByPrefix(prefix);
+  // 問題内のテキストに語根が含まれているかチェック
+  return questions.filter(q => 
+    q.question.includes(root) || 
+    q.options.some(opt => opt.includes(root)) ||
+    q.correctAnswer.includes(root)
+  );
 };
