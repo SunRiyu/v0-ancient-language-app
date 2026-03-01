@@ -2215,6 +2215,7 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     targetWord: "subsume"
   }
 ];
+
 /**
  * ユーティリティ関数（必要に応じて他のページから呼び出されます）
  */
