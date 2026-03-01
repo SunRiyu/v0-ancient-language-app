@@ -117,7 +117,7 @@ export default function HomePage() {
   // 接頭辞などのカードをクリックした時の遷移処理
   const handleDexCardClick = (label: string) => {
     if (label === '接頭辞') {
-      router.push(`/etymology-intro?type=${encodeURIComponent(label)}`)
+      router.push(`/prefix-selection`)
     }
     // 接尾辞や語根の場合も必要に応じてここに追加
   }
