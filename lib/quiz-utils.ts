@@ -154,152 +154,10 @@ export const ETIMOLOGY_DATA: Etymology[] = [
 ];
 
 /**
- * 語源データに基づいた自動生成クイズセット
- */
-export const QUIZ_QUESTIONS: Question[] = [
-  {
-    id: "1",
-    question: "語根 'spect' の本来の意味は何ですか？",
-    options: ["聞く", "言う", "見る", "運ぶ"],
-    correctAnswer: "見る",
-    explanation: "ラテン語の 'spectare' に由来し、『見る』という意味を持ちます。inspect（中を見る＝検査する）などに使われます。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["in", "spect", "re", "pro"],
-    targetWord: "inspect"
-  },
-  {
-    id: "2",
-    question: "'predict' という単語の成り立ちは？",
-    options: ["pre (前) + dict (言う)", "pre (前) + dict (見る)", "pro (前) + dict (運ぶ)", "re (再び) + dict (言う)"],
-    correctAnswer: "pre (前) + dict (言う)",
-    explanation: "起こる『前』に『言う』ことから『予言する』という意味になります。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[1],
-    allParts: ["pre", "dict", "ion", "ed"],
-    targetWord: "predict"
-  },
-  {
-    id: "3",
-    question: "『外に(ex)』『運ぶ(port)』から成り立つ単語は何ですか？",
-    options: ["import", "export", "transport", "support"],
-    correctAnswer: "export",
-    explanation: "ex（外へ）+ port（運ぶ）で、国外へ荷物を出す『輸出』を意味します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[2],
-    allParts: ["ex", "port", "im", "er"],
-    targetWord: "export"
-  },
-  {
-    id: "4",
-    question: "語根 'ced / cess' が持つ主な意味は何ですか？",
-    options: ["取る", "行く", "書く", "投げる"],
-    correctAnswer: "行く",
-    explanation: "Latin 'cedere' に由来し、『行く』または『譲る』という意味を持ちます。proceed（前に行く＝前進する）などが代表例です。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[0], // 仮で紐付け
-    allParts: ["pro", "ceed", "ac", "cess"],
-    targetWord: "proceed"
-  },
-  {
-    id: "5",
-    question: "'accept' (受け入れる) の成り立ちは？",
-    options: ["ad (〜へ) + cept (取る)", "ex (外へ) + cept (取る)", "con (共に) + cept (取る)", "re (再び) + cept (取る)"],
-    correctAnswer: "ad (〜へ) + cept (取る)",
-    explanation: "ad（〜の方へ）+ cept（取る）で、自分の方へ取り込むことから『受け入れる』となります。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["ad", "cept", "ex", "re"],
-    targetWord: "accept"
-  },
-  {
-    id: "6",
-    question: "『越えて(trans)』『運ぶ(fer)』から成り立つ、移動を意味する単語は？",
-    options: ["refer", "transfer", "offer", "prefer"],
-    correctAnswer: "transfer",
-    explanation: "trans（向こう側へ）+ fer（運ぶ）で、場所や物を移動させることを意味します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["trans", "fer", "re", "of"],
-    targetWord: "transfer"
-  },
-  {
-    id: "7",
-    question: "'dismiss' (解散させる) の 'dis-' の意味は？",
-    options: ["一つに", "反対に", "離れて", "強めて"],
-    correctAnswer: "離れて",
-    explanation: "dis（離れて）+ miss（送る）で、人々をバラバラの方向に送り出す＝解散させる、となります。",
-    category: "Prefix",
-    etymology: ETIMOLOGY_DATA[3],
-    allParts: ["dis", "miss", "al", "ed"],
-    targetWord: "dismiss"
-  },
-  {
-    id: "8",
-    question: "'stable' (安定した) の語源的な意味は？",
-    options: ["動き回れる", "立っていられる", "座っている", "見えている"],
-    correctAnswer: "立っていられる",
-    explanation: "sta（立つ）+ able（できる）で、しっかりと立っていられる状態を指します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[4],
-    allParts: ["sta", "ble", "un", "in"],
-    targetWord: "stable"
-  },
-  {
-    id: "9",
-    question: "『外に(ex)』『立ち現れる(sist)』から成り、この世に有ることを意味する単語は？",
-    options: ["assist", "resist", "exist", "insist"],
-    correctAnswer: "exist",
-    explanation: "ex（外に）+ sist（立つ）で、外の世界に立ち現れて存在することを意味します。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[4],
-    allParts: ["ex", "sist", "as", "re"],
-    targetWord: "exist"
-  },
-  {
-    id: "10",
-    question: "'anticipate' (予期する) の語源的なイメージは？",
-    options: ["後から取る", "前に取る", "一緒に取る", "外に取る"],
-    correctAnswer: "前に取る",
-    explanation: "anti（前）+ cip（取る）で、事態が起こる前にあらかじめ心に取っておくことが『予期する』の由来です。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["anti", "cip", "ate", "ed"],
-    targetWord: "anticipate"
-  },
-  {
-    id: "11",
-    question: "『手(main)』で『保つ(tain)』ことから、『維持する』という意味になる単語は？",
-    options: ["contain", "retain", "maintain", "obtain"],
-    correctAnswer: "maintain",
-    explanation: "main(手) + tain(保つ) が組み合わさり、手入れをして状態を保つことを意味します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["main", "tain", "con", "re"],
-    targetWord: "maintain"
-  },
-  {
-    id: "12",
-    question: "語根 'scrib / script' の意味は何ですか？",
-    options: ["引く", "書く", "走る", "呼ぶ"],
-    correctAnswer: "書く",
-    explanation: "Latin 'scribere' に由来し、describe(書き写す＝描写する)などの単語を作ります。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["de", "scribe", "pre", "sub"],
-    targetWord: "describe"
-  }
-];
-
-/**
  * ユーティリティ関数（必要に応じて他のページから呼び出されます）
  */
 export const getEtymologyById = (id: string) => {
   return ETIMOLOGY_DATA.find((e) => e.id === id);
-};
-
-export const getQuestionsByCategory = (category: string) => {
-  return QUIZ_QUESTIONS.filter((q) => q.category === category);
 };
 
 export const calculateScore = (answers: { isCorrect: boolean }[]) => {
@@ -314,7 +172,24 @@ export const checkPassCriteria = (answers: { isCorrect: boolean }[]) => {
   return rate >= 0.8; // 80%以上で合格とする場合
 };
 
+/**
+ * 接頭辞セットから問題を生成する
+ */
 export const generateQuestions = (params: any, type: string): Question[] => {
-  // QUIZ_QUESTIONS からランダムに取得したり、カテゴリで絞り込んだりする処理
-  return QUIZ_QUESTIONS; 
+  // 語源データから合成クイズ形式の問題を生成
+  const questions: CombinationQuestion[] = ETIMOLOGY_DATA.map((etymology, index) => ({
+    id: String(index + 1),
+    type: 'combination',
+    question: `『${etymology.root}』の意味から、正しい単語を作ってください。`,
+    options: etymology.examples.slice(0, 4).map(ex => ex.word),
+    correctAnswer: etymology.examples[0].word,
+    correctIndex: 0,
+    explanation: etymology.examples[0].components,
+    category: 'Compound',
+    etymology,
+    allParts: etymology.root.split('/').map(r => r.trim()),
+    targetWord: etymology.examples[0].word,
+  }));
+  
+  return questions;
 };
