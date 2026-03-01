@@ -1,24 +1,34 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { GameButton } from '@/components/game-button'
 import { BackButton } from '@/components/back-button'
 import { Card } from '@/components/ui/card'
-import { BookOpen, ArrowRight } from 'lucide-react'
+import { BookOpen, ArrowRight, CheckCircle } from 'lucide-react'
 import { Suspense } from 'react'
+import { PREFIX_SETS } from '@/lib/quiz-utils'
 
 function IntroContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const type = searchParams.get('type') || '接頭辞'
+  const [selectedSet, setSelectedSet] = useState<string | null>(null)
 
   const handleStartGame = () => {
-    // 実際の学習画面（learning-pathなど）へ遷移
-    router.push(`/learning-path?mode=study&type=${type}`)
+    if (selectedSet) {
+      // 実際の学習画面（learning-pathなど）へ遷移
+      router.push(`/learning-path?mode=study&type=${type}&set=${selectedSet}`)
+    }
   }
 
+  const prefixSets = Object.entries(PREFIX_SETS).map(([key, value]) => ({
+    id: key,
+    ...value,
+  }))
+
   return (
-    <div className="w-full max-w-2xl">
+    <div className="w-full max-w-4xl">
       <BackButton />
       
       <div className="mt-12 text-center space-y-6">
@@ -33,7 +43,7 @@ function IntroContent() {
           <div>
             <h2 className="text-xl font-bold text-amber-400 mb-2">{type}（Prefix）とは？</h2>
             <p className="text-amber-100/80 leading-relaxed">
-              単語の**先頭**につくパーツのことです。
+              単語の<span className="font-bold">先頭</span>につくパーツのことです。
               例えば、「un-（〜でない）」や「re-（再び）」のように、その単語の「方向性」や「否定・肯定」などのニュアンスを決定づける重要な役割を持っています。
             </p>
           </div>
@@ -45,11 +55,54 @@ function IntroContent() {
           </div>
         </Card>
 
+        {/* セット選択 */}
         <div className="pt-8">
-          <GameButton variant="primary" size="lg" onClick={handleStartGame} className="w-full sm:w-auto px-12 py-8 text-xl">
-            <span>修練を開始する</span>
-            <ArrowRight className="ml-2 size-6" />
-          </GameButton>
+          <h2 className="text-2xl font-bold text-amber-200 mb-6">どの{type}を学びますか？</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            {prefixSets.map((set) => (
+              <button
+                key={set.id}
+                onClick={() => setSelectedSet(set.id)}
+                className={`relative p-6 rounded-2xl border-2 transition-all group ${
+                  selectedSet === set.id
+                    ? 'bg-amber-900/40 border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)]'
+                    : 'bg-stone-900/50 border-amber-900/30 hover:border-amber-500/50'
+                }`}
+              >
+                <div className="absolute top-4 right-4">
+                  {selectedSet === set.id && (
+                    <CheckCircle className="size-6 text-amber-400 animate-in zoom-in" />
+                  )}
+                </div>
+                <h3 className="text-lg font-bold text-amber-200 mb-2 text-left">
+                  {set.name}
+                </h3>
+                <p className="text-amber-100/70 text-sm text-left mb-3">
+                  {set.description}
+                </p>
+                <div className="text-xs text-amber-300/60 text-left">
+                  学習語根数: {set.roots.length}
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {selectedSet && (
+            <GameButton 
+              variant="primary" 
+              size="lg" 
+              onClick={handleStartGame} 
+              className="px-12 py-8 text-xl animate-in fade-in slide-in-from-bottom-4 duration-300"
+            >
+              <span>修練を開始する</span>
+              <ArrowRight className="ml-2 size-6" />
+            </GameButton>
+          )}
+          {!selectedSet && (
+            <div className="text-amber-300/60 text-sm">
+              学びたいセットを選択してください
+            </div>
+          )}
         </div>
       </div>
     </div>

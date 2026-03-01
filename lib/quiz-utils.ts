@@ -1,6 +1,22 @@
 import { Question, Etymology } from "./quiz-types";
 
 /**
+ * 接頭辞の定義
+ */
+export const PREFIX_SETS = {
+  common: {
+    name: '基本接頭辞',
+    description: 'よく使われる接頭辞を学ぶ',
+    roots: ['spect', 'dict', 'port', 'ced-cess', 'cap-cept'],
+  },
+  advanced: {
+    name: '応用接頭辞',
+    description: 'より複雑な接頭辞を学ぶ',
+    roots: ['fer', 'mit-miss', 'sta-stit', 'ten-tain', 'scrib-script'],
+  },
+}
+
+/**
  * 語源参考書に基づいた本格的な語源データ
  * 英語の語彙の約6〜7割を占めると言われるラテン語・ギリシャ語の語根を網羅しています。
  */

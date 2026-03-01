@@ -60,6 +60,9 @@ function QuizContent() {
       selectedIndex = selectedIndexOrParts
     }
     
+    // タイマーを止める
+    setTimerKey(prev => prev + 1)
+    
     setSelectedAnswer(selectedIndex)
     setIsAnswered(true)
     setLastIsCorrect(isCorrect)
@@ -75,8 +78,9 @@ function QuizContent() {
       },
     ])
 
-    // Auto-advance after 1 second
+    // 1秒間エフェクトを表示してから次へ
     setTimeout(() => {
+      setShowResultEffect(false)
       handleNext()
     }, 1000)
   }
@@ -164,13 +168,7 @@ function QuizContent() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-12">
         <BackButton />
 
-        {/* Show previous answers review when we have enough answers */}
-        {answers.length >= 5 && (
-          <PreviousAnswersReview
-            questions={questions}
-            answers={answers}
-          />
-        )}
+
 
         {/* Timer */}
         <QuizTimer
