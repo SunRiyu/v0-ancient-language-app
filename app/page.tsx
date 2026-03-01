@@ -38,6 +38,7 @@ function CharacterSelection({ onSelect }: { onSelect: (gender: 'male' | 'female'
               alt="Male Explorer"
               fill
               className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+              loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-60" />
           </div>
@@ -56,6 +57,7 @@ function CharacterSelection({ onSelect }: { onSelect: (gender: 'male' | 'female'
               alt="Female Explorer"
               fill
               className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+              loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-60" />
           </div>
@@ -191,6 +193,7 @@ export default function HomePage() {
                 alt="Avatar"
                 fill
                 className="rounded-full border-4 border-amber-500/50 shadow-[0_0_20px_rgba(251,191,36,0.3)] object-cover"
+                loading="eager"
               />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-amber-50 text-center">

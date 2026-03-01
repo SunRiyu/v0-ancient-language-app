@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   title: 'Go-gen - 古代言語ハッキング・パズル',
   description: '古代の言語の断片を組み合わせ、未知の単語を解読する言語ハッキング・パズルゲーム',
   generator: 'v0.app',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    userScalable: false,
+    themeColor: '#1c1917',
+  },
   icons: {
     icon: [
       {
