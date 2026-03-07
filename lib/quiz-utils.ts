@@ -4,272 +4,7 @@ import { Question, Etymology } from "./quiz-types";
  * 語源参考書に基づいた本格的な語源データ
  * 英語の語彙の約6〜7割を占めると言われるラテン語・ギリシャ語の語根を網羅しています。
  */
-export const ETIMOLOGY_DATA: Etymology[] = [
-  {
-    id: "spect",
-    root: "spect / spic",
-    meaning: "見る (to look)",
-    origin: "Latin 'spectare'",
-    examples: [
-      { word: "inspect", meaning: "検査する (中を見る)", components: "in (中) + spect (見る)" },
-      { word: "respect", meaning: "尊敬する (繰り返し見る)", components: "re (再び) + spect (見る)" },
-      { word: "prospect", meaning: "見込み (前を見る)", components: "pro (前) + spect (見る)" },
-      { word: "suspect", meaning: "疑う (下からこっそり見る)", components: "sub (下) + spect (見る)" },
-      { word: "spectacle", meaning: "壮観・光景 (見られるもの)", components: "spect (見る) + acle (もの)" }
-    ]
-  },
-  {
-    id: "dict",
-    root: "dict",
-    meaning: "言う (to say / to speak)",
-    origin: "Latin 'dicere'",
-    examples: [
-      { word: "predict", meaning: "予言する (前に言う)", components: "pre (前) + dict (言う)" },
-      { word: "contradict", meaning: "矛盾する (反対を言う)", components: "contra (反対) + dict (言う)" },
-      { word: "dictate", meaning: "命令する / 書き取らせる (言ったことをさせる)", components: "dict (言う) + ate (動詞化)" },
-      { word: "verdict", meaning: "判決 (真実を言う)", components: "ver (真実) + dict (言う)" },
-      { word: "indicate", meaning: "指し示す (中に向かって言う)", components: "in (中) + dic (言う)" }
-    ]
-  },
-  {
-    id: "port",
-    root: "port",
-    meaning: "運ぶ (to carry)",
-    origin: "Latin 'portare'",
-    examples: [
-      { word: "import", meaning: "輸入する (中に運ぶ)", components: "in (中) + port (運ぶ)" },
-      { word: "export", meaning: "輸出する (外に運ぶ)", components: "ex (外) + port (運ぶ)" },
-      { word: "transport", meaning: "輸送する (越えて運ぶ)", components: "trans (越えて) + port (運ぶ)" },
-      { word: "portable", meaning: "持ち運び可能な", components: "port (運ぶ) + able (できる)" },
-      { word: "support", meaning: "支える (下から運ぶ)", components: "sub (下) + port (運ぶ)" }
-    ]
-  },
-  {
-    id: "ced-cess",
-    root: "ced / cess / ceed",
-    meaning: "行く / 譲る (to go / yield)",
-    origin: "Latin 'cedere'",
-    examples: [
-      { word: "proceed", meaning: "前進する (前に進む)", components: "pro (前) + ceed (行く)" },
-      { word: "exceed", meaning: "超える (外へ/限度を超えて行く)", components: "ex (外) + ceed (行く)" },
-      { word: "access", meaning: "接近 / 利用権 (〜へ行くこと)", components: "ad (〜へ) + cess (行く)" },
-      { word: "recess", meaning: "休憩 (後ろへ退くこと)", components: "re (後ろ) + cess (行く)" },
-      { word: "succeed", meaning: "成功する / 継承する (後に続く)", components: "sub (下/後に) + ceed (行く)" }
-    ]
-  },
-  {
-    id: "cap-cept",
-    root: "cap / cept / cip",
-    meaning: "取る / つかむ (to take / catch)",
-    origin: "Latin 'capere'",
-    examples: [
-      { word: "accept", meaning: "受け入れる (〜へ取る)", components: "ad (〜へ) + cept (取る)" },
-      { word: "except", meaning: "〜を除いて (外に取る)", components: "ex (外) + cept (取る)" },
-      { word: "capture", meaning: "捕らえる (つかむこと)", components: "cap (取る) + ture (名詞化)" },
-      { word: "anticipate", meaning: "予期する (前に取る)", components: "anti (前) + cip (取る) + ate (動詞化)" },
-      { word: "capacity", meaning: "収容能力 (取れる量)", components: "cap (取る) + acity (名詞化)" }
-    ]
-  },
-  {
-    id: "fer",
-    root: "fer",
-    meaning: "運ぶ / もたらす (to carry / bring)",
-    origin: "Latin 'ferre'",
-    examples: [
-      { word: "transfer", meaning: "移動させる (越えて運ぶ)", components: "trans (越えて) + fer (運ぶ)" },
-      { word: "offer", meaning: "提供する (〜へ運ぶ)", components: "ob (〜へ) + fer (運ぶ)" },
-      { word: "prefer", meaning: "〜を好む (前に運ぶ/置く)", components: "pre (前) + fer (運ぶ)" },
-      { word: "refer", meaning: "言及する / 参照する (戻って運ぶ)", components: "re (戻る) + fer (運ぶ)" },
-      { word: "suffer", meaning: "苦しむ (下で運ぶ/耐える)", components: "sub (下) + fer (運ぶ)" }
-    ]
-  },
-  {
-    id: "mit-miss",
-    root: "mit / miss",
-    meaning: "送る (to send)",
-    origin: "Latin 'mittere'",
-    examples: [
-      { word: "admit", meaning: "認める (〜へ送る/入れる)", components: "ad (〜へ) + mit (送る)" },
-      { word: "dismiss", meaning: "解散させる (バラバラに送る)", components: "dis (離れて) + miss (送る)" },
-      { word: "transmit", meaning: "送信する (越えて送る)", components: "trans (越えて) + mit (送る)" },
-      { word: "emit", meaning: "放出する (外に送る)", components: "e/ex (外) + mit (送る)" },
-      { word: "mission", meaning: "使命 (送られたこと)", components: "miss (送る) + ion (名詞化)" }
-    ]
-  },
-  {
-    id: "sta-stit",
-    root: "sta / stit / sist",
-    meaning: "立つ (to stand)",
-    origin: "Latin 'stare'",
-    examples: [
-      { word: "stable", meaning: "安定した (立っていられる)", components: "sta (立つ) + able (できる)" },
-      { word: "distant", meaning: "遠い (離れて立っている)", components: "dis (離れて) + sta (立つ) + nt (形容詞化)" },
-      { word: "assist", meaning: "援助する (側に立つ)", components: "ad (〜の側に) + sist (立つ)" },
-      { word: "exist", meaning: "存在する (外に立ち現れる)", components: "ex (外) + sist (立つ)" },
-      { word: "substitute", meaning: "代用する (下に立たせる)", components: "sub (下) + stit (立つ)" }
-    ]
-  },
-  {
-    id: "ten-tain",
-    root: "ten / tain / tin",
-    meaning: "保つ / 持つ (to hold)",
-    origin: "Latin 'tenere'",
-    examples: [
-      { word: "maintain", meaning: "維持する (手で保つ)", components: "main (手) + tain (保つ)" },
-      { word: "contain", meaning: "含む (共に持つ)", components: "con (共に) + tain (持つ)" },
-      { word: "retain", meaning: "保持する (後ろに取っておく)", components: "re (後ろに) + tain (持つ)" },
-      { word: "obtain", meaning: "手に入れる (〜に向かって持つ)", components: "ob (〜に対して) + tain (持つ)" },
-      { word: "continue", meaning: "続ける (共に保ち続ける)", components: "con (共に) + tin (保つ) + ue (動詞化)" }
-    ]
-  },
-  {
-    id: "scrib-script",
-    root: "scrib / script",
-    meaning: "書く (to write)",
-    origin: "Latin 'scribere'",
-    examples: [
-      { word: "describe", meaning: "描写する (書き留める)", components: "de (下に) + scribe (書く)" },
-      { word: "subscribe", meaning: "署名する / 購読する (下に書く)", components: "sub (下に) + scribe (書く)" },
-      { word: "prescribe", meaning: "処方する (前に書いておく)", components: "pre (前に) + scribe (書く)" },
-      { word: "manuscript", meaning: "原稿 (手で書いたもの)", components: "manu (手) + script (書く)" },
-      { word: "postscript", meaning: "追伸 (後に書いたもの)", components: "post (後に) + script (書く)" }
-    ]
-  }
-];
-export const QUIZ_QUESTIONS: Question[] = [
-  {
-    id: "1",
-    question: "語根 'spect' の本来の意味は何ですか？",
-    options: ["聞く", "言う", "見る", "運ぶ"],
-    correctAnswer: "見る",
-    explanation: "ラテン語の 'spectare' に由来し、『見る』という意味を持ちます。inspect（中を見る＝検査する）などに使われます。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["in", "spect", "re", "pro"],
-    targetWord: "inspect"
-  },
-  {
-    id: "2",
-    question: "'predict' という単語の成り立ちは？",
-    options: ["pre (前) + dict (言う)", "pre (前) + dict (見る)", "pro (前) + dict (運ぶ)", "re (再び) + dict (言う)"],
-    correctAnswer: "pre (前) + dict (言う)",
-    explanation: "起こる『前』に『言う』ことから『予言する』という意味になります。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[1],
-    allParts: ["pre", "dict", "ion", "ed"],
-    targetWord: "predict"
-  },
-  {
-    id: "3",
-    question: "『外に(ex)』『運ぶ(port)』から成り立つ単語は何ですか？",
-    options: ["import", "export", "transport", "support"],
-    correctAnswer: "export",
-    explanation: "ex（外へ）+ port（運ぶ）で、国外へ荷物を出す『輸出』を意味します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[2],
-    allParts: ["ex", "port", "im", "er"],
-    targetWord: "export"
-  },
-  {
-    id: "4",
-    question: "語根 'ced / cess' が持つ主な意味は何ですか？",
-    options: ["取る", "行く", "書く", "投げる"],
-    correctAnswer: "行く",
-    explanation: "Latin 'cedere' に由来し、『行く』または『譲る』という意味を持ちます。proceed（前に行く＝前進する）などが代表例です。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[0], // 仮で紐付け
-    allParts: ["pro", "ceed", "ac", "cess"],
-    targetWord: "proceed"
-  },
-  {
-    id: "5",
-    question: "'accept' (受け入れる) の成り立ちは？",
-    options: ["ad (〜へ) + cept (取る)", "ex (外へ) + cept (取る)", "con (共に) + cept (取る)", "re (再び) + cept (取る)"],
-    correctAnswer: "ad (〜へ) + cept (取る)",
-    explanation: "ad（〜の方へ）+ cept（取る）で、自分の方へ取り込むことから『受け入れる』となります。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["ad", "cept", "ex", "re"],
-    targetWord: "accept"
-  },
-  {
-    id: "6",
-    question: "『越えて(trans)』『運ぶ(fer)』から成り立つ、移動を意味する単語は？",
-    options: ["refer", "transfer", "offer", "prefer"],
-    correctAnswer: "transfer",
-    explanation: "trans（向こう側へ）+ fer（運ぶ）で、場所や物を移動させることを意味します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["trans", "fer", "re", "of"],
-    targetWord: "transfer"
-  },
-  {
-    id: "7",
-    question: "'dismiss' (解散させる) の 'dis-' の意味は？",
-    options: ["一つに", "反対に", "離れて", "強めて"],
-    correctAnswer: "離れて",
-    explanation: "dis（離れて）+ miss（送る）で、人々をバラバラの方向に送り出す＝解散させる、となります。",
-    category: "Prefix",
-    etymology: ETIMOLOGY_DATA[3],
-    allParts: ["dis", "miss", "al", "ed"],
-    targetWord: "dismiss"
-  },
-  {
-    id: "8",
-    question: "'stable' (安定した) の語源的な意味は？",
-    options: ["動き回れる", "立っていられる", "座っている", "見えている"],
-    correctAnswer: "立っていられる",
-    explanation: "sta（立つ）+ able（できる）で、しっかりと立っていられる状態を指します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[4],
-    allParts: ["sta", "ble", "un", "in"],
-    targetWord: "stable"
-  },
-  {
-    id: "9",
-    question: "『外に(ex)』『立ち現れる(sist)』から成り、この世に有ることを意味する単語は？",
-    options: ["assist", "resist", "exist", "insist"],
-    correctAnswer: "exist",
-    explanation: "ex（外に）+ sist（立つ）で、外の世界に立ち現れて存在することを意味します。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[4],
-    allParts: ["ex", "sist", "as", "re"],
-    targetWord: "exist"
-  },
-  {
-    id: "10",
-    question: "'anticipate' (予期する) の語源的なイメージは？",
-    options: ["後から取る", "前に取る", "一緒に取る", "外に取る"],
-    correctAnswer: "前に取る",
-    explanation: "anti（前）+ cip（取る）で、事態が起こる前にあらかじめ心に取っておくことが『予期する』の由来です。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["anti", "cip", "ate", "ed"],
-    targetWord: "anticipate"
-  },
-  {
-    id: "11",
-    question: "『手(main)』で『保つ(tain)』ことから、『維持する』という意味になる単語は？",
-    options: ["contain", "retain", "maintain", "obtain"],
-    correctAnswer: "maintain",
-    explanation: "main(手) + tain(保つ) が組み合わさり、手入れをして状態を保つことを意味します。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["main", "tain", "con", "re"],
-    targetWord: "maintain"
-  },
-  {
-    id: "12",
-    question: "語根 'scrib / script' の意味は何ですか？",
-    options: ["引く", "書く", "走る", "呼ぶ"],
-    correctAnswer: "書く",
-    explanation: "Latin 'scribere' に由来し、describe(書き写す＝描写する)などの単語を作ります。",
-    category: "Roots",
-    etymology: ETIMOLOGY_DATA[0],
-    allParts: ["de", "scribe", "pre", "sub"],
-    targetWord: "describe"
-  }
-];
+
 export const AD_QUIZ_QUESTIONS: Question[] = [
   {
     id: "ad-1",
@@ -277,8 +12,7 @@ export const AD_QUIZ_QUESTIONS: Question[] = [
     options: ["just", "dict", "rect", "apt"],
     correctAnswer: "just",
     explanation: "ad（〜の方へ）+ just（正しい）で、物事を正しい状態へ持っていくことから「調整する・適合させる」という意味になります。",
-    category: "Compound",
-    etymology: ETIMOLOGY_DATA[5], // 仮のインデックス
+    category: "Compound", // 仮のインデックス
     allParts: ["ad", "just", "ment", "re"],
     targetWord: "adjust"
   },
@@ -289,7 +23,6 @@ export const AD_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "know",
     explanation: "ac(〜へ) + know(知る/認める) + ledge(名詞語尾)から、事実を自分の方へ引き受けて「認める」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[5],
     allParts: ["ac", "know", "ledge", "ment"],
     targetWord: "acknowledge"
   },
@@ -300,7 +33,6 @@ export const AD_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ply",
     explanation: "plyは「折る・重ねる」を意味します。ad(〜へ) + ply(重ねる)で、あるものを別のものにピタッと重ね合わせることから「適用する」となりました。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[5],
     allParts: ["ap", "ply", "li", "cation"],
     targetWord: "apply"
   },
@@ -311,7 +43,6 @@ export const AD_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ton",
     explanation: "語源的には ad(〜へ) + ton(雷/音) で「雷に打たれたように驚く」が由来です。現代では「驚愕させる」という意味で使われます。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[5],
     allParts: ["as", "ton", "ish", "ing"],
     targetWord: "astonish"
   },
@@ -322,7 +53,6 @@ export const AD_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "apt",
     explanation: "ad(〜の方へ) + apt(適した) で、環境などに自分を「適合させる」という意味になります。optionの語源 opt(選ぶ) と混同しやすいので注意です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[5],
     allParts: ["ad", "apt", "er", "able"],
     targetWord: "adapt"
   }
@@ -335,7 +65,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pose",
     explanation: "com（共に）+ pose（置く）で、バラバラのものを一箇所に置くことから「構成する」「作曲する」などの意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["com", "pose", "er", "ition"],
     targetWord: "compose"
   },
@@ -346,7 +75,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "cede",
     explanation: "con（完全に）+ cede（行く/譲る）で、相手に権利を譲る、あるいは事実を認める（譲歩する）という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["con", "cede", "re", "pre"],
     targetWord: "concede"
   },
@@ -357,7 +85,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "flict",
     explanation: "con（共に）+ flict（打つ/叩く）で、互いに叩き合うイメージから「衝突」や「葛藤」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["con", "flict", "ing", "ed"],
     targetWord: "conflict"
   },
@@ -368,7 +95,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vince",
     explanation: "con（完全に）+ vince（征服する）で、相手の心を完全に打ち負かして「納得させる・確信させる」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["con", "vince", "ing", "ed"],
     targetWord: "convince"
   },
@@ -379,7 +105,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "gress",
     explanation: "con（共に）+ gress（行く/歩む）で、人々が同じ場所に集まってくることから「議会」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["con", "gress", "ion", "ive"],
     targetWord: "congress"
   },
@@ -390,7 +115,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "press",
     explanation: "com（共に）+ press（押す）で、周りから一緒に押して小さくする「圧縮する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["com", "press", "ion", "or"],
     targetWord: "compress"
   },
@@ -401,7 +125,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "verse",
     explanation: "con（共に）+ verse（向く/回る）で、互いに向き合って言葉を交わすことから「会話する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["con", "verse", "ation", "ly"],
     targetWord: "converse"
   },
@@ -412,7 +135,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "prise",
     explanation: "com（共に）+ prise（つかむ）で、全体をガシッとつかんで「含む」「構成する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["com", "prise", "ing", "ed"],
     targetWord: "comprise"
   },
@@ -423,7 +145,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "nect",
     explanation: "con（共に）+ nect（結ぶ）で、複数のものを一つにつなぐことを意味します。annex（別館・付加する）も同根です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["con", "nect", "ion", "ed"],
     targetWord: "connect"
   },
@@ -434,7 +155,6 @@ export const CON_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pare",
     explanation: "com（共に）+ pare（並べる/等しくする）で、二つのものを並べて比べる「比較する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[6],
     allParts: ["com", "pare", "ison", "ative"],
     targetWord: "compare"
   }
@@ -447,7 +167,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "scribe",
     explanation: "de（下に）+ scribe（書く）で、紙などに書き留めて実態を「描写する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "scribe", "tion", "tive"],
     targetWord: "describe"
   },
@@ -458,7 +177,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "part",
     explanation: "de（離れて）+ part（分かれる/行く）で、今いる場所から分かれて「出発する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "part", "ure", "ment"],
     targetWord: "depart"
   },
@@ -469,7 +187,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "posit",
     explanation: "de（下に）+ posit（置く）で、下に置くこと。転じて「預金」や「堆積物」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "posit", "ion", "or"],
     targetWord: "deposit"
   },
@@ -480,7 +197,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fine",
     explanation: "de（完全に/強意）+ fine（境界を引く/終わらせる）で、境界をはっきりさせて「定義する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "fine", "ition", "ite"],
     targetWord: "define"
   },
@@ -491,7 +207,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "scend",
     explanation: "de（下に）+ scend（登る/移る）で、下方向へ移動する「降りる」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "scend", "ant", "ent"],
     targetWord: "descend"
   },
@@ -502,7 +217,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "de（下に/離れて）+ ject（投げる）で、気分を下に投げることから「落胆させる」という意味でよく使われます。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "ject", "ion", "ed"],
     targetWord: "deject"
   },
@@ -513,7 +227,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "press",
     explanation: "de（下に）+ press（押す）で、気持ちや景気を押し下げる「不況」や「憂鬱」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "press", "ion", "ive"],
     targetWord: "depress"
   },
@@ -524,7 +237,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "prive",
     explanation: "de（離れて）+ prive（個人の/奪う）で、必要なものを「奪う」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "prive", "ation", "ed"],
     targetWord: "deprive"
   },
@@ -535,7 +247,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "stroy",
     explanation: "de（否定/反対）+ stroy（築く：structureと同根）で、築いたものを「破壊する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "stroy", "uction", "active"],
     targetWord: "destroy"
   },
@@ -546,7 +257,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duct",
     explanation: "de（離れて/下に）+ duct（導く/引く）で、全体から一部を「差し引く」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "duct", "ion", "ible"],
     targetWord: "deduct"
   },
@@ -557,7 +267,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spise",
     explanation: "de（下に）+ spise（見る：spectの変形）で、相手を低く見る「軽蔑する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "spise", "able", "al"],
     targetWord: "despise"
   },
@@ -568,7 +277,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tach",
     explanation: "de（離れて）+ tach（刺す/つける）で、ついていたものを「取り外す」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "tach", "ment", "able"],
     targetWord: "detach"
   },
@@ -579,7 +287,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ter",
     explanation: "de（離れて/強意）+ ter（恐怖：terrorと同根）で、怖がらせて行動を「思いとどまらせる」が語源です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "ter", "rent", "rence"],
     targetWord: "deter"
   },
@@ -590,7 +297,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duce",
     explanation: "de（離れて/下に）+ duce（導く）で、前提から結論を「導き出す」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "duce", "tion", "ible"],
     targetWord: "deduce"
   },
@@ -601,7 +307,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "cline",
     explanation: "de（下に）+ cline（傾く）で、下の方へ傾くことから「衰退する」や「断る」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "cline", "ation", "ing"],
     targetWord: "decline"
   },
@@ -612,7 +317,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "clare",
     explanation: "de（完全に）+ clare（明るくする/はっきりさせる）で、公に「宣言する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "clare", "ation", "ative"],
     targetWord: "declare"
   },
@@ -623,7 +327,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "via",
     explanation: "de（離れて）+ via（道：viaホンのvia）で、本来のルートから「それる」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "via", "te", "tion"],
     targetWord: "deviate"
   },
@@ -634,7 +337,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sert",
     explanation: "de（否定）+ sert（つなぐ/結びつける）で、つながりを解くことから「見捨てる」や「砂漠（人が見捨てた場所）」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "sert", "er", "ion"],
     targetWord: "desert"
   },
@@ -645,7 +347,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tract",
     explanation: "de（離れて/下に）+ tract（引く）で、価値を引き離すことから「（価値を）損なう」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "tract", "ion", "or"],
     targetWord: "detract"
   },
@@ -656,7 +357,6 @@ export const DE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "grade",
     explanation: "de（下に）+ grade（階段/階級）で、ランクを「下げる」あるいは「悪化させる」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[7],
     allParts: ["de", "grade", "ation", "ing"],
     targetWord: "degrade"
   }
@@ -669,7 +369,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "port",
     explanation: "ex（外へ）+ port（運ぶ）で、港（port）から外へ出すことから「輸出」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "port", "ation", "er"],
     targetWord: "export"
   },
@@ -680,7 +379,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pose",
     explanation: "ex（外へ）+ pose（置く）で、隠れていたものを外に出して「さらす」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "pose", "ure", "ition"],
     targetWord: "expose"
   },
@@ -691,7 +389,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tract",
     explanation: "ex（外へ）+ tract（引く）で、全体から必要な部分を「引き抜く」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "tract", "ion", "or"],
     targetWord: "extract"
   },
@@ -702,7 +399,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mot",
     explanation: "e（外へ）+ mot（動く）で、内面的な心の動きが外に現れる「感情」を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["e", "mot", "ion", "al"],
     targetWord: "emotion"
   },
@@ -713,7 +409,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "it",
     explanation: "ex（外へ）+ it（行く：transitのitと同根）で、「外へ行くこと＝出口」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "it", "ing", "ed"],
     targetWord: "exit"
   },
@@ -724,7 +419,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duc",
     explanation: "e（外へ）+ duc（導く）で、本人が持つ才能を「引き出す」ことが「教育」の本来の語源です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["e", "duc", "ate", "ion"],
     targetWord: "educate"
   },
@@ -735,7 +429,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "e（外へ）+ ject（投げる）で、中のものを「外に放り出す」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["e", "ject", "ion", "or"],
     targetWord: "eject"
   },
@@ -746,7 +439,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sist",
     explanation: "ex（外に）+ sist（立つ）で、外の世界に立ち現れてそこに「在る」ことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "ist", "ence", "ent"],
     targetWord: "exist"
   },
@@ -757,7 +449,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pand",
     explanation: "ex（外へ）+ pand（広げる）で、範囲や面積を「広げる」ことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "pand", "sion", "sive"],
     targetWord: "expand"
   },
@@ -768,7 +459,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spect",
     explanation: "ex（外を）+ spect（見る）で、何かが来るのを外を向いて見守ることから「期待する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "pect", "ation", "ed"],
     targetWord: "expect"
   },
@@ -779,7 +469,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "voke",
     explanation: "e（外へ）+ voke（呼ぶ）で、記憶や感情を「呼び起こす」ことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["e", "voke", "ation", "ative"],
     targetWord: "evoke"
   },
@@ -790,7 +479,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ped",
     explanation: "ex（外へ）+ ped（足）で、足を外へ向けて歩き出す「遠征・探検」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "ped", "ition", "ary"],
     targetWord: "expedition"
   },
@@ -801,7 +489,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pel",
     explanation: "ex（外へ）+ pel（押す/駆り立てる）で、組織などから「追い出す」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "pel", "sion", "led"],
     targetWord: "expel"
   },
@@ -812,7 +499,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "plain",
     explanation: "ex（外へ）+ plain（平らな/明快な）で、複雑なことを平らにして分かりやすく「説明する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "plain", "ation", "atory"],
     targetWord: "explain"
   },
@@ -823,7 +509,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spire",
     explanation: "ex（外に）+ spire（息をする）で、息を引き取る、あるいは契約などの有効期限が「終了する」ことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "pire", "y", "ation"],
     targetWord: "expire"
   },
@@ -834,7 +519,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "flu",
     explanation: "ef（exの変形：外へ）+ flu（流れる）で、外へ「流れ出すこと」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ef", "flu", "ence", "ent"],
     targetWord: "effluence"
   },
@@ -845,7 +529,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "cel",
     explanation: "ex（外に）+ cel（そびえる/高い）で、他より抜きん出て高い「優秀な」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "cel", "lent", "lence"],
     targetWord: "excellent"
   },
@@ -856,7 +539,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "claim",
     explanation: "ex（外へ）+ claim（叫ぶ）で、驚きなどで声を上げる「叫ぶ」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "claim", "ation", "atory"],
     targetWord: "exclaim"
   },
@@ -867,7 +549,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "clude",
     explanation: "ex（外へ）+ clude（閉じる）で、中に入れないように外側で閉める「除外する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "clude", "sion", "sive"],
     targetWord: "exclude"
   },
@@ -878,7 +559,6 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "cute",
     explanation: "ex（完全に）+ cute（続く/追う：sequenceと同根）で、最後までやり抜く「実行する」あるいは「死刑執行する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[8],
     allParts: ["ex", "ecut", "ive", "ion"],
     targetWord: "execute"
   }
@@ -891,7 +571,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "port",
     explanation: "im（中に）+ port（運ぶ）で、港から中へ入れることから「輸入」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["im", "port", "ation", "er"],
     targetWord: "import"
   },
@@ -902,7 +581,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "capable",
     explanation: "in（否定）+ capable（できる）で、することができない「無能な」という意味になります。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "cap", "able", "ity"],
     targetWord: "incapable"
   },
@@ -913,7 +591,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spect",
     explanation: "in（中に）+ spect（見る）で、細部まで中をじっくり見ることから「検査する」となります。",
     category: "Roots",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "spect", "ion", "or"],
     targetWord: "inspect"
   },
@@ -924,7 +601,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "press",
     explanation: "im（中に）+ press（押す）で、心にグッと押し跡をつけるイメージから「印象を与える」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["im", "press", "ion", "ive"],
     targetWord: "impress"
   },
@@ -935,7 +611,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "finite",
     explanation: "in（否定）+ finite（終わりのある/限定された）で、終わりのない「無限」を意味します。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "fin", "ite", "ly"],
     targetWord: "infinite"
   },
@@ -946,7 +621,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duce",
     explanation: "intro（中に：inの拡張形）+ duce（導く）で、新しいものを中に連れてくる「紹介・導入」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["intro", "duce", "tion", "tory"],
     targetWord: "introduce"
   },
@@ -957,7 +631,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vis",
     explanation: "in（否定）+ vis（見る）+ ible（できる）で、見ることが不可能な状態を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "vis", "ible", "ity"],
     targetWord: "invisible"
   },
@@ -968,7 +641,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spire",
     explanation: "in（中に）+ spire（息をする/吹く）で、魂に息を吹き込んで「やる気にさせる」という意味になります。",
     category: "Roots",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "spire", "ation", "ing"],
     targetWord: "inspire"
   },
@@ -979,7 +651,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "polite",
     explanation: "im（否定）+ polite（磨かれた/礼儀正しい）で、ぶしつけな「失礼な」となります。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["im", "polite", "ly", "ness"],
     targetWord: "impolite"
   },
@@ -990,7 +661,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "clude",
     explanation: "in（中に）+ clude（閉じる）で、枠の中に閉じ込める＝「含める」となります。excludeの反対語です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "clude", "sion", "sive"],
     targetWord: "include"
   },
@@ -1001,7 +671,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "dependent",
     explanation: "in（否定）+ de（下に）+ pend（ぶら下がる）で、誰かの下にぶら下がっていない「独立」を意味します。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "de", "pend", "ence"],
     targetWord: "independent"
   },
@@ -1012,7 +681,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "habit",
     explanation: "in（中に）+ habit（持つ/住む）で、ある場所に住み着いている人を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "habit", "ant", "ance"],
     targetWord: "inhabitant"
   },
@@ -1023,7 +691,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "possible",
     explanation: "im（否定）+ possible（できる）で、実現できないことを意味します。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["im", "poss", "ible", "ity"],
     targetWord: "impossible"
   },
@@ -1034,7 +701,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "in（中に）+ ject（投げる）で、液体などを体内に投げ入れる「注射・注入」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "ject", "ion", "or"],
     targetWord: "inject"
   },
@@ -1045,7 +711,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "justice",
     explanation: "in（否定）+ justice（正義）で、不公平や不正な行為を意味します。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "just", "ice", "ly"],
     targetWord: "injustice"
   },
@@ -1056,7 +721,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "cline",
     explanation: "in（中に）+ cline（傾く）で、ある方向に心が傾く「傾向がある」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "cline", "ation", "ed"],
     targetWord: "incline"
   },
@@ -1067,7 +731,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "lumin",
     explanation: "il（inの変形：中に）+ lumin（光）で、光を当てて「照らす」ことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["il", "lumin", "ate", "ation"],
     targetWord: "illuminate"
   },
@@ -1078,7 +741,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mortal",
     explanation: "im（否定）+ mortal（死ぬ運命の）で、永遠に生き続ける「不死」を意味します。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["im", "mort", "al", "ity"],
     targetWord: "immortal"
   },
@@ -1089,7 +751,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "accurate",
     explanation: "in（否定）+ accurate（注意深い/正確な）で、間違いがあることを意味します。",
     category: "Prefix",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["in", "ac", "cur", "ate"],
     targetWord: "inaccurate"
   },
@@ -1100,7 +761,6 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "trance",
     explanation: "en（inの変形：中に）+ trance（通ること：transitと同根）で、「中に入ること」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[9],
     allParts: ["en", "trance", "ry", "ed"],
     targetWord: "entrance"
   }
@@ -1113,7 +773,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sist",
     explanation: "per（最後まで）+ sist（立つ）で、最後まで立ち続けることから「固執する」「持続する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "sist", "ent", "ence"],
     targetWord: "persist"
   },
@@ -1124,7 +783,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "son",
     explanation: "per（通して）+ son（音：soundと同根）で、役者の仮面を通して声が出ることから、その「役割・人間」を指すようになりました。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "son", "al", "ality"],
     targetWord: "person"
   },
@@ -1135,7 +793,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fect",
     explanation: "per（完全に）+ fect（作る：factoryと同根）で、欠点なく作り終えた状態を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "fect", "ly", "ion"],
     targetWord: "perfect"
   },
@@ -1146,7 +803,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "form",
     explanation: "per（完全に）+ form（形作る）で、義務や役を最後まで形にすること、つまり「実行する」「演奏する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "form", "ance", "er"],
     targetWord: "perform"
   },
@@ -1157,7 +813,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "suade",
     explanation: "per（完全に）+ suade（甘くする/勧める）で、相手の心を完全にとろけさせて納得させる「説得する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "suade", "sion", "sive"],
     targetWord: "persuade"
   },
@@ -1168,7 +823,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spect",
     explanation: "per（通して）+ spect（見る）で、物事を見通す「視点」や「見通し」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "spect", "ive", "ly"],
     targetWord: "perspective"
   },
@@ -1179,7 +833,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spire",
     explanation: "per（通して）+ spire（息をする）で、皮膚の毛穴を通して水分が出る「発汗する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "spire", "ation", "ant"],
     targetWord: "perspire"
   },
@@ -1190,7 +843,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vade",
     explanation: "per（通って）+ vade（行く：invadeのvadeと同根）で、隅々まで行き渡る「蔓延する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "vade", "sive", "sion"],
     targetWord: "pervade"
   },
@@ -1201,7 +853,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ceive",
     explanation: "per（完全に）+ ceive（取る/つかむ）で、情報を完全につかみ取る「気づく」「知覚する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "ceive", "ption", "ptible"],
     targetWord: "perceive"
   },
@@ -1212,7 +863,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "man",
     explanation: "per（ずっと）+ man（とどまる：remainのmainと同根）で、途切れることなく続く「永遠の」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "man", "ent", "ly"],
     targetWord: "permanent"
   },
@@ -1223,7 +873,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mit",
     explanation: "per（通して）+ mit（送る）で、通行を許可する、あるいは何かをさせる「許可」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "mit", "sion", "ted"],
     targetWord: "permit"
   },
@@ -1234,7 +883,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vert",
     explanation: "per（離れて/悪く）+ vert（回る/向く）で、正しい方向からそらして「歪曲する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "vert", "sion", "ted"],
     targetWord: "pervert"
   },
@@ -1245,7 +893,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "plex",
     explanation: "per（完全に）+ plex（編む/重ねる）で、複雑に絡み合って「困惑させる」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "plex", "ity", "ed"],
     targetWord: "perplex"
   },
@@ -1256,7 +903,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "secute",
     explanation: "per（最後まで）+ secute（続く/追う）で、執拗に追い回して「迫害する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "secut", "ion", "or"],
     targetWord: "persecute"
   },
@@ -1267,7 +913,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "turb",
     explanation: "per（完全に）+ turb（乱す：disturbと同根）で、心をひどく「かき乱す」ことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "turb", "ation", "ed"],
     targetWord: "perturb"
   },
@@ -1278,7 +923,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tin",
     explanation: "per（完全に）+ tin（保持する/保つ）で、内容にしっかり結びついている「適切な・関連のある」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "tin", "ent", "ence"],
     targetWord: "pertinent"
   },
@@ -1289,7 +933,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "jure",
     explanation: "per（離れて/悪く）+ jure（誓う/法）で、正しい誓いを破って「偽証する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "jur", "y", "ed"],
     targetWord: "perjure"
   },
@@ -1300,7 +943,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ish",
     explanation: "per（離れて/完全に）+ ish（行く：exitのitと同根）で、完全に去ってしまう「死ぬ・滅びる」という意味です。",
     category: "Roots",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "ish", "able", "ed"],
     targetWord: "perish"
   },
@@ -1311,7 +953,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ambul",
     explanation: "per（通って）+ ambul（歩く：ambulanceと同根）で、歩き回る・検分するという意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "ambul", "ate", "or"],
     targetWord: "perambulate"
   },
@@ -1322,7 +963,6 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "il",
     explanation: "per（試す：experienceと同根）で、試練を通り抜ける際の「危険」を意味するようになりました。",
     category: "Roots",
-    etymology: ETIMOLOGY_DATA[10],
     allParts: ["per", "il", "ous", "ly"],
     targetWord: "peril"
   }
@@ -1335,7 +975,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "dict",
     explanation: "pre（前に）+ dict（言う）で、事態が起こる前に口にすることから「予測する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "dict", "ion", "able"],
     targetWord: "predict"
   },
@@ -1346,7 +986,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pare",
     explanation: "pre（前に）+ pare（並べる/整える）で、事前に必要なものを揃えておく「準備する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "pare", "ation", "ed"],
     targetWord: "prepare"
   },
@@ -1357,7 +997,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vent",
     explanation: "pre（前に）+ vent（来る：eventのventと同根）で、相手が来る前に前に立ちはだかる「妨げる」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "vent", "ion", "ative"],
     targetWord: "prevent"
   },
@@ -1368,7 +1008,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fer",
     explanation: "pre（前に）+ fer（運ぶ）で、他のものより自分の前に運んでくることから「好む」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "fer", "ence", "able"],
     targetWord: "prefer"
   },
@@ -1379,7 +1019,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "scribe",
     explanation: "pre（前に）+ scribe（書く）で、あらかじめルールや薬の指示を書いておくことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "scribe", "ption", "ptive"],
     targetWord: "prescribe"
   },
@@ -1390,7 +1030,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "suppose",
     explanation: "pre（前に）+ suppose（仮定する）で、議論の前にあらかじめ仮定しておく「前提とする」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "sup", "pose", "ition"],
     targetWord: "presuppose"
   },
@@ -1401,7 +1041,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "cede",
     explanation: "pre（前に）+ cede（行く）で、時間や順序が先になることを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "cede", "nt", "ence"],
     targetWord: "precede"
   },
@@ -1412,7 +1052,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "serve",
     explanation: "pre（前に）+ serve（守る/保つ）で、傷まないように前もって守っておく「保存する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "serve", "ation", "ative"],
     targetWord: "preserve"
   },
@@ -1423,7 +1063,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sence",
     explanation: "pre（前に）+ sence（存在する：essenceのsenceと同根）で、目の前に居ることを指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "sence", "ent", "ently"],
     targetWord: "presence"
   },
@@ -1434,7 +1074,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "judice",
     explanation: "pre（前に）+ judice（判断：judgeと同根）で、事実を知る前に判断を下してしまう「偏見」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "jud", "ice", "icial"],
     targetWord: "prejudice"
   },
@@ -1445,7 +1085,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "view",
     explanation: "pre（前に）+ view（見る）で、本番の前に見ておくことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "view", "ed", "ing"],
     targetWord: "preview"
   },
@@ -1456,7 +1096,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "senti",
     explanation: "pre（前に）+ senti（感じる：sentimentと同根）で、何かが起こる前の「予感」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "senti", "ment", "s"],
     targetWord: "presentiment"
   },
@@ -1467,7 +1107,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "dominate",
     explanation: "pre（前に/超えて）+ dominate（支配する）で、他を圧倒して優勢であることを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "domin", "ate", "ance"],
     targetWord: "predominate"
   },
@@ -1478,7 +1118,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "occupy",
     explanation: "pre（前に）+ occupy（占める）で、あらかじめ心を占領する、つまり「没頭させる」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "oc", "cupy", "ied"],
     targetWord: "preoccupy"
   },
@@ -1489,7 +1129,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "caution",
     explanation: "pre（前に）+ caution（警告/注意）で、トラブルを防ぐための事前の備えを指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "cau", "tion", "ary"],
     targetWord: "precaution"
   },
@@ -1500,7 +1140,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "historic",
     explanation: "pre（前に）+ historic（歴史の）で、文字記録が残る以前の時代を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "hist", "or", "ic"],
     targetWord: "prehistoric"
   },
@@ -1511,7 +1151,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "face",
     explanation: "pre（前に）+ face（話す：fableと同根）で、本編の前に述べる「序文」を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "face", "atory", "d"],
     targetWord: "preface"
   },
@@ -1522,7 +1162,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mature",
     explanation: "pre（前に）+ mature（熟した）で、適切な時期より前に出来上がってしまう「早すぎる」状態を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "matur", "e", "ity"],
     targetWord: "premature"
   },
@@ -1533,7 +1173,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "limin",
     explanation: "pre（前に）+ limin（しきい値/境界）で、本番のしきい値をまたぐ前の「予備的な」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "limin", "ary", "ies"],
     targetWord: "preliminary"
   },
@@ -1544,7 +1184,7 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mise",
     explanation: "pre（前に）+ mise（送る：promiseのmiseと同根）で、あらかじめ提示された「前提」や、法的な文脈から「敷地」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[11],
+    
     allParts: ["pre", "mise", "s", "d"],
     targetWord: "premise"
   }
@@ -1557,7 +1197,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ceed",
     explanation: "pro（前に）+ ceed（行く）で、立ち止まらずに先へ進むことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "ceed", "ure", "ing"],
     targetWord: "proceed"
   },
@@ -1568,7 +1207,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duce",
     explanation: "pro（前に）+ duce（導く）で、世の中に新しいものを生み出す「生産する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "duce", "r", "tion"],
     targetWord: "produce"
   },
@@ -1579,7 +1217,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "pro（前に）+ ject（投げる）で、アイデアを前方に提示する「計画」や、光を前に投げる「投影」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "ject", "ion", "or"],
     targetWord: "project"
   },
@@ -1590,7 +1227,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mote",
     explanation: "pro（前に）+ mote（動く：motionと同根）で、地位を上げたり、販売を促進したりすることを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "mot", "er", "ion"],
     targetWord: "promote"
   },
@@ -1601,7 +1237,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "voke",
     explanation: "pro（前に）+ voke（呼ぶ）で、相手の反応をわざと引き出す「挑発する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "voke", "active", "ation"],
     targetWord: "provoke"
   },
@@ -1612,7 +1247,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vide",
     explanation: "pro（前に）+ vide（見る：visualと同根）で、将来必要になるものをあらかじめ見て準備しておく「提供する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "vid", "e", "er"],
     targetWord: "provide"
   },
@@ -1623,7 +1257,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "nounce",
     explanation: "pro（前に）+ nounce（報告する/告げる）で、公に言葉を発することを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "nounc", "e", "iation"],
     targetWord: "pronounce"
   },
@@ -1634,7 +1267,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mise",
     explanation: "pro（前に）+ mise（送る：missionと同根）で、相手に対して言葉をあらかじめ送っておく「約束」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "mise", "ing", "d"],
     targetWord: "promise"
   },
@@ -1645,7 +1277,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "gress",
     explanation: "pro（前に）+ gress（歩む/行く）で、一歩ずつ前に進む「進歩」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "gress", "ive", "ion"],
     targetWord: "progress"
   },
@@ -1656,7 +1287,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tect",
     explanation: "pro（前に）+ tect（覆う：tileの語源と同根）で、覆いをして守ることを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "tect", "ion", "ive"],
     targetWord: "protect"
   },
@@ -1667,7 +1297,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "long",
     explanation: "pro（前に）+ long（長い）で、期間を長く引き延ばすことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "long", "ation", "ed"],
     targetWord: "prolong"
   },
@@ -1678,7 +1307,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "gram",
     explanation: "pro（前に）+ gram（書かれたもの）で、事前に行程が書かれた「予定表」を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "gram", "me", "ming"],
     targetWord: "program"
   },
@@ -1689,7 +1317,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "phet",
     explanation: "pro（前に/代わりに）+ phet（話す：fableと同根）で、神の言葉を代弁する人を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "phet", "ic", "y"],
     targetWord: "prophet"
   },
@@ -1700,7 +1327,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fess",
     explanation: "pro（前に）+ fess（話す：confessと同根）で、公然と言うこと。転じて、誓いを立てて就く「専門職」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "fess", "ion", "ional"],
     targetWord: "profess"
   },
@@ -1711,7 +1337,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pose",
     explanation: "pro（前に）+ pose（置く）で、考えを目の前に置く「提案する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "pose", "al", "ition"],
     targetWord: "propose"
   },
@@ -1722,7 +1347,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "secute",
     explanation: "pro（前に/最後まで）+ secute（続く：sequenceと同根）で、法的に追い詰める「起訴する」などの意味を持ちます。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "secut", "ion", "or"],
     targetWord: "prosecute"
   },
@@ -1733,7 +1357,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fit",
     explanation: "pro（前に/有利に）+ fit（作る/行う：factの変形）で、得られた成果や「利益」を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "fit", "able", "ably"],
     targetWord: "profit"
   },
@@ -1744,7 +1367,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fer",
     explanation: "pro（前に）+ fer（運ぶ：offerと同根）で、物を差し出す「提供する」という硬い表現です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "ffer", "ed", "ing"],
     targetWord: "proffer"
   },
@@ -1755,7 +1377,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "hibit",
     explanation: "pro（前に/離れて）+ hibit（持つ：exhibitと同根）で、遠ざけて持っておく「禁止する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "hibit", "ion", "ive"],
     targetWord: "prohibit"
   },
@@ -1766,7 +1387,6 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fuse",
     explanation: "pro（前に）+ fuse（注ぐ：confuseのfuseと同根）で、溢れんばかりに注ぎ出される「豊富な」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[12],
     allParts: ["pro", "fuse", "ly", "ion"],
     targetWord: "profuse"
   }
@@ -1779,7 +1399,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "place",
     explanation: "re（元の場所へ）+ place（置く）で、古いものをどけて新しいものを置く「取り替える」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "place", "ment", "able"],
     targetWord: "replace"
   },
@@ -1790,7 +1409,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "produce",
     explanation: "re（再び）+ produce（生産する）で、子孫を増やす「繁殖する」や「複製する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "pro", "duc", "tion"],
     targetWord: "reproduce"
   },
@@ -1801,7 +1419,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "port",
     explanation: "re（後ろへ/戻って）+ port（運ぶ）で、現場から情報を持ち帰って「報告する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "port", "er", "ing"],
     targetWord: "report"
   },
@@ -1812,7 +1429,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duce",
     explanation: "re（後ろへ）+ duce（導く）で、元の小さい方へ導き戻す「減らす」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "duce", "r", "tion"],
     targetWord: "reduce"
   },
@@ -1823,7 +1439,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "view",
     explanation: "re（再び/後ろに）+ view（見る）で、もう一度よく見直す「再検討」や「復習」を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "view", "er", "ing"],
     targetWord: "review"
   },
@@ -1834,7 +1449,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "claim",
     explanation: "re（元に）+ claim（叫ぶ）で、失った権利などを「返せと叫ぶ ＝ 取り戻す・更生させる」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "claim", "ation", "ing"],
     targetWord: "reclaim"
   },
@@ -1845,7 +1459,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sist",
     explanation: "re（反対して）+ sist（立つ）で、屈せずに立ち向かう「抵抗する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "sist", "ance", "ant"],
     targetWord: "resist"
   },
@@ -1856,7 +1469,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "call",
     explanation: "re（後ろへ）+ call（呼ぶ）で、記憶を呼び戻す「思い出す」や、欠陥品を「回収する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "call", "ing", "ed"],
     targetWord: "recall"
   },
@@ -1867,7 +1479,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "flect",
     explanation: "re（後ろへ）+ flect（曲げる）で、当たったものが後ろへ曲がって戻る「反射」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "flect", "ion", "ive"],
     targetWord: "reflect"
   },
@@ -1878,7 +1489,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "struct",
     explanation: "re（再び）+ con（共に）+ struct（築く）で、壊れたものを「再建する」ことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "con", "struct", "ion"],
     targetWord: "reconstruct"
   },
@@ -1889,7 +1499,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "appear",
     explanation: "re（再び）+ appear（現れる）で、一度消えたものが「再び姿を現す」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "ap", "pear", "ance"],
     targetWord: "reappear"
   },
@@ -1900,7 +1509,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fer",
     explanation: "re（後ろへ）+ fer（運ぶ）で、意識を後ろ（関連箇所）へ運ぶことから「言及する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "fer", "ence", "ral"],
     targetWord: "refer"
   },
@@ -1911,7 +1519,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "veal",
     explanation: "re（反対に）+ veal（ベール/覆い）で、覆いを取り除く「明らかにする」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "veal", "ing", "ation"],
     targetWord: "reveal"
   },
@@ -1922,7 +1529,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "serve",
     explanation: "re（後ろに）+ serve（保つ/守る）で、他の人に渡さないよう取っておく「予約する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "serve", "ation", "ed"],
     targetWord: "reserve"
   },
@@ -1933,7 +1539,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "solve",
     explanation: "re（強意：完全に）+ solve（解く）で、問題をきれいに解く、あるいは心を「決心させる」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "solve", "ution", "ved"],
     targetWord: "resolve"
   },
@@ -1944,7 +1549,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "re（後ろへ）+ ject（投げる）で、受け取らずに放り出す「拒絶する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "ject", "ion", "ed"],
     targetWord: "reject"
   },
@@ -1955,7 +1559,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "member",
     explanation: "re（再び）+ member（記憶/心）で、忘れていたものを再び心に呼び戻す「覚えている」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "mem", "ber", "ance"],
     targetWord: "remember"
   },
@@ -1966,7 +1569,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tain",
     explanation: "re（後ろに）+ tain（保つ：containと同根）で、手放さずに「保持する」という意味です。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "tain", "er", "ention"],
     targetWord: "retain"
   },
@@ -1977,7 +1579,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vive",
     explanation: "re（再び）+ vive（生きる：surviveと同根）で、元気を吹き返す「復活する」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "viv", "al", "ing"],
     targetWord: "revive"
   },
@@ -1988,7 +1589,6 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "gist",
     explanation: "re（後ろに）+ gist（運ぶ/運ばれたもの：digestと同根）で、提出されたものを公式帳簿へ「持ち帰って記録する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[13],
     allParts: ["re", "gist", "er", "ration"],
     targetWord: "register"
   }
@@ -2001,7 +1601,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "way",
     explanation: "sub（下に）+ way（道）で、地上道路の下を通る交通機関「地下鉄」を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "way", "s", "ed"],
     targetWord: "subway"
   },
@@ -2012,7 +1611,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "marine",
     explanation: "sub（下に）+ marine（海の）で、海面下を航行する船を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "mar", "ine", "s"],
     targetWord: "submarine"
   },
@@ -2023,7 +1621,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "stitute",
     explanation: "sub（下に/代わりに）+ stitute（立てる/置く）で、本来のものの代わりに別のものを立てる「代用する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "stitu", "te", "tion"],
     targetWord: "substitute"
   },
@@ -2034,7 +1631,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "stance",
     explanation: "sub（下に）+ stance（立つ：standと同根）で、表面からは見えないが根底にある「実体」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "stan", "ce", "tial"],
     targetWord: "substance"
   },
@@ -2045,7 +1641,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "port",
     explanation: "sup（下から）+ port（運ぶ）で、重みを下から支える「支持する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sup", "port", "er", "ive"],
     targetWord: "support"
   },
@@ -2056,7 +1651,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "sub（下に）+ ject（投げる）で、王の支配下に投げられた「臣民」や、議論の下に置かれた「主題」を意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "ject", "ive", "ion"],
     targetWord: "subject"
   },
@@ -2067,7 +1661,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "scribe",
     explanation: "sub（下に）+ scribe（書く）で、同意して名前を下に書くことから「署名する」や「購読する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "scrib", "e", "ption"],
     targetWord: "subscribe"
   },
@@ -2078,7 +1671,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ceed",
     explanation: "suc（下に/あとに）+ ceed（行く）で、前の人のあとに続く「継承する」、あるいは物事が良い結果に続く「成功する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["suc", "ceed", "ed", "ion"],
     targetWord: "succeed"
   },
@@ -2089,7 +1681,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tract",
     explanation: "sub（下に）+ tract（引く）で、全体から一部を下に抜き取る「差し引く」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "tract", "ion", "ed"],
     targetWord: "subtract"
   },
@@ -2100,7 +1691,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pose",
     explanation: "sup（下に）+ pose（置く）で、土台として下に置いてみる「仮定する」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sup", "pose", "dly", "ition"],
     targetWord: "suppose"
   },
@@ -2111,7 +1701,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mit",
     explanation: "sub（下に）+ mit（送る）で、権力者のもとに書類を送る「提出する」や、身を低くして「屈服する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "mit", "ted", "sion"],
     targetWord: "submit"
   },
@@ -2122,7 +1711,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fici",
     explanation: "suf（下から/補って）+ fici（作る：factoryと同根）で、満たされるまで作る「十分な」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["suf", "fici", "ent", "ency"],
     targetWord: "sufficient"
   },
@@ -2133,7 +1721,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "merge",
     explanation: "sub（下に）+ merge（浸す/潜る）で、液体の中に完全に沈めることを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "merg", "e", "ence"],
     targetWord: "submerge"
   },
@@ -2144,7 +1731,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "urb",
     explanation: "sub（近くに）+ urb（都市）で、都市の周辺地域を指す「郊外」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "urb", "an", "s"],
     targetWord: "suburb"
   },
@@ -2155,7 +1741,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "press",
     explanation: "sup（下に）+ press（押す）で、反乱や感情を力ずくで抑え込むことを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sup", "press", "ion", "ive"],
     targetWord: "suppress"
   },
@@ -2166,7 +1751,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "conscious",
     explanation: "sub（下に）+ conscious（意識している）で、自覚できない心の奥底を指します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "con", "scious", "ly"],
     targetWord: "subconscious"
   },
@@ -2177,7 +1761,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sequent",
     explanation: "sub（下に/あとに）+ sequent（続く：sequenceと同根）で、時間的にあとに来ることを意味します。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "sequ", "ent", "ly"],
     targetWord: "subsequent"
   },
@@ -2188,7 +1771,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sist",
     explanation: "sub（下から）+ sist（立つ）で、最低限の生活を支えて「生き延びる」という意味になります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "sist", "ence", "ent"],
     targetWord: "subsist"
   },
@@ -2199,7 +1781,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sid",
     explanation: "sub（下に）+ sid（座る：sit/sedentaryと同根）で、後ろに控えて座って支える控えの兵、転じて「補助金」となりました。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "sid", "y", "ize"],
     targetWord: "subsidy"
   },
@@ -2210,7 +1791,6 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sume",
     explanation: "sub（下に）+ sume（取る：assume/consumeと同根）で、大きなカテゴリーの下に取り込む「含める・包含する」となります。",
     category: "Compound",
-    etymology: ETIMOLOGY_DATA[14],
     allParts: ["sub", "sum", "e", "ption"],
     targetWord: "subsume"
   }
