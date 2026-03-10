@@ -1,121 +1,142 @@
-// Quiz system types and interfaces
+/**
+ * 語源学習システムの型定義
+ */
 
-export type EtymologyType = 'prefix' | 'suffix' | 'root'
-export type CoursePath = 'seeker' | 'sage'
+// 1. 基本的な型定義
+export type EtymologyType = 'prefix' | 'suffix' | 'root';
+export type CoursePath = 'seeker' | 'sage';
+export type QuestionType = "Roots" | "Compound" | "Prefix";
 
-export interface CompoundWordEntry {
-  id: number
-  part1: string
-  part2: string
-  resultWord: string
-  meaning: string
-  example: string
-}
-
-
+/**
+ * 派生語の定義
+ */
 export interface DerivedWord {
-  word: string;      // 例: "construct"
-  meaning: string;   // 例: "組み立てる"
-  example: string;   // 例: "They construct a bridge."
+  word: string;       // 例: "construct"
+  meaning: string;    // 例: "組み立てる"
+  example: string;    // 例: "They construct a bridge."
   usageCount: number; // 会話で使用した回数（5回で完全解放）
   isUnlocked: boolean; // クイズや会話で解放されたか
 }
 
-// 2. 既存の Etymology インターフェースを更新（words などを追加）
+/**
+ * 語源（接頭辞・接尾辞・語根）のマスターデータ
+ */
 export interface Etymology {
-  id: string
-  root: string
-  meaning: string
-  origin: string
-  description?: string // 語源の詳しい由来を追加
-  examples?: { word: string; meaning: string; components: string }[] // 例と構成要素の説明
-  derivedWords?: DerivedWord[] // この語源から派生した単語のリスト
+  id: string;
+  root: string;       // 語源の綴り（例: "ad-", "con-"）
+  meaning: string;    // 意味
+  origin: string;     // 由来（例: "Latin 'ad'"）
+  description?: string; // 詳しい解説
+  examples?: { 
+    word: string; 
+    meaning: string; 
+    components: string; 
+  }[];                // 構成要素付きの例
+  derivedWords?: DerivedWord[]; // 派生語リスト
 }
 
-// 1. 許可する種類を定義（Roots, Compound, Prefix）
-export type QuestionType = "Roots" | "Compound" | "Prefix";
-
-// 2. 語源の選択肢（必要に応じて増やしてください）
-
-// 3. メインの設計図
+/**
+ * クイズ問題の基本構造
+ */
 export interface Question {
-  id: string | number;     // stringでもnumberでもOKにする
-  category:QuestionType;     // 例: "Roots", "Compound", "Prefix" など
-  question: string;        // 以前の 'text' ではなくここを使う
-  options: string[];
-  correctAnswer: string;
-  explanation: string;
-  etymology: Etymology;
-  allParts?: string[];  
-  targetWord?: string;
+  id: string | number;
+  category: QuestionType; // "Roots", "Compound", "Prefix"
+  question: string;       // 問題文
+  options: string[];      // 選択肢
+  correctAnswer: string;  // 正解
+  explanation: string;    // 解説
+  etymology: Etymology;   // 関連する語源データ（必須）
+  allParts?: string[];    // 単語を構成する全パーツ（分解クイズ用）
+  targetWord?: string;    // 対象となる英単語
 }
 
+/**
+ * 単語の組み合わせ（組み立て）問題用
+ */
 export interface CombinationQuestion extends Question {
-  targetWord: string;  // 正解となる完成した単語（例: "construction"）
-  allParts: string[];   // 選択肢として画面に並べるバラバラのパーツ
+  targetWord: string;  // 正解となる完成した単語
+  allParts: string[];  // 画面に並べるバラバラのパーツ
 }
 
-// ゲーム進行のステージ定義
-export type GameStage = 'stage-select' | 'quiz' | 'library' | 'conversation' | 'boss-battle'
+// --- ゲーム進行・管理用の型 ---
 
-// 単語のマスタリング状態
+export type GameStage = 'stage-select' | 'quiz' | 'library' | 'conversation' | 'boss-battle';
+
+/**
+ * 単語の習熟度
+ */
 export interface WordMastery {
-  word: string
-  unlockedAt: number
-  usageCount: number // 会話で使用した回数（5回でマスター）
-  isMastered: boolean
-  lastUsedAt: number
-  nextReviewAt: number // 復習の魔物用：次の復習推奨日時
+  word: string;
+  unlockedAt: number;
+  usageCount: number;
+  isMastered: boolean;
+  lastUsedAt: number;
+  nextReviewAt: number;
 }
 
-// ゲーム進行状態
+/**
+ * 学習の進捗状況
+ */
 export interface GameProgress {
-  currentStage: GameStage
-  completedStages: GameStage[]
-  masteredWords: WordMastery[]
-  energyPoints: number // ボス戦用のエネルギー
+  currentStage: GameStage;
+  completedStages: GameStage[];
+  masteredWords: WordMastery[];
+  energyPoints: number;
 }
 
+/**
+ * クイズのセッション情報
+ */
 export interface QuizRound {
-  id: string
-  course: CoursePath
-  etymologyType: EtymologyType
-  etymology: Etymology
-  questions: Question[]
-  startedAt: number
+  id: string;
+  course: CoursePath;
+  etymologyType: EtymologyType;
+  etymology: Etymology;
+  questions: Question[];
+  startedAt: number;
 }
 
+/**
+ * 回答データ
+ */
 export interface QuizAnswer {
-  questionId: string
-  selectedIndex: number
-  isCorrect: boolean
-  timestamp: number
+  questionId: string;
+  selectedIndex: number;
+  isCorrect: boolean;
+  timestamp: number;
 }
 
+/**
+ * クイズ結果
+ */
 export interface QuizResult {
-  roundId: string
-  answers: QuizAnswer[]
-  score: number
-  totalQuestions: number
-  passed: boolean
-  lastFiveCorrect: number
-  completedAt: number
+  roundId: string;
+  answers: QuizAnswer[];
+  score: number;
+  totalQuestions: number;
+  passed: boolean;
+  lastFiveCorrect: number;
+  completedAt: number;
 }
 
+/**
+ * ロック解除状況
+ */
 export interface UnlockProgress {
   seeker: {
-    prefix: number[]
-    suffix: number[]
-    root: number[]
-  }
+    prefix: number[];
+    suffix: number[];
+    root: number[];
+  };
   sage: {
-    prefix: number[]
-    suffix: number[]
-    root: number[]
-  }
+    prefix: number[];
+    suffix: number[];
+    root: number[];
+  };
 }
 
-// Utility for getting ancient world flavor text
+// --- テキスト・フレーバーデータ ---
+
 export const ANCIENT_WORLD_FLAVORS = {
   definition: [
     'この古代の言葉の意味は何だろうか？',
@@ -137,7 +158,7 @@ export const ANCIENT_WORLD_FLAVORS = {
     '古代の言語の組み合わせが生み出す意味は？',
     '二つの古い要素が一つになるとき、新しい意味が生まれる。',
   ],
-}
+};
 
 export const UNLOCK_MESSAGES = {
   seeker: [
@@ -150,4 +171,4 @@ export const UNLOCK_MESSAGES = {
     '古代の言語の謎が解き明かされた。',
     '樹の奥底に隠された叡智が光を放つ。',
   ],
-}
+};

@@ -6,13 +6,13 @@ import { Question, Etymology } from "./quiz-types";
  */
 
 export const AD_QUIZ_QUESTIONS: Question[] = [
-  {
+{
     id: "ad-1",
     question: "「ad (〜の方へ)」＋「[ ? ] (正しい・適正な)」で、「正しい状態へ向かわせる ＝ 調整する」という意味になる単語 'adjust' の、[ ? ] に入る語源は？",
     options: ["just", "dict", "rect", "apt"],
     correctAnswer: "just",
     explanation: "ad（〜の方へ）+ just（正しい）で、物事を正しい状態へ持っていくことから「調整する・適合させる」という意味になります。",
-    category: "Compound", // 仮のインデックス
+    category: "Compound",
     allParts: ["ad", "just", "ment", "re"],
     targetWord: "adjust"
   },
@@ -1794,6 +1794,19 @@ export const SUB_QUIZ_QUESTIONS: Question[] = [
     allParts: ["sub", "sum", "e", "ption"],
     targetWord: "subsume"
   }
+];
+
+export const QUIZ_QUESTIONS: Question[] = [
+  ...AD_QUIZ_QUESTIONS,
+  ...CON_QUIZ_QUESTIONS,
+  ...DE_QUIZ_QUESTIONS,
+  ...EX_QUIZ_QUESTIONS,
+  ...IN_IM_QUIZ_QUESTIONS,
+  ...PER_QUIZ_QUESTIONS,
+  ...PRE_QUIZ_QUESTIONS,
+  ...PRO_QUIZ_QUESTIONS,
+  ...RE_QUIZ_QUESTIONS,
+  ...SUB_QUIZ_QUESTIONS,
 ];
 
 /**
