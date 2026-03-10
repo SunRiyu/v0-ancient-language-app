@@ -1,3 +1,5 @@
+import { Question,Etymology } from "@/lib/quiz-types";
+
 export const PER_QUIZ_QUESTIONS: Question[] = [
   {
     id: "per-1",

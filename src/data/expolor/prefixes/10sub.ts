@@ -1,3 +1,7 @@
+import { Question,Etymology } from "@/lib/quiz-types";
+
+
+
 export const SUB_QUIZ_QUESTIONS: Question[] = [
   {
     id: "sub-1",

@@ -1,3 +1,13 @@
+import { Question,Etymology } from "@/lib/quiz-types";
+
+const exEtymology: Etymology = {
+  id: "prefix-ex",
+  root: "ex-",
+  meaning: "外へ、外に、完全に",
+  origin: "Latin 'ex'",
+  description: "「外へ出す」という方向性や、状態の「変化」、または「完全に（最後まで）」という強調を表す接頭辞。後ろに続く文字によって ef-, e- に変化する。"
+};
+
 export const EX_QUIZ_QUESTIONS: Question[] = [
   {
     id: "ex-1",
@@ -5,7 +15,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["port", "pose", "press", "part"],
     correctAnswer: "port",
     explanation: "ex（外へ）+ port（運ぶ）で、港（port）から外へ出すことから「輸出」を意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "port", "ation", "er"],
     targetWord: "export"
   },
@@ -15,7 +26,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["pose", "posit", "pact", "point"],
     correctAnswer: "pose",
     explanation: "ex（外へ）+ pose（置く）で、隠れていたものを外に出して「さらす」という意味になります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "pose", "ure", "ition"],
     targetWord: "expose"
   },
@@ -25,7 +37,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["tract", "tract", "tribute", "trude"],
     correctAnswer: "tract",
     explanation: "ex（外へ）+ tract（引く）で、全体から必要な部分を「引き抜く」という意味です。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "tract", "ion", "or"],
     targetWord: "extract"
   },
@@ -35,7 +48,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["mot", "mov", "mit", "miss"],
     correctAnswer: "mot",
     explanation: "e（外へ）+ mot（動く）で、内面的な心の動きが外に現れる「感情」を指します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["e", "mot", "ion", "al"],
     targetWord: "emotion"
   },
@@ -45,7 +59,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["it", "ist", "is", "ive"],
     correctAnswer: "it",
     explanation: "ex（外へ）+ it（行く：transitのitと同根）で、「外へ行くこと＝出口」となります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "it", "ing", "ed"],
     targetWord: "exit"
   },
@@ -55,7 +70,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["duc", "duct", "duce", "dict"],
     correctAnswer: "duc",
     explanation: "e（外へ）+ duc（導く）で、本人が持つ才能を「引き出す」ことが「教育」の本来の語源です。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["e", "duc", "ate", "ion"],
     targetWord: "educate"
   },
@@ -65,7 +81,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["ject", "join", "just", "judge"],
     correctAnswer: "ject",
     explanation: "e（外へ）+ ject（投げる）で、中のものを「外に放り出す」という意味です。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["e", "ject", "ion", "or"],
     targetWord: "eject"
   },
@@ -75,7 +92,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["sist", "sta", "stit", "st"],
     correctAnswer: "sist",
     explanation: "ex（外に）+ sist（立つ）で、外の世界に立ち現れてそこに「在る」ことを意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "ist", "ence", "ent"],
     targetWord: "exist"
   },
@@ -85,7 +103,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["pand", "pend", "pact", "press"],
     correctAnswer: "pand",
     explanation: "ex（外へ）+ pand（広げる）で、範囲や面積を「広げる」ことを意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "pand", "sion", "sive"],
     targetWord: "expand"
   },
@@ -95,7 +114,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["spect", "spire", "spise", "scribe"],
     correctAnswer: "spect",
     explanation: "ex（外を）+ spect（見る）で、何かが来るのを外を向いて見守ることから「期待する」となります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "pect", "ation", "ed"],
     targetWord: "expect"
   },
@@ -105,7 +125,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["voke", "voice", "vail", "vive"],
     correctAnswer: "voke",
     explanation: "e（外へ）+ voke（呼ぶ）で、記憶や感情を「呼び起こす」ことを意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["e", "voke", "ation", "ative"],
     targetWord: "evoke"
   },
@@ -115,7 +136,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["ped", "pod", "path", "pel"],
     correctAnswer: "ped",
     explanation: "ex（外へ）+ ped（足）で、足を外へ向けて歩き出す「遠征・探検」という意味になります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "ped", "ition", "ary"],
     targetWord: "expedition"
   },
@@ -125,7 +147,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["pel", "pul", "press", "port"],
     correctAnswer: "pel",
     explanation: "ex（外へ）+ pel（押す/駆り立てる）で、組織などから「追い出す」という意味です。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "pel", "sion", "led"],
     targetWord: "expel"
   },
@@ -135,7 +158,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["plain", "plan", "play", "plode"],
     correctAnswer: "plain",
     explanation: "ex（外へ）+ plain（平らな/明快な）で、複雑なことを平らにして分かりやすく「説明する」となります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "plain", "ation", "atory"],
     targetWord: "explain"
   },
@@ -145,7 +169,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["spire", "spect", "spise", "serve"],
     correctAnswer: "spire",
     explanation: "ex（外に）+ spire（息をする）で、息を引き取る、あるいは契約などの有効期限が「終了する」ことを意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "pire", "y", "ation"],
     targetWord: "expire"
   },
@@ -155,7 +180,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["flu", "flex", "flict", "flect"],
     correctAnswer: "flu",
     explanation: "ef（exの変形：外へ）+ flu（流れる）で、外へ「流れ出すこと」を意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ef", "flu", "ence", "ent"],
     targetWord: "effluence"
   },
@@ -165,7 +191,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["cel", "cell", "call", "cur"],
     correctAnswer: "cel",
     explanation: "ex（外に）+ cel（そびえる/高い）で、他より抜きん出て高い「優秀な」という意味になります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "cel", "lent", "lence"],
     targetWord: "excellent"
   },
@@ -175,7 +202,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["claim", "clare", "close", "clude"],
     correctAnswer: "claim",
     explanation: "ex（外へ）+ claim（叫ぶ）で、驚きなどで声を上げる「叫ぶ」となります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "claim", "ation", "atory"],
     targetWord: "exclaim"
   },
@@ -185,7 +213,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["clude", "close", "claim", "clare"],
     correctAnswer: "clude",
     explanation: "ex（外へ）+ clude（閉じる）で、中に入れないように外側で閉める「除外する」という意味です。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "clude", "sion", "sive"],
     targetWord: "exclude"
   },
@@ -195,7 +224,8 @@ export const EX_QUIZ_QUESTIONS: Question[] = [
     options: ["cute", "cur", "course", "cept"],
     correctAnswer: "cute",
     explanation: "ex（完全に）+ cute（続く/追う：sequenceと同根）で、最後までやり抜く「実行する」あるいは「死刑執行する」という意味になります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: exEtymology,
     allParts: ["ex", "ecut", "ive", "ion"],
     targetWord: "execute"
   }

@@ -1,3 +1,5 @@
+import { Question,Etymology } from "@/lib/quiz-types";
+
 export const RE_QUIZ_QUESTIONS: Question[] = [
   {
     id: "re-1",

@@ -1,3 +1,13 @@
+import { Question,Etymology } from "@/lib/quiz-types";
+
+const inEtymology: Etymology = {
+  id: "prefix-in",
+  root: "in-",
+  meaning: "中に、上に、否定（〜でない）",
+  origin: "Latin 'in'",
+  description: "「中へ」という方向や「中にある」状態、または反対の意味を表す「否定」の接頭辞。後ろに続く文字によって im-, il-, ir- に変化する。"
+};
+
 export const IN_IM_QUIZ_QUESTIONS: Question[] = [
   {
     id: "in-1",
@@ -5,7 +15,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["port", "pose", "press", "part"],
     correctAnswer: "port",
     explanation: "im（中に）+ port（運ぶ）で、港から中へ入れることから「輸入」を意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["im", "port", "ation", "er"],
     targetWord: "import"
   },
@@ -16,6 +27,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "capable",
     explanation: "in（否定）+ capable（できる）で、することができない「無能な」という意味になります。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "cap", "able", "ity"],
     targetWord: "incapable"
   },
@@ -25,7 +37,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["spect", "spire", "scribe", "sist"],
     correctAnswer: "spect",
     explanation: "in（中に）+ spect（見る）で、細部まで中をじっくり見ることから「検査する」となります。",
-    category: "Roots",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "spect", "ion", "or"],
     targetWord: "inspect"
   },
@@ -35,7 +48,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["press", "praise", "pose", "prive"],
     correctAnswer: "press",
     explanation: "im（中に）+ press（押す）で、心にグッと押し跡をつけるイメージから「印象を与える」となります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["im", "press", "ion", "ive"],
     targetWord: "impress"
   },
@@ -46,6 +60,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "finite",
     explanation: "in（否定）+ finite（終わりのある/限定された）で、終わりのない「無限」を意味します。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "fin", "ite", "ly"],
     targetWord: "infinite"
   },
@@ -55,7 +70,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["duce", "duct", "duc", "dict"],
     correctAnswer: "duce",
     explanation: "intro（中に：inの拡張形）+ duce（導く）で、新しいものを中に連れてくる「紹介・導入」を意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["intro", "duce", "tion", "tory"],
     targetWord: "introduce"
   },
@@ -65,7 +81,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["vis", "vid", "view", "vise"],
     correctAnswer: "vis",
     explanation: "in（否定）+ vis（見る）+ ible（できる）で、見ることが不可能な状態を指します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "vis", "ible", "ity"],
     targetWord: "invisible"
   },
@@ -75,7 +92,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["spire", "spect", "spise", "serve"],
     correctAnswer: "spire",
     explanation: "in（中に）+ spire（息をする/吹く）で、魂に息を吹き込んで「やる気にさせる」という意味になります。",
-    category: "Roots",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "spire", "ation", "ing"],
     targetWord: "inspire"
   },
@@ -86,6 +104,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "polite",
     explanation: "im（否定）+ polite（磨かれた/礼儀正しい）で、ぶしつけな「失礼な」となります。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["im", "polite", "ly", "ness"],
     targetWord: "impolite"
   },
@@ -95,7 +114,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["clude", "close", "claim", "clare"],
     correctAnswer: "clude",
     explanation: "in（中に）+ clude（閉じる）で、枠の中に閉じ込める＝「含める」となります。excludeの反対語です。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "clude", "sion", "sive"],
     targetWord: "include"
   },
@@ -106,6 +126,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "dependent",
     explanation: "in（否定）+ de（下に）+ pend（ぶら下がる）で、誰かの下にぶら下がっていない「独立」を意味します。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "de", "pend", "ence"],
     targetWord: "independent"
   },
@@ -115,7 +136,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["habit", "hibit", "hail", "hale"],
     correctAnswer: "habit",
     explanation: "in（中に）+ habit（持つ/住む）で、ある場所に住み着いている人を指します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "habit", "ant", "ance"],
     targetWord: "inhabitant"
   },
@@ -126,6 +148,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "possible",
     explanation: "im（否定）+ possible（できる）で、実現できないことを意味します。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["im", "poss", "ible", "ity"],
     targetWord: "impossible"
   },
@@ -135,7 +158,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["ject", "join", "just", "judge"],
     correctAnswer: "ject",
     explanation: "in（中に）+ ject（投げる）で、液体などを体内に投げ入れる「注射・注入」を意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "ject", "ion", "or"],
     targetWord: "inject"
   },
@@ -146,6 +170,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "justice",
     explanation: "in（否定）+ justice（正義）で、不公平や不正な行為を意味します。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "just", "ice", "ly"],
     targetWord: "injustice"
   },
@@ -155,7 +180,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["cline", "clude", "claim", "clare"],
     correctAnswer: "cline",
     explanation: "in（中に）+ cline（傾く）で、ある方向に心が傾く「傾向がある」という意味になります。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "cline", "ation", "ed"],
     targetWord: "incline"
   },
@@ -165,7 +191,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["lumin", "luc", "lux", "lust"],
     correctAnswer: "lumin",
     explanation: "il（inの変形：中に）+ lumin（光）で、光を当てて「照らす」ことを意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["il", "lumin", "ate", "ation"],
     targetWord: "illuminate"
   },
@@ -176,6 +203,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mortal",
     explanation: "im（否定）+ mortal（死ぬ運命の）で、永遠に生き続ける「不死」を意味します。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["im", "mort", "al", "ity"],
     targetWord: "immortal"
   },
@@ -186,6 +214,7 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "accurate",
     explanation: "in（否定）+ accurate（注意深い/正確な）で、間違いがあることを意味します。",
     category: "Prefix",
+    etymology: inEtymology,
     allParts: ["in", "ac", "cur", "ate"],
     targetWord: "inaccurate"
   },
@@ -195,7 +224,8 @@ export const IN_IM_QUIZ_QUESTIONS: Question[] = [
     options: ["trance", "it", "entry", "tent"],
     correctAnswer: "trance",
     explanation: "en（inの変形：中に）+ trance（通ること：transitと同根）で、「中に入ること」を意味します。",
-    category: "Compound",
+    category: "Prefix",
+    etymology: inEtymology,
     allParts: ["en", "trance", "ry", "ed"],
     targetWord: "entrance"
   }
