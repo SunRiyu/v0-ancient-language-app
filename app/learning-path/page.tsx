@@ -22,16 +22,40 @@ function LearningPathContent() {
       setUserGender(savedGender)
     }
   }, [])
+  const [flashColor, setFlashColor] = useState<string | null>(null)
 
-const handleStart = () => {
-  if (selectedOption === 'prefix') {
-    // 接頭辞が選ばれている場合は、詳細選択画面へ飛ばす
-    router.push(`/learning-path/prefix-select?course=${coursePath}`)
-  } else {
-    // 接尾辞や語根はこれまで通り（あるいは同様に詳細画面を作ってもOK）
-    router.push(`/quiz?course=${coursePath}&type=${selectedOption}`)
+  useEffect(() => {
+    const savedGender = localStorage.getItem('userGender') as 'male' | 'female' | null
+    if (savedGender) {
+      setUserGender(savedGender)
+    }
+  }, [])
+
+  // --- 追加: フラッシュ演出のトリガー監視 ---
+  useEffect(() => {
+    if (selectedOption === 'prefix') {
+      // 接頭辞(if相当)が選択されたら 緑 (R0, G255, B0)
+      setFlashColor('rgb(0, 255, 0)')
+      const timer = setTimeout(() => setFlashColor(null), 1000)
+      return () => clearTimeout(timer)
+    } else if (selectedOption === 'suffix' || selectedOption === 'root') {
+      // それ以外が選択されたら 赤 (R255, G0, B0)
+      setFlashColor('rgb(255, 0, 0)')
+      const timer = setTimeout(() => setFlashColor(null), 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [selectedOption])
+
+  // app/learning-path/page.tsx 内の handleStart 関数を修正
+  const handleStart = () => {
+    if (selectedOption === 'prefix') {
+      // 直接クイズではなく、作成した接頭辞選択ページへ遷移させる
+      router.push(`/learning-path/prefix-select?course=${coursePath}`)
+    } else {
+      // 接尾辞などはこれまで通り直接クイズへ
+      router.push(`/quiz?course=${coursePath}&type=${selectedOption}`)
+    }
   }
-}
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden animate-zoom-in">
