@@ -10,7 +10,7 @@ function LearningPathContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const coursePath = searchParams.get('path') || 'seeker'
-  const courseTitle = coursePath === 'seeker' ? '探索者の道' : '賢者の道'
+  const courseTitle = coursePath === 'seeker' ? '探索者の道fa' : '賢者の道'
 
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [userGender, setUserGender] = useState<'male' | 'female'>('male')
