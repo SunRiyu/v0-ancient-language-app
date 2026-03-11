@@ -23,12 +23,15 @@ function LearningPathContent() {
     }
   }, [])
 
-  const handleStart = () => {
-    if (selectedOption) {
-      // すべての選択肢がクイズにつながる
-      router.push(`/quiz?course=${coursePath}&type=${selectedOption}`)
-    }
+const handleStart = () => {
+  if (selectedOption === 'prefix') {
+    // 接頭辞が選ばれている場合は、詳細選択画面へ飛ばす
+    router.push(`/learning-path/prefix-select?course=${coursePath}`)
+  } else {
+    // 接尾辞や語根はこれまで通り（あるいは同様に詳細画面を作ってもOK）
+    router.push(`/quiz?course=${coursePath}&type=${selectedOption}`)
   }
+}
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden animate-zoom-in">
