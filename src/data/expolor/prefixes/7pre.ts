@@ -1,4 +1,12 @@
+import { Question,Etymology } from "@/lib/quiz-types";
 
+const preEtymology: Etymology = {
+  id: "prefix-pre",
+  root: "pre-",
+  meaning: "前に、あらかじめ",
+  origin: "Latin 'prae'",
+  description: "「時間的に前もって」や「場所的に手前に」という先行の概念を表す接頭辞。基本的にはそのままの形で使われる。"
+};
 
 export const PRE_QUIZ_QUESTIONS: Question[] = [
   {
@@ -7,8 +15,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["dict", "duc", "scribe", "voke"],
     correctAnswer: "dict",
     explanation: "pre（前に）+ dict（言う）で、事態が起こる前に口にすることから「予測する」となります。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "dict", "ion", "able"],
     targetWord: "predict"
   },
@@ -18,8 +26,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["pare", "part", "pair", "pact"],
     correctAnswer: "pare",
     explanation: "pre（前に）+ pare（並べる/整える）で、事前に必要なものを揃えておく「準備する」という意味です。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "pare", "ation", "ed"],
     targetWord: "prepare"
   },
@@ -29,8 +37,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["vent", "vade", "vert", "vail"],
     correctAnswer: "vent",
     explanation: "pre（前に）+ vent（来る：eventのventと同根）で、相手が来る前に前に立ちはだかる「妨げる」という意味になります。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "vent", "ion", "ative"],
     targetWord: "prevent"
   },
@@ -40,8 +48,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["fer", "fill", "fect", "fess"],
     correctAnswer: "fer",
     explanation: "pre（前に）+ fer（運ぶ）で、他のものより自分の前に運んでくることから「好む」という意味になります。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "fer", "ence", "able"],
     targetWord: "prefer"
   },
@@ -51,8 +59,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["scribe", "script", "scend", "serve"],
     correctAnswer: "scribe",
     explanation: "pre（前に）+ scribe（書く）で、あらかじめルールや薬の指示を書いておくことを意味します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "scribe", "ption", "ptive"],
     targetWord: "prescribe"
   },
@@ -62,8 +70,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["suppose", "pose", "posit", "pound"],
     correctAnswer: "suppose",
     explanation: "pre（前に）+ suppose（仮定する）で、議論の前にあらかじめ仮定しておく「前提とする」という意味です。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "sup", "pose", "ition"],
     targetWord: "presuppose"
   },
@@ -73,8 +81,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["cede", "ceed", "cess", "cess"],
     correctAnswer: "cede",
     explanation: "pre（前に）+ cede（行く）で、時間や順序が先になることを意味します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "cede", "nt", "ence"],
     targetWord: "precede"
   },
@@ -84,8 +92,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["serve", "sert", "serve", "serve"],
     correctAnswer: "serve",
     explanation: "pre（前に）+ serve（守る/保つ）で、傷まないように前もって守っておく「保存する」という意味になります。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "serve", "ation", "ative"],
     targetWord: "preserve"
   },
@@ -95,8 +103,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["sence", "sent", "stance", "sist"],
     correctAnswer: "sence",
     explanation: "pre（前に）+ sence（存在する：essenceのsenceと同根）で、目の前に居ることを指します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "sence", "ent", "ently"],
     targetWord: "presence"
   },
@@ -106,8 +114,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["judice", "just", "judge", "jury"],
     correctAnswer: "judice",
     explanation: "pre（前に）+ judice（判断：judgeと同根）で、事実を知る前に判断を下してしまう「偏見」となります。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "jud", "ice", "icial"],
     targetWord: "prejudice"
   },
@@ -117,8 +125,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["view", "vis", "vid", "vise"],
     correctAnswer: "view",
     explanation: "pre（前に）+ view（見る）で、本番の前に見ておくことを意味します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "view", "ed", "ing"],
     targetWord: "preview"
   },
@@ -128,8 +136,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["senti", "sense", "sens", "sent"],
     correctAnswer: "senti",
     explanation: "pre（前に）+ senti（感じる：sentimentと同根）で、何かが起こる前の「予感」を意味します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "senti", "ment", "s"],
     targetWord: "presentiment"
   },
@@ -139,8 +147,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["dominate", "dome", "dorm", "done"],
     correctAnswer: "dominate",
     explanation: "pre（前に/超えて）+ dominate（支配する）で、他を圧倒して優勢であることを意味します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "domin", "ate", "ance"],
     targetWord: "predominate"
   },
@@ -150,8 +158,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["occupy", "occur", "ocean", "oct"],
     correctAnswer: "occupy",
     explanation: "pre（前に）+ occupy（占める）で、あらかじめ心を占領する、つまり「没頭させる」という意味になります。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "oc", "cupy", "ied"],
     targetWord: "preoccupy"
   },
@@ -161,8 +169,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["caution", "cause", "case", "call"],
     correctAnswer: "caution",
     explanation: "pre（前に）+ caution（警告/注意）で、トラブルを防ぐための事前の備えを指します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "cau", "tion", "ary"],
     targetWord: "precaution"
   },
@@ -172,8 +180,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["historic", "history", "story", "hiss"],
     correctAnswer: "historic",
     explanation: "pre（前に）+ historic（歴史の）で、文字記録が残る以前の時代を指します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "hist", "or", "ic"],
     targetWord: "prehistoric"
   },
@@ -183,8 +191,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["face", "fact", "fess", "fame"],
     correctAnswer: "face",
     explanation: "pre（前に）+ face（話す：fableと同根）で、本編の前に述べる「序文」を指します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "face", "atory", "d"],
     targetWord: "preface"
   },
@@ -194,8 +202,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["mature", "match", "meter", "mount"],
     correctAnswer: "mature",
     explanation: "pre（前に）+ mature（熟した）で、適切な時期より前に出来上がってしまう「早すぎる」状態を指します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "matur", "e", "ity"],
     targetWord: "premature"
   },
@@ -205,8 +213,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["limin", "limit", "line", "light"],
     correctAnswer: "limin",
     explanation: "pre（前に）+ limin（しきい値/境界）で、本番のしきい値をまたぐ前の「予備的な」という意味になります。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "limin", "ary", "ies"],
     targetWord: "preliminary"
   },
@@ -216,8 +224,8 @@ export const PRE_QUIZ_QUESTIONS: Question[] = [
     options: ["mise", "miss", "mit", "mission"],
     correctAnswer: "mise",
     explanation: "pre（前に）+ mise（送る：promiseのmiseと同根）で、あらかじめ提示された「前提」や、法的な文脈から「敷地」を意味します。",
-    category: "Compound",
-    
+    etymology: preEtymology,
+    category: "Compound", 
     allParts: ["pre", "mise", "s", "d"],
     targetWord: "premise"
   }

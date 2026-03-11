@@ -1,5 +1,13 @@
 import { Question,Etymology } from "@/lib/quiz-types";
 
+const perEtymology: Etymology = {
+  id: "prefix-per",
+  root: "per-",
+  meaning: "通って、完全に、過度に",
+  origin: "Latin 'per'",
+  description: "「〜を通り抜けて」という貫通や、最初から最後までやり遂げる「完全に（強調）」、または「過度に」を表す接頭辞。基本的には形の変化は少ない。"
+};
+
 export const PER_QUIZ_QUESTIONS: Question[] = [
   {
     id: "per-1",
@@ -8,6 +16,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sist",
     explanation: "per（最後まで）+ sist（立つ）で、最後まで立ち続けることから「固執する」「持続する」という意味になります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "sist", "ent", "ence"],
     targetWord: "persist"
   },
@@ -18,6 +27,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "son",
     explanation: "per（通して）+ son（音：soundと同根）で、役者の仮面を通して声が出ることから、その「役割・人間」を指すようになりました。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "son", "al", "ality"],
     targetWord: "person"
   },
@@ -28,6 +38,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fect",
     explanation: "per（完全に）+ fect（作る：factoryと同根）で、欠点なく作り終えた状態を指します。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "fect", "ly", "ion"],
     targetWord: "perfect"
   },
@@ -38,6 +49,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "form",
     explanation: "per（完全に）+ form（形作る）で、義務や役を最後まで形にすること、つまり「実行する」「演奏する」となります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "form", "ance", "er"],
     targetWord: "perform"
   },
@@ -48,6 +60,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "suade",
     explanation: "per（完全に）+ suade（甘くする/勧める）で、相手の心を完全にとろけさせて納得させる「説得する」という意味です。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "suade", "sion", "sive"],
     targetWord: "persuade"
   },
@@ -58,6 +71,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spect",
     explanation: "per（通して）+ spect（見る）で、物事を見通す「視点」や「見通し」という意味になります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "spect", "ive", "ly"],
     targetWord: "perspective"
   },
@@ -68,6 +82,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "spire",
     explanation: "per（通して）+ spire（息をする）で、皮膚の毛穴を通して水分が出る「発汗する」という意味です。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "spire", "ation", "ant"],
     targetWord: "perspire"
   },
@@ -78,6 +93,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vade",
     explanation: "per（通って）+ vade（行く：invadeのvadeと同根）で、隅々まで行き渡る「蔓延する」という意味になります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "vade", "sive", "sion"],
     targetWord: "pervade"
   },
@@ -88,6 +104,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ceive",
     explanation: "per（完全に）+ ceive（取る/つかむ）で、情報を完全につかみ取る「気づく」「知覚する」となります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "ceive", "ption", "ptible"],
     targetWord: "perceive"
   },
@@ -98,6 +115,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "man",
     explanation: "per（ずっと）+ man（とどまる：remainのmainと同根）で、途切れることなく続く「永遠の」を意味します。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "man", "ent", "ly"],
     targetWord: "permanent"
   },
@@ -108,6 +126,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mit",
     explanation: "per（通して）+ mit（送る）で、通行を許可する、あるいは何かをさせる「許可」を意味します。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "mit", "sion", "ted"],
     targetWord: "permit"
   },
@@ -118,6 +137,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vert",
     explanation: "per（離れて/悪く）+ vert（回る/向く）で、正しい方向からそらして「歪曲する」という意味です。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "vert", "sion", "ted"],
     targetWord: "pervert"
   },
@@ -128,6 +148,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "plex",
     explanation: "per（完全に）+ plex（編む/重ねる）で、複雑に絡み合って「困惑させる」という意味になります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "plex", "ity", "ed"],
     targetWord: "perplex"
   },
@@ -138,6 +159,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "secute",
     explanation: "per（最後まで）+ secute（続く/追う）で、執拗に追い回して「迫害する」となります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "secut", "ion", "or"],
     targetWord: "persecute"
   },
@@ -148,6 +170,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "turb",
     explanation: "per（完全に）+ turb（乱す：disturbと同根）で、心をひどく「かき乱す」ことを意味します。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "turb", "ation", "ed"],
     targetWord: "perturb"
   },
@@ -158,6 +181,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tin",
     explanation: "per（完全に）+ tin（保持する/保つ）で、内容にしっかり結びついている「適切な・関連のある」という意味です。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "tin", "ent", "ence"],
     targetWord: "pertinent"
   },
@@ -168,6 +192,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "jure",
     explanation: "per（離れて/悪く）+ jure（誓う/法）で、正しい誓いを破って「偽証する」という意味になります。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "jur", "y", "ed"],
     targetWord: "perjure"
   },
@@ -188,6 +213,7 @@ export const PER_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ambul",
     explanation: "per（通って）+ ambul（歩く：ambulanceと同根）で、歩き回る・検分するという意味です。",
     category: "Compound",
+    etymology: perEtymology,
     allParts: ["per", "ambul", "ate", "or"],
     targetWord: "perambulate"
   },

@@ -1,5 +1,13 @@
 import { Question,Etymology } from "@/lib/quiz-types";
 
+const reEtymology: Etymology = {
+  id: "prefix-re",
+  root: "re-",
+  meaning: "後ろに、再び、元に、反対に",
+  origin: "Latin 're-'",
+  description: "「後ろへ」という方向性や、繰り返しの「再び」、元の状態へ戻す「回復・返却」などを表す接頭辞。基本的にはそのままの形で使われる。"
+};
+
 export const RE_QUIZ_QUESTIONS: Question[] = [
   {
     id: "re-1",
@@ -8,6 +16,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "place",
     explanation: "re（元の場所へ）+ place（置く）で、古いものをどけて新しいものを置く「取り替える」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "place", "ment", "able"],
     targetWord: "replace"
   },
@@ -18,6 +27,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "produce",
     explanation: "re（再び）+ produce（生産する）で、子孫を増やす「繁殖する」や「複製する」という意味になります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "pro", "duc", "tion"],
     targetWord: "reproduce"
   },
@@ -28,6 +38,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "port",
     explanation: "re（後ろへ/戻って）+ port（運ぶ）で、現場から情報を持ち帰って「報告する」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "port", "er", "ing"],
     targetWord: "report"
   },
@@ -38,6 +49,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duce",
     explanation: "re（後ろへ）+ duce（導く）で、元の小さい方へ導き戻す「減らす」という意味になります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "duce", "r", "tion"],
     targetWord: "reduce"
   },
@@ -48,6 +60,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "view",
     explanation: "re（再び/後ろに）+ view（見る）で、もう一度よく見直す「再検討」や「復習」を指します。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "view", "er", "ing"],
     targetWord: "review"
   },
@@ -58,6 +71,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "claim",
     explanation: "re（元に）+ claim（叫ぶ）で、失った権利などを「返せと叫ぶ ＝ 取り戻す・更生させる」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "claim", "ation", "ing"],
     targetWord: "reclaim"
   },
@@ -68,6 +82,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "sist",
     explanation: "re（反対して）+ sist（立つ）で、屈せずに立ち向かう「抵抗する」という意味です。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "sist", "ance", "ant"],
     targetWord: "resist"
   },
@@ -78,6 +93,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "call",
     explanation: "re（後ろへ）+ call（呼ぶ）で、記憶を呼び戻す「思い出す」や、欠陥品を「回収する」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "call", "ing", "ed"],
     targetWord: "recall"
   },
@@ -88,6 +104,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "flect",
     explanation: "re（後ろへ）+ flect（曲げる）で、当たったものが後ろへ曲がって戻る「反射」を意味します。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "flect", "ion", "ive"],
     targetWord: "reflect"
   },
@@ -98,6 +115,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "struct",
     explanation: "re（再び）+ con（共に）+ struct（築く）で、壊れたものを「再建する」ことを意味します。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "con", "struct", "ion"],
     targetWord: "reconstruct"
   },
@@ -108,6 +126,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "appear",
     explanation: "re（再び）+ appear（現れる）で、一度消えたものが「再び姿を現す」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "ap", "pear", "ance"],
     targetWord: "reappear"
   },
@@ -118,6 +137,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fer",
     explanation: "re（後ろへ）+ fer（運ぶ）で、意識を後ろ（関連箇所）へ運ぶことから「言及する」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "fer", "ence", "ral"],
     targetWord: "refer"
   },
@@ -128,6 +148,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "veal",
     explanation: "re（反対に）+ veal（ベール/覆い）で、覆いを取り除く「明らかにする」という意味になります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "veal", "ing", "ation"],
     targetWord: "reveal"
   },
@@ -138,6 +159,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "serve",
     explanation: "re（後ろに）+ serve（保つ/守る）で、他の人に渡さないよう取っておく「予約する」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "serve", "ation", "ed"],
     targetWord: "reserve"
   },
@@ -148,6 +170,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "solve",
     explanation: "re（強意：完全に）+ solve（解く）で、問題をきれいに解く、あるいは心を「決心させる」という意味になります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "solve", "ution", "ved"],
     targetWord: "resolve"
   },
@@ -158,6 +181,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "re（後ろへ）+ ject（投げる）で、受け取らずに放り出す「拒絶する」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "ject", "ion", "ed"],
     targetWord: "reject"
   },
@@ -168,6 +192,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "member",
     explanation: "re（再び）+ member（記憶/心）で、忘れていたものを再び心に呼び戻す「覚えている」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "mem", "ber", "ance"],
     targetWord: "remember"
   },
@@ -178,6 +203,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tain",
     explanation: "re（後ろに）+ tain（保つ：containと同根）で、手放さずに「保持する」という意味です。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "tain", "er", "ention"],
     targetWord: "retain"
   },
@@ -188,6 +214,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vive",
     explanation: "re（再び）+ vive（生きる：surviveと同根）で、元気を吹き返す「復活する」を意味します。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "viv", "al", "ing"],
     targetWord: "revive"
   },
@@ -198,6 +225,7 @@ export const RE_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "gist",
     explanation: "re（後ろに）+ gist（運ぶ/運ばれたもの：digestと同根）で、提出されたものを公式帳簿へ「持ち帰って記録する」となります。",
     category: "Compound",
+    etymology: reEtymology,
     allParts: ["re", "gist", "er", "ration"],
     targetWord: "register"
   }

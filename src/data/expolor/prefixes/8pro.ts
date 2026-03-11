@@ -1,5 +1,13 @@
 import { Question,Etymology } from "@/lib/quiz-types";
 
+const proEtymology: Etymology = {
+  id: "prefix-pro",
+  root: "pro-",
+  meaning: "前に、前方に、賛成して",
+  origin: "Latin 'pro', Greek 'pro'",
+  description: "「前方へ進む」という動きや、時間的に「あらかじめ」、または「〜に賛成（支持）する」ことを表す接頭辞。基本的にはそのままの形で使われる。"
+};
+
 export const PRO_QUIZ_QUESTIONS: Question[] = [
   {
     id: "pro-1",
@@ -8,6 +16,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ceed",
     explanation: "pro（前に）+ ceed（行く）で、立ち止まらずに先へ進むことを意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "ceed", "ure", "ing"],
     targetWord: "proceed"
   },
@@ -18,6 +27,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "duce",
     explanation: "pro（前に）+ duce（導く）で、世の中に新しいものを生み出す「生産する」となります。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "duce", "r", "tion"],
     targetWord: "produce"
   },
@@ -28,6 +38,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "ject",
     explanation: "pro（前に）+ ject（投げる）で、アイデアを前方に提示する「計画」や、光を前に投げる「投影」を意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "ject", "ion", "or"],
     targetWord: "project"
   },
@@ -38,6 +49,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mote",
     explanation: "pro（前に）+ mote（動く：motionと同根）で、地位を上げたり、販売を促進したりすることを意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "mot", "er", "ion"],
     targetWord: "promote"
   },
@@ -48,6 +60,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "voke",
     explanation: "pro（前に）+ voke（呼ぶ）で、相手の反応をわざと引き出す「挑発する」となります。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "voke", "active", "ation"],
     targetWord: "provoke"
   },
@@ -58,6 +71,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "vide",
     explanation: "pro（前に）+ vide（見る：visualと同根）で、将来必要になるものをあらかじめ見て準備しておく「提供する」という意味です。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "vid", "e", "er"],
     targetWord: "provide"
   },
@@ -68,6 +82,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "nounce",
     explanation: "pro（前に）+ nounce（報告する/告げる）で、公に言葉を発することを意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "nounc", "e", "iation"],
     targetWord: "pronounce"
   },
@@ -78,6 +93,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "mise",
     explanation: "pro（前に）+ mise（送る：missionと同根）で、相手に対して言葉をあらかじめ送っておく「約束」となります。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "mise", "ing", "d"],
     targetWord: "promise"
   },
@@ -88,6 +104,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "gress",
     explanation: "pro（前に）+ gress（歩む/行く）で、一歩ずつ前に進む「進歩」を意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "gress", "ive", "ion"],
     targetWord: "progress"
   },
@@ -98,6 +115,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "tect",
     explanation: "pro（前に）+ tect（覆う：tileの語源と同根）で、覆いをして守ることを意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "tect", "ion", "ive"],
     targetWord: "protect"
   },
@@ -108,6 +126,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "long",
     explanation: "pro（前に）+ long（長い）で、期間を長く引き延ばすことを意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "long", "ation", "ed"],
     targetWord: "prolong"
   },
@@ -118,6 +137,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "gram",
     explanation: "pro（前に）+ gram（書かれたもの）で、事前に行程が書かれた「予定表」を指します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "gram", "me", "ming"],
     targetWord: "program"
   },
@@ -128,6 +148,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "phet",
     explanation: "pro（前に/代わりに）+ phet（話す：fableと同根）で、神の言葉を代弁する人を指します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "phet", "ic", "y"],
     targetWord: "prophet"
   },
@@ -138,6 +159,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fess",
     explanation: "pro（前に）+ fess（話す：confessと同根）で、公然と言うこと。転じて、誓いを立てて就く「専門職」を意味します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "fess", "ion", "ional"],
     targetWord: "profess"
   },
@@ -148,6 +170,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "pose",
     explanation: "pro（前に）+ pose（置く）で、考えを目の前に置く「提案する」という意味になります。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "pose", "al", "ition"],
     targetWord: "propose"
   },
@@ -158,6 +181,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "secute",
     explanation: "pro（前に/最後まで）+ secute（続く：sequenceと同根）で、法的に追い詰める「起訴する」などの意味を持ちます。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "secut", "ion", "or"],
     targetWord: "prosecute"
   },
@@ -168,6 +192,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fit",
     explanation: "pro（前に/有利に）+ fit（作る/行う：factの変形）で、得られた成果や「利益」を指します。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "fit", "able", "ably"],
     targetWord: "profit"
   },
@@ -178,6 +203,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fer",
     explanation: "pro（前に）+ fer（運ぶ：offerと同根）で、物を差し出す「提供する」という硬い表現です。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "ffer", "ed", "ing"],
     targetWord: "proffer"
   },
@@ -188,6 +214,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "hibit",
     explanation: "pro（前に/離れて）+ hibit（持つ：exhibitと同根）で、遠ざけて持っておく「禁止する」という意味になります。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "hibit", "ion", "ive"],
     targetWord: "prohibit"
   },
@@ -198,6 +225,7 @@ export const PRO_QUIZ_QUESTIONS: Question[] = [
     correctAnswer: "fuse",
     explanation: "pro（前に）+ fuse（注ぐ：confuseのfuseと同根）で、溢れんばかりに注ぎ出される「豊富な」という意味です。",
     category: "Compound",
+    etymology: proEtymology,
     allParts: ["pro", "fuse", "ly", "ion"],
     targetWord: "profuse"
   }
