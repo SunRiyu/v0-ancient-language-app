@@ -17,6 +17,19 @@ import {
 } from "@/components/ui/dialog"
 import { Info, RefreshCcw, TreeDeciduous, Clock, BookOpen } from 'lucide-react'
 
+const PREFIX_LIST = [
+  { id: 'ad', title: 'ad- (〜の方へ)' },
+  { id: 'con', title: 'con- (共に)' },
+  { id: 'de', title: 'de- (離れて)' },
+  { id: 'ex', title: 'ex- (外へ)' },
+  { id: 'in', title: 'in- (中へ/不)' },
+  { id: 'per', title: 'per- (通って)' },
+  { id: 'pre', title: 'pre- (前に)' },
+  { id: 'pro', title: 'pro- (前に/前方に)' },
+  { id: 're', title: 're- (再び/後ろに)' },
+  { id: 'sub', title: 'sub- (下に)' },
+]
+
 // --- キャラクター選択コンポーネント ---
 function CharacterSelection({ onSelect }: { onSelect: (gender: 'male' | 'female') => void }) {
   return (
@@ -79,6 +92,8 @@ export default function HomePage() {
   // 「語源の樹」カードを表示するかどうかのステート
   const [showEtymologyTree, setShowEtymologyTree] = useState(false)
 
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+
   // アンロック状態を管理するステート
   const [unlockedEtymologies, setUnlockedEtymologies] = useState<Record<string, Record<string, number[]>>>({
     seeker: { prefix: [], suffix: [], root: [] },
@@ -117,7 +132,7 @@ export default function HomePage() {
   // 接頭辞などのカードをクリックした時の遷移処理
   const handleDexCardClick = (label: string) => {
     if (label === '接頭辞') {
-      router.push(`/etymology-intro?type=${encodeURIComponent(label)}`)
+      setActiveCategory(prev => prev === label ? null : label)
     }
     // 接尾辞や語根の場合も必要に応じてここに追加
   }
@@ -264,38 +279,68 @@ export default function HomePage() {
 
           {/* 語源の樹ボタンが押された時のみ鍵穴のカードを表示 */}
           {showEtymologyTree && (
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 animate-in fade-in slide-in-from-top-4 duration-500">
-              {[
-                { label: '接頭辞', type: 'prefix', indices: [0, 1] },
-                { label: '接尾辞', type: 'suffix', indices: [2, 3] },
-                { label: '語根', type: 'root', indices: [4, 5] },
-              ].map((category) => {
-                const seekerUnlocked = unlockedEtymologies.seeker[category.type as 'prefix' | 'suffix' | 'root'].length;
-                const sageUnlocked = unlockedEtymologies.sage[category.type as 'prefix' | 'suffix' | 'root'].length;
-                const isLocked = seekerUnlocked === 0 && sageUnlocked === 0;
+            <>
+              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 animate-in fade-in slide-in-from-top-4 duration-500">
+                {[
+                  { label: '接頭辞', type: 'prefix' },
+                  { label: '接尾辞', type: 'suffix' },
+                  { label: '語根', type: 'root' },
+                ].map((category, index) => {
+                  const seekerUnlocked = unlockedEtymologies.seeker[category.type as 'prefix' | 'suffix' | 'root'].length;
+                  const sageUnlocked = unlockedEtymologies.sage[category.type as 'prefix' | 'suffix' | 'root'].length;
+                  const isLocked = seekerUnlocked === 0 && sageUnlocked === 0;
 
-                return (
-                  <div
-                    key={category.type}
-                    onClick={() => {
-                      console.log("Clicked:", category.label);
-                      handleDexCardClick(category.label);
-                    }}
-                    className="cursor-pointer active:scale-95 transition-transform"
-                  >
-                    <div className="pointer-events-none">
-                      <DexCard
-                        index={category.indices[0]}
-                        locked={isLocked}
-                        label={category.label}
-                        name={category.label}
-                        count={seekerUnlocked + sageUnlocked}
-                      />
+
+                  return (
+                    <div
+                      key={category.type}
+                      onClick={() => 
+                        handleDexCardClick(category.label)
+                      }
+                      className="cursor-pointer active:scale-95 transition-transform"
+                    >
+                      <div className="pointer-events-none">
+                        <DexCard
+                          index={index}
+                          locked={isLocked}
+                          label={category.label}
+                          name={category.label}
+                          count={seekerUnlocked + sageUnlocked}
+                        />
+                      </div>
                     </div>
+
+                  );
+                })}
+              </div>
+              {activeCategory === '接頭辞' && (
+                <div className="bg-stone-800/40 p-6 rounded-2xl border border-amber-500/20 animate-in slide-in-from-top-2">
+                  <h3 className="text-amber-200 font-bold mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 bg-amber-500 rounded-full" />
+                    接頭辞を選択して学習
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                    {PREFIX_LIST.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => router.push(`/quiz?course=seeker&type=${item.id}`)}
+                        className="py-3 px-4 bg-stone-900/60 hover:bg-amber-900/40 border border-amber-900/30 hover:border-amber-500/50 text-amber-50 rounded-lg text-sm transition-all text-left group"
+                      >
+                        <span className="text-amber-500 group-hover:text-amber-300 mr-2">▶</span>
+                        {item.title}
+                      </button>
+                    ))}
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              )}
+
+              {/* 接尾辞・語根についても同様に展開可能 */}
+              {(activeCategory === '接尾辞' || activeCategory === '語根') && (
+                <div className="bg-stone-800/40 p-8 rounded-2xl border border-amber-500/20 text-center text-amber-100/60">
+                  現在、{activeCategory}のデータは準備中です
+                </div>
+              )}
+            </>
           )}
         </section>
       </div>
